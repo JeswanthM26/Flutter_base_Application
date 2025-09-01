@@ -7,4 +7,97 @@ import 'app_localizations.dart';
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get bankingSimplified => 'Banking Simplified';
+
+  @override
+  String get trustedByMillions => 'The way you want. Trusted by Millions';
+
+  @override
+  String get getStarted => 'GET STARTED';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get links => 'Links';
+
+  @override
+  String get faqs => 'FAQ’s';
+
+  @override
+  String get calculate => 'Calculate';
+
+  @override
+  String get locateUs => 'Locate Us';
+
+  @override
+  String get replay => 'Replay';
+
+  @override
+  String get newToBank => 'New To Bank?';
+
+  @override
+  String get registerNow => 'Register Now';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get enterUsername => 'Enter Username';
+
+  @override
+  String get continueLabel => 'CONTINUE';
+
+  @override
+  String get troubleLoggingIn => 'TROUBLE LOGGING IN?';
+
+  @override
+  String get joinUs => 'JOIN US';
+
+  @override
+  String welcomeUser(Object username) {
+    return 'Welcome, $username 👋';
+  }
+
+  @override
+  String notUser(Object username) {
+    return 'Not $username?';
+  }
+
+  @override
+  String get switchUser => 'Switch User';
+
+  @override
+  String get mpin => 'MPIN';
+
+  @override
+  String get enterMpin => 'Enter MPIN';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterPassword => 'Enter Password';
+
+  @override
+  String get loginbtn => 'LOGIN';
+
+  @override
+  String get troubleLoggingInbtn => 'TROUBLE LOGGING IN?';
+
+  @override
+  String get faceIdDialogTitle =>
+      'Do you want to allow Appzillon to use Face ID?';
+
+  @override
+  String get faceIdDialogMessage =>
+      'Appzillon would like to use your Face ID for authentication';
+
+  @override
+  String get faceIdDialogCancel => 'Cancel';
+
+  @override
+  String get faceIdDialogOk => 'OK';
 }

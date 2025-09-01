@@ -19,10 +19,10 @@ const Color tertiary_button_pressed = Color(0xFF2A8ACB);
 const Color tertiary_button_disabled = Color(0xFFCCE3F2);
 const Color tertiary_button_default_background = Colors.transparent;
 
-const Color primary_text = Color(0xFFFFFF);
-const Color inverse_text = Color(0x181818);
-const Color secondary_text = Color(0xE6F2FA);
-const Color tertiary_text = Color(0xBABABA);
+const Color primary_text = Color(0xFFFFFFFF);
+const Color inverse_text = Color(0xFF181818);
+const Color secondary_text = Color(0xFFE6F2FA);
+const Color tertiary_text = Color(0xFFBABABA);
 
 const Color semantic_sucess = Color(0xFF34C759);
 const Color semantaic_sucess_radius = Color(0xFFD6F4DE);
@@ -78,3 +78,6 @@ const Color Toggle_hover = Color(0xFF0073C0);
 const Color Toggle_disabled = Color(0xFFE5E5E5);
 
 const Color semantic_shadow = Color(0x1F000000);
+
+Color message_background1 = Color(0xFF383838); // 383838 with 100% opacity
+Color message_background2 = Color(0xD1B3B3B3);

@@ -17,7 +17,7 @@ const TextStyle inputFieldLabelStyle =
 const TextStyle countryCodeStyle =
     TextStyle(fontWeight: FontWeight.w400, fontSize: 14);
 
-const double buttonCornerRadius = 20.0;
+const double buttonCornerRadius = 16.0;
 
 const Map<ApzButtonSize, EdgeInsets> buttonPaddings = {
   ApzButtonSize.small: EdgeInsets.symmetric(vertical: 6, horizontal: 14),
@@ -26,7 +26,7 @@ const Map<ApzButtonSize, EdgeInsets> buttonPaddings = {
 
 const Map<ApzButtonSize, double> buttonHeights = {
   ApzButtonSize.small: 36.0,
-  ApzButtonSize.large: 44.0,
+  ApzButtonSize.large: 48.0,
 };
 
 const Map<ApzButtonSize, double> buttonFontSizes = {
@@ -113,3 +113,19 @@ const double toastShadowSpreadRadius = 0;
 
 const double input_label_fontsize = 14.0;
 const double input_error_fontsize = 12.0;
+
+const double segmentedControlHeight = 40.0;
+const double segmentedCornerRadius = 12.0;
+const double segmentedOptionRadius = 7.0;
+const EdgeInsets segmentedPadding = EdgeInsets.all(4.0);
+const double segmentedFontSize = 12.0;
+const double segmentedShadowBlur = 8;
+const double segmentedSpreadRadius = 0;
+const Offset segmentedShadowOffset = Offset(0, 3);
+
+const double messagewidth = 270;
+const double messageborderradius = 14;
+const double messagePaddingTop = 19;
+const double messagePaddingBottom = 15;
+const double messagePaddingHorizontal = 16;
+const double messagefooterheight = 44;

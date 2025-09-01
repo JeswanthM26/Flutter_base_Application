@@ -5,41 +5,57 @@ import 'package:Retail_Application/example/appz_checkbox_example.dart';
 import 'package:Retail_Application/example/apz_dropdown_example.dart';
 import 'package:Retail_Application/example/apz_phone_with_dropdown_example.dart';
 import 'package:Retail_Application/example/apz_searchbar_example.dart';
+import 'package:Retail_Application/example/apz_segment_control_example.dart';
 import 'package:Retail_Application/example/apz_toast_example.dart';
+import 'package:Retail_Application/l10n/app_localizations.dart';
+import 'package:Retail_Application/l10n/l10n.dart';
 import 'package:Retail_Application/ui/components/apz_dropdown.dart';
-import 'package:Retail_Application/ui/screens/input_dropdown.dart';
-import 'package:Retail_Application/ui/screens/input_screen.dart';
+import 'package:Retail_Application/ui/router/app_router.dart';
+import 'package:Retail_Application/ui/screens/auth_base_screen.dart';
+import 'package:Retail_Application/example/input_screen_example.dart';
+import 'package:Retail_Application/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Retail_Application/ui/screens/product_screen.dart';
 import 'package:Retail_Application/ui/screens/stock_screen.dart';
 import 'package:Retail_Application/ui/screens/weather_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppWrapper());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.light;
-
-  void _toggleTheme() {
-    setState(() {
-      _themeMode =
-          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    });
-  }
+class AppWrapper extends StatelessWidget {
+  const AppWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return ChangeNotifierProvider(
+      create: (context) => LocaleProvider(),
+      child: const MyApp(),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: PhoneInputExample(),
+      locale: provider.locale,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: L10n.all,
+      // home: LoginScreen());
+      routerConfig: AppRouter.router,
     );
   }
 }

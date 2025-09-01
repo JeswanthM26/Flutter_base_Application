@@ -1,5 +1,5 @@
 # The directory where the .arb files (your language literals) are located.
-arb-dir: lib\l10n
+arb-dir: lib/l10n
 
 # The template .arb file that all other language files will be based on.
 # This file should contain all the keys that will be used in the app.

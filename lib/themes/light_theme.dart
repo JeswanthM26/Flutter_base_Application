@@ -79,3 +79,6 @@ const Color Toggle_hover = Color(0xFF0073C0);
 const Color Toggle_disabled = Color(0xFFE5E5E5);
 
 const Color semantic_shadow = Color(0x1F000000);
+
+Color message_background1 = Color(0xFF383838); // 383838 with 100% opacity
+Color message_background2 = Color(0xD1B3B3B3);

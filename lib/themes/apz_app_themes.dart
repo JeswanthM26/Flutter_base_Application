@@ -244,4 +244,13 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.input_field_flag_divider
           : light.input_field_flag_divider;
+
+  static Color message_background1(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.message_background1
+          : light.message_background1;
+  static Color message_background2(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.message_background2
+          : light.message_background2;
 }

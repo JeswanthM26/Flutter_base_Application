@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:go_router/go_router.dart';
@@ -76,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
       if (mounted) {
-        context.go('/products');
+        context.go('/login');
       }
     }
   }
@@ -198,18 +199,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         ),
                       ),
                       onPressed: () {
-                        context.go('/products');
+                        context.go('/login');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Text(
-                            'Skip',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),
+                        children: [
+                          ApzText(
+                            label: 'Skip',
+                            fontWeight: ApzFontWeight.headingSemibold,
+                            fontSize: 14,
+                            color: Colors.white,
                           ),
                           SizedBox(width: 4),
                           Icon(
@@ -228,21 +227,18 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          story.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 26,
-                          ),
+                        ApzText(
+                          label: story.title,
+                          fontWeight: ApzFontWeight.titlesSemibold,
+                          color: Colors.white,
+                          fontSize: 26,
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          story.description,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                          ),
+                        ApzText(
+                          label: story.description,
+                          fontWeight: ApzFontWeight.labelRegular,
+                          color: Colors.white,
+                          fontSize: 17,
                         ),
                       ],
                     ),

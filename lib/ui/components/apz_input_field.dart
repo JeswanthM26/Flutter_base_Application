@@ -60,6 +60,7 @@ enum ApzInputKeyboardType {
   date,
   dateTime,
 }
+
 class ApzInputField extends StatefulWidget {
   final String label;
   final String? hintText;
@@ -115,6 +116,7 @@ class ApzInputField extends StatefulWidget {
   @override
   State<ApzInputField> createState() => _CustomInputFieldState();
 }
+
 class _CustomInputFieldState extends State<ApzInputField> {
   late bool _isObscured;
   late FocusNode _fieldFocusNode;
@@ -157,7 +159,8 @@ class _CustomInputFieldState extends State<ApzInputField> {
     final formatters = <TextInputFormatter>[];
 
     if (widget.isAmount) {
-      formatters.add(_ThousandsSeparatorInputFormatter(widget.amountFormatType));
+      formatters
+          .add(_ThousandsSeparatorInputFormatter(widget.amountFormatType));
     } else if (widget.onlyNumbers) {
       formatters.add(FilteringTextInputFormatter.digitsOnly);
     }
@@ -197,7 +200,7 @@ class _CustomInputFieldState extends State<ApzInputField> {
         return _buildReadOnlyField();
       case ApzInputFieldType.textDescription:
         return _buildTextDescriptionField();
-         case ApzInputFieldType.datepicker:
+      case ApzInputFieldType.datepicker:
         return _buildDatePickerField();
       case ApzInputFieldType.normal:
       default:
@@ -211,7 +214,8 @@ class _CustomInputFieldState extends State<ApzInputField> {
       borderSide: BorderSide.none,
     );
 
-    final Color activeFocusColor = widget.focusColor ?? AppColors.cursor_color(context);
+    final Color activeFocusColor =
+        widget.focusColor ?? AppColors.cursor_color(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +320,8 @@ class _CustomInputFieldState extends State<ApzInputField> {
       borderSide: BorderSide.none,
     );
 
-    final Color activeFocusColor = widget.focusColor ?? AppColors.cursor_color(context);
+    final Color activeFocusColor =
+        widget.focusColor ?? AppColors.cursor_color(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,7 +365,8 @@ class _CustomInputFieldState extends State<ApzInputField> {
             ),
             filled: true,
             fillColor: AppColors.input_field_filled(context),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             border: borderShape,
             enabledBorder: borderShape,
             disabledBorder: borderShape,
@@ -389,13 +395,15 @@ class _CustomInputFieldState extends State<ApzInputField> {
       ],
     );
   }
-   Widget _buildDatePickerField() {
+
+  Widget _buildDatePickerField() {
     final borderShape = OutlineInputBorder(
       borderRadius: BorderRadius.circular(inputFieldBorderRadius),
       borderSide: BorderSide.none,
     );
 
-    final Color activeFocusColor = widget.focusColor ?? AppColors.cursor_color(context);
+    final Color activeFocusColor =
+        widget.focusColor ?? AppColors.cursor_color(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -486,7 +494,6 @@ class _CustomInputFieldState extends State<ApzInputField> {
       ],
     );
   }
-
 
   Widget _buildOtpInput(int otpLength) {
     return Column(
@@ -599,7 +606,7 @@ class _OtpBoxState extends State<_OtpBox> {
       width: 48,
       height: 48,
       child: RawKeyboardListener(
-        focusNode: FocusNode(), 
+        focusNode: FocusNode(),
         onKey: (event) {
           if (event is RawKeyDownEvent &&
               event.logicalKey == LogicalKeyboardKey.backspace) {
@@ -620,7 +627,8 @@ class _OtpBoxState extends State<_OtpBox> {
           style: textStyle,
           decoration: InputDecoration(
             hintText: _focusNode.hasFocus ? null : '-',
-            hintStyle: textStyle.copyWith(color: AppColors.secondary_text(context)),
+            hintStyle:
+                textStyle.copyWith(color: AppColors.secondary_text(context)),
             filled: true,
             fillColor: AppColors.input_field_filled(context),
             contentPadding: EdgeInsets.zero,
@@ -639,9 +647,10 @@ class _OtpBoxState extends State<_OtpBox> {
           onChanged: (value) {
             if (value.isNotEmpty) {
               if (widget.index < widget.controller.text.length) {
-                final newText = widget.controller.text.substring(0, widget.index) +
-                    value +
-                    widget.controller.text.substring(widget.index + 1);
+                final newText =
+                    widget.controller.text.substring(0, widget.index) +
+                        value +
+                        widget.controller.text.substring(widget.index + 1);
                 widget.controller.text = newText;
               } else {
                 widget.controller.text += value;
@@ -653,8 +662,9 @@ class _OtpBoxState extends State<_OtpBox> {
               }
             } else {
               if (widget.index < widget.controller.text.length) {
-                final newText = widget.controller.text.substring(0, widget.index) +
-                    widget.controller.text.substring(widget.index + 1);
+                final newText =
+                    widget.controller.text.substring(0, widget.index) +
+                        widget.controller.text.substring(widget.index + 1);
                 widget.controller.text = newText;
               }
             }
@@ -713,10 +723,7 @@ class _ThousandsSeparatorInputFormatter extends TextInputFormatter {
 
     String formattedInteger = formatter.format(intValue);
 
-    // String newText = (decimalPart != null && decimalPart.isNotEmpty)
-    //     ? "\$formattedInteger.\$decimalPart"
-    //     : formattedInteger;
- String newText = (decimalPart != null)
+    String newText = (decimalPart != null)
         ? "$formattedInteger.$decimalPart"
         : formattedInteger;
 

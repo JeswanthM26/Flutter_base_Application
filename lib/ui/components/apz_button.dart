@@ -137,7 +137,7 @@ class _AppzButtonState extends State<ApzButton> {
         content.add(ApzText(
           label: widget.label!,
           color: txtColor,
-          fontWeight: ApzFontWeight.buttonTextMedium,
+          fontWeight: ApzFontWeight.titlesSemibold,
           fontSize: fontSize,
         ));
       }
@@ -223,5 +223,7 @@ class _AppzButtonState extends State<ApzButton> {
     );
   }
 }
+
 enum ApzButtonAppearance { primary, secondary, tertiary }
+
 enum ApzButtonSize { small, large }

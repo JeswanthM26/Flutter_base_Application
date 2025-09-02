@@ -2,7 +2,7 @@
   "bankingSimplified": "Banking Simplified",
   "trustedByMillions": "The way you want. Trusted by Millions",
   "getStarted": "GET STARTED",
-  "login": "LOGIN",
+  "login1": "LOGIN",
   "links": "Links",
   "faqs": "FAQ’s",
   "calculate": "Calculate",
@@ -31,8 +31,11 @@
   "loginbtn":"LOGIN",
    "troubleLoggingInbtn":"TROUBLE LOGGING IN?",
 
-     "faceIdDialogTitle": "Do you want to allow Appzillon to use Face ID?",
-  "faceIdDialogMessage": "Appzillon would like to use your Face ID for authentication",
-  "faceIdDialogCancel": "Cancel",
-  "faceIdDialogOk": "OK"
+   "useFaceID": "Use Face ID to login",
+"useFingerprint": "Use Fingerprint to login",
+"useMpinPassword": "Use MPIN/Password",
+"welcomeBackUser": "Welcome back, {username} 👋"
+
+
+
 }

@@ -118,11 +118,11 @@ abstract class AppLocalizations {
   /// **'GET STARTED'**
   String get getStarted;
 
-  /// No description provided for @login.
+  /// No description provided for @login1.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
+  /// **'LOGIN'**
+  String get login1;
 
   /// No description provided for @links.
   ///
@@ -153,6 +153,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Replay'**
   String get replay;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
 
   /// No description provided for @newToBank.
   ///
@@ -250,29 +256,29 @@ abstract class AppLocalizations {
   /// **'TROUBLE LOGGING IN?'**
   String get troubleLoggingInbtn;
 
-  /// No description provided for @faceIdDialogTitle.
+  /// No description provided for @useFaceID.
   ///
   /// In en, this message translates to:
-  /// **'Do you want to allow Appzillon to use Face ID?'**
-  String get faceIdDialogTitle;
+  /// **'Use Face ID to login'**
+  String get useFaceID;
 
-  /// No description provided for @faceIdDialogMessage.
+  /// No description provided for @useFingerprint.
   ///
   /// In en, this message translates to:
-  /// **'Appzillon would like to use your Face ID for authentication'**
-  String get faceIdDialogMessage;
+  /// **'Use Fingerprint to login'**
+  String get useFingerprint;
 
-  /// No description provided for @faceIdDialogCancel.
+  /// No description provided for @useMpinPassword.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
-  String get faceIdDialogCancel;
+  /// **'Use MPIN/Password'**
+  String get useMpinPassword;
 
-  /// No description provided for @faceIdDialogOk.
+  /// No description provided for @welcomeBackUser.
   ///
   /// In en, this message translates to:
-  /// **'OK'**
-  String get faceIdDialogOk;
+  /// **'Welcome back, {username} 👋'**
+  String welcomeBackUser(Object username);
 }
 
 class _AppLocalizationsDelegate

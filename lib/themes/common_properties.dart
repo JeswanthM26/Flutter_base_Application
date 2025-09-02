@@ -31,7 +31,7 @@ const Map<ApzButtonSize, double> buttonHeights = {
 
 const Map<ApzButtonSize, double> buttonFontSizes = {
   ApzButtonSize.small: 12.0,
-  ApzButtonSize.large: 15.0,
+  ApzButtonSize.large: 16.0,
 };
 
 const Offset buttonShadowOffset1 = Offset(0, 2);

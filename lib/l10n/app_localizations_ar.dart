@@ -18,7 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get getStarted => 'ابدأ الآن';
 
   @override
-  String get login => 'تسجيل الدخول';
+  String get login1 => 'تسجيل الدخول';
 
   @override
   String get links => 'روابط';
@@ -34,6 +34,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get replay => 'إعادة';
+
+  @override
+  String get login => 'تسجيل الدخول';
 
   @override
   String get newToBank => 'جديد في البنك؟';
@@ -88,16 +91,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get troubleLoggingInbtn => 'مشكلة في تسجيل الدخول؟';
 
   @override
-  String get faceIdDialogTitle =>
-      'هل تريد السماح للتطبيق باستخدام التعرف على الوجه؟';
+  String get useFaceID => 'استخدم التعرف على الوجه لتسجيل الدخول';
 
   @override
-  String get faceIdDialogMessage =>
-      'يرغب التطبيق في استخدام التعرف على الوجه الخاص بك للمصادقة';
+  String get useFingerprint => 'استخدم بصمة الإصبع لتسجيل الدخول';
 
   @override
-  String get faceIdDialogCancel => 'إلغاء';
+  String get useMpinPassword => 'استخدم الرقم السري الشخصي/كلمة المرور';
 
   @override
-  String get faceIdDialogOk => 'موافق';
+  String welcomeBackUser(Object username) {
+    return 'مرحبًا بعودتك، $username 👋';
+  }
 }

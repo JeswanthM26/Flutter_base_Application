@@ -18,7 +18,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get getStarted => 'शुरू करें';
 
   @override
-  String get login => 'लॉगिन';
+  String get login1 => 'लॉगिन';
 
   @override
   String get links => 'लिंक';
@@ -34,6 +34,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get replay => 'फिर से चलाएँ';
+
+  @override
+  String get login => 'लॉगिन';
 
   @override
   String get newToBank => 'बैंक में नया?';
@@ -88,16 +91,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get troubleLoggingInbtn => 'लॉगिन में समस्या?';
 
   @override
-  String get faceIdDialogTitle =>
-      'क्या आप एप्लिकेशन को फेस आईडी उपयोग करने की अनुमति देना चाहते हैं?';
+  String get useFaceID => 'लॉगिन के लिए फेस आईडी का उपयोग करें';
 
   @override
-  String get faceIdDialogMessage =>
-      'एप्लिकेशन आपके प्रमाणीकृत करने के लिए फेस आईडी का उपयोग करना चाहता है।';
+  String get useFingerprint => 'लॉगिन के लिए फिंगरप्रिंट का उपयोग करें';
 
   @override
-  String get faceIdDialogCancel => 'रद्द करें';
+  String get useMpinPassword => 'एमपिन/पासवर्ड का उपयोग करें';
 
   @override
-  String get faceIdDialogOk => 'ठीक है';
+  String welcomeBackUser(Object username) {
+    return 'वापस स्वागत है, $username 👋';
+  }
 }

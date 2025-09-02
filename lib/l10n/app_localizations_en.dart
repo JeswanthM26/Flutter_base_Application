@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'GET STARTED';
 
   @override
-  String get login => 'Login';
+  String get login1 => 'LOGIN';
 
   @override
   String get links => 'Links';
@@ -34,6 +34,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get replay => 'Replay';
+
+  @override
+  String get login => 'Login';
 
   @override
   String get newToBank => 'New To Bank?';
@@ -88,16 +91,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get troubleLoggingInbtn => 'TROUBLE LOGGING IN?';
 
   @override
-  String get faceIdDialogTitle =>
-      'Do you want to allow Appzillon to use Face ID?';
+  String get useFaceID => 'Use Face ID to login';
 
   @override
-  String get faceIdDialogMessage =>
-      'Appzillon would like to use your Face ID for authentication';
+  String get useFingerprint => 'Use Fingerprint to login';
 
   @override
-  String get faceIdDialogCancel => 'Cancel';
+  String get useMpinPassword => 'Use MPIN/Password';
 
   @override
-  String get faceIdDialogOk => 'OK';
+  String welcomeBackUser(Object username) {
+    return 'Welcome back, $username 👋';
+  }
 }

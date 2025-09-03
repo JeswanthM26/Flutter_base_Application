@@ -13,6 +13,7 @@ import 'package:Retail_Application/ui/components/apz_dropdown.dart';
 import 'package:Retail_Application/ui/router/app_router.dart';
 import 'package:Retail_Application/ui/screens/auth_base_screen.dart';
 import 'package:Retail_Application/example/input_screen_example.dart';
+import 'package:Retail_Application/ui/screens/dashboard_screen.dart';
 import 'package:Retail_Application/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Retail_Application/ui/screens/product_screen.dart';
@@ -44,18 +45,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<LocaleProvider>(context);
 
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      locale: provider.locale,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: L10n.all,
-      // home: LoginScreen());
-      routerConfig: AppRouter.router,
-    );
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: provider.locale,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: L10n.all,
+        home: DashboardScreen());
+    //routerConfig: AppRouter.router,
   }
 }

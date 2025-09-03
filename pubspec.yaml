@@ -17,6 +17,7 @@ dependencies:
   video_player: ^2.7.0 
   local_auth: ^2.3.0
   shared_preferences: ^2.1.0
+  carousel_slider: ^5.1.1
 
   cupertino_icons: ^1.0.8
   provider: ^6.0.5
@@ -47,6 +48,7 @@ flutter:
     - assets/alerts/
     - mock/
     - mock/products/
+    - mock/Dashboard/
     - mock/mock_datas/
     - assets/loader/
     - assets/login/

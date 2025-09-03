@@ -1,0 +1,60 @@
+{
+  "APZRMB__CreditCardDetails_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": ""
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "serviceStatusCode": "0",
+          "creditCards": [
+            {
+              "cardNumber": "1000XXXX95518888",
+              "customerId": "309880",
+              "cardPin": 1234,
+              "cardValidity": "2027-03-01",
+              "cardHolderName": "Daniel",
+              "cardType": "master",
+              "currency": "USD",
+              "cardBalance": 29371.16,
+              "creditLmt": 30000,
+              "minDueAmt": 100,
+              "totalDueAmt": 1250,
+              "unbilledAmt": 3000,
+              "availableCredit": 6700,
+              "cashLmt": 2500,
+              "limitStartDate": "2025-02-19",
+              "limitEndDate": "2026-03-19",
+              "cardTxnLmt": 5000,
+              "withdrawalLmt": 5000,
+              "onlineTxnLmt": 5000,
+              "permanentAddress": "800 E Observatory Rd, Los Angeles, CA 90027",
+              "communicationAddress": "800 E Observatory Rd, Los Angeles, CA 90027",
+              "mobile": "8197543012",
+              "emailId": "daniel@i-exceed.com",
+              "intTrnStatus": "Y",
+              "cardStatus": "A",
+              "cardReissueFlag": "Y",
+              "dueDate": "2025-07-27",
+              "contactlessPayLimit": 36000,
+              "cardCategory": "GOLD",
+              "cardcvv": 123,
+              "cardBlockStartDate": null,
+              "cardBlockEndDate": null,
+              "cardBlockType": "",
+              "isAddonCard": "N",
+              "hasAddonCard": "N",
+              "cardSubCategory1": "Easy Shopping",
+              "cardSubCategory2": "International Credit Card",
+              "dob": null,
+              "relationship": null,
+              "encryptedCardNumber": "AAAAAAAAAAAAAAAAH8jOmvufKfWUr6rmFv3aKkipoIWOaEWwsOht9qFLO6E",
+              "encryptedPrimaryCardNumber": "AAAAAAAAAAAAAAAAQI2SxlhGwnvyPwVn2lTSf_2YjKM"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

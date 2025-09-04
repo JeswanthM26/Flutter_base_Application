@@ -56,6 +56,6 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: L10n.all,
         home: DashboardScreen());
-    //routerConfig: AppRouter.router,
+    // routerConfig: AppRouter.router,
   }
 }

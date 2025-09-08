@@ -3,6 +3,7 @@
 import 'package:Retail_Application/example/appz_alert_example.dart';
 import 'package:Retail_Application/example/appz_checkbox_example.dart';
 import 'package:Retail_Application/example/apz_dropdown_example.dart';
+import 'package:Retail_Application/example/apz_payment_example.dart';
 import 'package:Retail_Application/example/apz_phone_with_dropdown_example.dart';
 import 'package:Retail_Application/example/apz_searchbar_example.dart';
 import 'package:Retail_Application/example/apz_segment_control_example.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: L10n.all,
-        home: DashboardScreen());
-    // routerConfig: AppRouter.router,
+        home: PaymentCardExample());
+    // routerConfig: AppRouter.router);
   }
 }

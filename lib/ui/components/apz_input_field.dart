@@ -225,7 +225,7 @@ class _CustomInputFieldState extends State<ApzInputField> {
           children: [
             ApzText(
               label: widget.label,
-              color: AppColors.secondary_text(context),
+              color: AppColors.input_field_label(context),
               fontSize: 12,
             ),
             if (widget.isMandatory)
@@ -249,12 +249,12 @@ class _CustomInputFieldState extends State<ApzInputField> {
           enabled: widget.enabled,
           inputFormatters: _buildInputFormatters(),
           style: inputFieldHintStyle.copyWith(
-              color: AppColors.input_field_label(context),
+              color: AppColors.input_field_placeholder_filled(context),
               fontWeight: FontWeight.w500),
           decoration: InputDecoration(
             hintText: widget.hintText ?? '',
             hintStyle: inputFieldHintStyle.copyWith(
-              color: AppColors.input_field_label(context),
+              color: AppColors.input_field_placeholder_default(context),
             ),
             filled: true,
             fillColor: AppColors.input_field_filled(context),

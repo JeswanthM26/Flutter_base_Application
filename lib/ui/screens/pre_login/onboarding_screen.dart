@@ -6,8 +6,6 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:go_router/go_router.dart';
 import 'package:Retail_Application/models/login_stories/apz_story_model.dart';
 
-// Import your Story model here
-
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
 

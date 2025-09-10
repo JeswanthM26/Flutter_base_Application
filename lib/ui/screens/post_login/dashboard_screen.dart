@@ -4,6 +4,7 @@ import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:Retail_Application/ui/widgets/balance_chart.dart';
 import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -181,6 +182,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       _actionButton(Icons.receipt_long, "Pay Bills", () {
                         print("Pay Bills clicked");
                       }),
+                      _actionButton(Icons.receipt_long, "Pay Bills", () {
+                        print("Pay Bills clicked");
+                      }),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -189,7 +193,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: BalanceTrendChart(),
                   ),
                   const SizedBox(height: 12),
-                  const UpcomingPaymentsCard(),
                 ],
               ),
             ),

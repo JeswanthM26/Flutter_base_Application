@@ -5,8 +5,7 @@ import 'package:Retail_Application/example/apz_searchbar_example.dart';
 import 'package:Retail_Application/themes/apz_theme_provider.dart';
 import 'package:Retail_Application/ui/components/apz_menu.dart';
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';
-import 'package:Retail_Application/ui/screens/dashboard_screen.dart';
-import 'package:Retail_Application/ui/screens/menu_screen.dart';
+import 'package:Retail_Application/ui/screens/post_login/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Retail_Application/ui/components/apz_footer.dart';
 import 'package:Retail_Application/ui/components/apz_header.dart';
@@ -21,14 +20,14 @@ class FooterHeaderScreen extends StatefulWidget {
 class _FooterExampleScreenState extends State<FooterHeaderScreen> {
   int _selectedIndex = 0;
 
-  final _pages = const [
-    DashboardScreen(),
-    AppzRadioExample(),
+  final _pages = [
+    const DashboardScreen(),
+    const AppzRadioExample(),
     MenuSheet(
-      options: [],
+      options: const [],
     ),
-    AppzButtonExample(),
-    ApzDropdownExample(),
+    const AppzButtonExample(),
+    const ApzDropdownExample(),
   ];
 
   void _onItemSelected(int index) {

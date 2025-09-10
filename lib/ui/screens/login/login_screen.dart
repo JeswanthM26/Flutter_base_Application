@@ -5,8 +5,8 @@ import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter_svg/svg.dart';
-import 'auth_base_screen.dart';
-import 'auth_overlay_container.dart';
+import '../pre_login/auth_base_screen.dart';
+import '../pre_login/auth_overlay_container.dart';
 import 'package:Retail_Application/ui/components/apz_segment_control.dart';
 import 'package:local_auth/local_auth.dart';
 

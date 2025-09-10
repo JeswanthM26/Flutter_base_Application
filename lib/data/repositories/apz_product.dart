@@ -1,4 +1,4 @@
-import 'package:Retail_Application/models/apz_product.dart';
+import 'package:Retail_Application/models/api_test/apz_product.dart';
 
 abstract class ProductRepository {
   Future<List<ApzProduct>> getProducts();

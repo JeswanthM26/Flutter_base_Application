@@ -1,4 +1,4 @@
-import 'package:Retail_Application/models/apz_checkboxItem.dart';
+import 'package:Retail_Application/models/checkbox/apz_checkboxItem.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:Retail_Application/themes/common_properties.dart';

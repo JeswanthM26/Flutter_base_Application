@@ -4,7 +4,7 @@ import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:go_router/go_router.dart';
-import 'package:Retail_Application/models/apz_story_model.dart';
+import 'package:Retail_Application/models/login_stories/apz_story_model.dart';
 
 // Import your Story model here
 

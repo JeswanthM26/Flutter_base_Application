@@ -1,5 +1,5 @@
-import 'package:Retail_Application/ui/screens/login_screen.dart';
-import 'package:Retail_Application/ui/screens/onboarding_screen.dart';
+import 'package:Retail_Application/ui/screens/login/login_screen.dart';
+import 'package:Retail_Application/ui/screens/pre_login/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart';
 

@@ -81,3 +81,66 @@ const Color semantic_shadow = Color(0x1F000000);
 
 Color message_background1 = Color(0xFF383838); // 383838 with 100% opacity
 Color message_background2 = Color(0xD1B3B3B3);
+
+// Footer Colors
+const Color footer_background = Color(0xFF353535);
+const Color footer_default = Color(0xFFAEBBD1);
+const Color footer_selected = Color(0xFFFFFFFF);
+
+//header
+const Color header_icon_color = Color(0xFFFFFFFF);
+
+//dashboard
+const Color dashboardActionButtonBgStart = Colors.white;
+const Color dashboardActionButtonBgEnd = Color(0xFFEFF4FF);
+const Color dashboardActionButtonBorderColor = Colors.white;
+const Color dashboardActionButtonShadow1 = Color(0x05000000);
+const Color dashboardActionButtonShadow2 = Color(0x0A000000);
+const Color dashboardActionButtonIconColor = Colors.blue;
+const Color dashboardActionButtonLabelColor = Colors.black;
+
+// 🔹 Dashboard Info Card Colors
+const Color dashboardInfoCardSelectedText = Color(0xFF181818);
+const Color dashboardInfoCardUnselectedText =
+    Color(0xFF6D6D6D); // approx grey600
+const Color dashboardInfoCardGradientStart = Color(0xFFB3E0FF);
+const Color dashboardInfoCardGradientEnd = Color(0x33B3E0FF);
+const Color dashboardInfoCardBorderColor = Colors.white;
+const Color dashboardInfoCardCountSelectedBg = Color(0xFF4FA8DE);
+const Color dashboardInfoCardCountUnselectedBg =
+    Color(0xFFBDBDBD); // approx grey400
+const Color dashboardInfoCardCountSelectedText = Colors.white;
+const Color dashboardInfoCardCountUnselectedText =
+    Color(0xFF6D6D6D); // approx grey600
+
+// 📌 Dashboard Balance Section Colors
+const Color dashboardAvailableBalanceTextColor = Color(0xFF57768B);
+const Color dashboardBalanceVisibleTextColor = Color(0xFF181818);
+const Color dashboardBalanceHiddenTextColor = Color(0xFF181818);
+const Color dashboardVisibilityIconColor = Colors.black;
+const Color dashboardSavingsTextColor = Color(0xFF4EA8DE);
+const Color dashboardSavingsDividerColor = Color(0x5181B4D6);
+const Color dashboardIndicatorBgColor = Colors.blue;
+const Color dashboardIndicatorTextColor = Colors.white;
+const Color dashboardIndicatorDotActive = Colors.blue;
+const Color dashboardIndicatorDotInactive = Color(0xFFBDBDBD); // ~grey.shade400
+
+// 📌 Dashboard Balance Trend Chart Colors
+const Color dashboardBalanceTrendTitleTextColor = Colors.grey;
+const Color dashboardBalanceTrendFilterBgColor = Color(0xFFE8F1FF);
+const Color dashboardBalanceTrendFilterTextColor =
+    Color(0xFF1565C0); // ~Colors.blue[800]
+const Color dashboardBalanceTrendFilterIconColor =
+    Color(0xFF1565C0); // ~Colors.blue[800]
+const Color dashboardBalanceTrendTooltipTextColor = Colors.white;
+const Color dashboardBalanceTrendTooltipLineColor =
+    Color.fromARGB(255, 207, 207, 209);
+const Color dashboardBalanceTrendYAxisLabelTextColor = Colors.grey;
+const Color dashboardBalanceTrendXAxisLabelTextColor = Colors.grey;
+const Color dashboardBalanceTrendLineColor = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendLineGradientStart = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendLineGradientEnd = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendBelowLineGradientStart = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
+const Color dashboardBalanceTrendDotFillColor = Colors.white;
+const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);

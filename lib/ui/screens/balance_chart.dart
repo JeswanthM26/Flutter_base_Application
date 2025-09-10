@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -201,7 +202,7 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                   label: "Money Movement",
                   fontWeight: ApzFontWeight.titlesMedium,
                   fontSize: 13,
-                  color: Colors.grey,
+                  color: AppColors.dashboardBalanceTrendTitleTextColor(context),
                 ),
               ),
               Row(
@@ -211,7 +212,8 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE8F1FF),
+                      color:
+                          AppColors.dashboardBalanceTrendFilterBgColor(context),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -231,7 +233,9 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                                       .year
                                       .toString(),
                           style: TextStyle(
-                            color: Colors.blue[800],
+                            color:
+                                AppColors.dashboardBalanceTrendFilterTextColor(
+                                    context),
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                           ),
@@ -249,7 +253,9 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                           child: Icon(
                             Icons.chevron_left,
                             size: 18,
-                            color: Colors.blue[800],
+                            color:
+                                AppColors.dashboardBalanceTrendFilterIconColor(
+                                    context),
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -265,7 +271,9 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                           child: Icon(
                             Icons.chevron_right,
                             size: 18,
-                            color: Colors.blue[800],
+                            color:
+                                AppColors.dashboardBalanceTrendFilterIconColor(
+                                    context),
                           ),
                         ),
                       ],
@@ -317,8 +325,10 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                           final amount = "${(spot.y ~/ 1000)}k";
                           return LineTooltipItem(
                             "$formattedDate, $amount",
-                            const TextStyle(
-                              color: Colors.white,
+                            TextStyle(
+                              color: AppColors
+                                  .dashboardBalanceTrendTooltipTextColor(
+                                      context),
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),
@@ -330,7 +340,9 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                       return indicators.map((index) {
                         return TouchedSpotIndicatorData(
                           FlLine(
-                            color: const Color.fromARGB(255, 207, 207, 209),
+                            color:
+                                AppColors.dashboardBalanceTrendTooltipLineColor(
+                                    context),
                             strokeWidth: 2,
                             dashArray: [6, 6],
                           ),
@@ -359,10 +371,12 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                                   padding: const EdgeInsets.only(left: 6),
                                   child: Text(
                                     "${(value ~/ 1000)}k",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.grey,
+                                      color: AppColors
+                                          .dashboardBalanceTrendYAxisLabelTextColor(
+                                              context),
                                     ),
                                   ),
                                 )
@@ -388,8 +402,11 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                                   EdgeInsets.only(top: 4, left: leftPadding),
                               child: Text(
                                 label,
-                                style: const TextStyle(
-                                    fontSize: 12, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors
+                                        .dashboardBalanceTrendXAxisLabelTextColor(
+                                            context)),
                               ),
                             );
                           }
@@ -409,16 +426,25 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                       }).toList(),
                       isCurved: true,
                       curveSmoothness: 0.42,
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF4A90E2), Color(0xFF4A90E2)],
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.dashboardBalanceTrendLineGradientStart(
+                              context),
+                          AppColors.dashboardBalanceTrendLineGradientEnd(
+                              context)
+                        ],
                       ),
                       barWidth: 3,
                       belowBarData: BarAreaData(
                         show: true,
                         gradient: LinearGradient(
                           colors: [
-                            const Color(0xFF4A90E2).withOpacity(0.14),
-                            Colors.transparent,
+                            AppColors
+                                    .dashboardBalanceTrendBelowLineGradientStart(
+                                        context)
+                                .withOpacity(0.14),
+                            AppColors.dashboardBalanceTrendBelowLineGradientEnd(
+                                context),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -433,9 +459,12 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                         getDotPainter: (spot, percent, barData, index) {
                           return FlDotCirclePainter(
                             radius: 6.5,
-                            color: Colors.white,
+                            color: AppColors.dashboardBalanceTrendDotFillColor(
+                                context),
                             strokeWidth: 3,
-                            strokeColor: const Color(0xFF4A90E2),
+                            strokeColor:
+                                AppColors.dashboardBalanceTrendDotBorderColor(
+                                    context),
                           );
                         },
                       ),
@@ -445,11 +474,6 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
               ),
             ),
           ),
-        SizedBox(height: 4),
-        Text(
-          "Monthly Statement",
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        ),
       ],
     );
   }

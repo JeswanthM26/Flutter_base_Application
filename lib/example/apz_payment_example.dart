@@ -14,8 +14,8 @@ class PaymentCardExample extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Payment Card with Button',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            // const Text('Payment Card with Button',
+            //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             PaymentCard(
               title: "Aditya Birla Mutual Fund",
@@ -25,11 +25,10 @@ class PaymentCardExample extends StatelessWidget {
               buttonLabel: "Pay ₹5076.83",
               buttonAppearance: ApzButtonAppearance.primary,
               buttonSize: ApzButtonSize.small,
-              onIconTap: () {}, // safe to ignore for button
             ),
             const SizedBox(height: 32),
-            const Text('Payment Card with Icon',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            // const Text('Payment Card with Icon',
+            //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             PaymentCard(
               title: "HDFC Bank Account",
@@ -42,8 +41,8 @@ class PaymentCardExample extends StatelessWidget {
               },
             ),
             const SizedBox(height: 32),
-            const Text('Payment Card with Text (Credit)',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            // const Text('Payment Card with Text (Credit)',
+            //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             PaymentCard(
               title: "Salary Credit",
@@ -54,8 +53,8 @@ class PaymentCardExample extends StatelessWidget {
               isCredit: true,
             ),
             const SizedBox(height: 32),
-            const Text('Payment Card with Text (Debit)',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            // const Text('Payment Card with Text (Debit)',
+            //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             PaymentCard(
               title: "Electricity Bill",

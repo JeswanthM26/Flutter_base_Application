@@ -2,6 +2,8 @@ import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 // import your button
 import 'apz_button.dart';
+import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:Retail_Application/themes/common_properties.dart'; // ✅ import properties
 
 enum PaymentCardActionType { button, icon, text }
 
@@ -73,82 +75,63 @@ class _PaymentCardState extends State<PaymentCard> {
       case PaymentCardActionType.icon:
         trailing = GestureDetector(
           onTap: widget.onIconTap,
-          child: Icon(widget.icon, color: Colors.black),
+          child: Icon(widget.icon, color: AppColors.primary_text(context)),
         );
         break;
 
       case PaymentCardActionType.text:
         trailing = ApzText(
           label: widget.amount ?? "",
-          fontSize: 13,
+          fontSize: paymentCardAmountFontSize,
           fontWeight: ApzFontWeight.headingsMedium,
-          color: widget.isCredit == true ? Colors.green : Colors.black,
+          color: widget.isCredit == true
+              ? AppColors.semantic_sucess(context)
+              : AppColors.primary_text(context),
         );
         break;
     }
 
     return Container(
-      width: 323, // ✅ fixed width as per Figma
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // ✅ Asset Image with Box Shadow (Figma style)
-          Container(
-            width: 36,
-            height: 36,
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              shadows: const [
-                BoxShadow(
-                  color: Color(0x1E000000),
-                  blurRadius: 2.91,
-                  offset: Offset(3.64, -1.45),
-                  spreadRadius: 0,
-                ),
-              ],
+      width: double.infinity,
+      padding: paymentCardPadding,
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        minLeadingWidth: 0,
+        leading: Container(
+          width: paymentCardImageSize,
+          height: paymentCardImageSize,
+          decoration: ShapeDecoration(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(paymentCardImageBorderRadius),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                widget.imageUrl,
-                fit: BoxFit.cover,
-              ),
+            shadows: const [paymentCardImageShadow],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(paymentCardImageBorderRadius),
+            child: Image.asset(
+              widget.imageUrl,
+              fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 12),
-
-          // Text block (expanded)
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // replace these lines inside the Column
-                ApzText(
-                  label: widget.title,
-                  fontWeight: ApzFontWeight.headingsMedium,
-                  fontSize: 12,
-                  color: const Color(0xFF181818),
-                ),
-                const SizedBox(height: 4),
-                ApzText(
-                  label: widget.subtitle,
-                  fontWeight: ApzFontWeight.bodyRegular,
-                  fontSize: 12,
-                  color: const Color(0xFF6D717F),
-                ),
-              ],
-            ),
-          ),
-
-          // Trailing widget
-          if (trailing != null) ...[
-            const SizedBox(width: 8),
-            trailing,
+        ),
+        title: ApzText(
+          label: widget.title,
+          fontWeight: ApzFontWeight.headingsMedium,
+          fontSize: paymentCardTitleFontSize,
+          color: AppColors.primary_text(context),
+        ),
+        subtitle: ApzText(
+          label: widget.subtitle,
+          fontWeight: ApzFontWeight.bodyRegular,
+          fontSize: paymentCardSubtitleFontSize,
+          color: AppColors.secondary_text(context),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min, // ✅ Keeps it tight to the end
+          children: [
+            trailing ?? const SizedBox(),
           ],
-        ],
+        ),
       ),
     );
   }

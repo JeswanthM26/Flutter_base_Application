@@ -253,4 +253,224 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.message_background2
           : light.message_background2;
+
+  static Color footer_background(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.footer_background
+          : light.footer_background;
+
+  static Color footer_default(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.footer_default
+          : light.footer_default;
+
+  static Color footer_selected(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.footer_selected
+          : light.footer_selected;
+  static Color header_icon_color(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.header_icon_color
+          : light.header_icon_color;
+  static Color dashboardActionButtonBgStart(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonBgStart
+          : light.dashboardActionButtonBgStart;
+  static Color dashboardActionButtonBgEnd(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonBgEnd
+          : light.dashboardActionButtonBgEnd;
+  static Color dashboardActionButtonBorderColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonBorderColor
+          : light.dashboardActionButtonBorderColor;
+  static Color dashboardActionButtonShadow1(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonShadow1
+          : light.dashboardActionButtonShadow1;
+  static Color dashboardActionButtonShadow2(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonShadow2
+          : light.dashboardActionButtonShadow2;
+
+  static Color dashboardActionButtonIconColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonIconColor
+          : light.dashboardActionButtonIconColor;
+
+  static Color dashboardActionButtonLabelColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardActionButtonLabelColor
+          : light.dashboardActionButtonLabelColor;
+  static Color dashboardInfoCardSelectedText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardSelectedText
+          : light.dashboardInfoCardSelectedText;
+  static Color dashboardInfoCardUnselectedText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardUnselectedText
+          : light.dashboardInfoCardUnselectedText;
+  static Color dashboardInfoCardGradientStart(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardGradientStart
+          : light.dashboardInfoCardGradientStart;
+  static Color dashboardInfoCardGradientEnd(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardGradientEnd
+          : light.dashboardInfoCardGradientEnd;
+  static Color dashboardInfoCardBorderColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardBorderColor
+          : light.dashboardInfoCardBorderColor;
+  static Color dashboardInfoCardCountSelectedBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardCountSelectedBg
+          : light.dashboardInfoCardCountSelectedBg;
+  static Color dashboardInfoCardCountUnselectedBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardCountUnselectedBg
+          : light.dashboardInfoCardCountUnselectedBg;
+  static Color dashboardInfoCardCountSelectedText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardCountSelectedText
+          : light.dashboardInfoCardCountSelectedText;
+  static Color dashboardInfoCardCountUnselectedText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardInfoCardCountUnselectedText
+          : light.dashboardInfoCardCountUnselectedText;
+
+  static Color dashboardAvailableBalanceTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardAvailableBalanceTextColor
+          : light.dashboardAvailableBalanceTextColor;
+
+  static Color dashboardBalanceVisibleTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceVisibleTextColor
+          : light.dashboardBalanceVisibleTextColor;
+
+  static Color dashboardBalanceHiddenTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceHiddenTextColor
+          : light.dashboardBalanceHiddenTextColor;
+
+  static Color dashboardVisibilityIconColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardVisibilityIconColor
+          : light.dashboardVisibilityIconColor;
+
+  static Color dashboardSavingsTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardSavingsTextColor
+          : light.dashboardSavingsTextColor;
+
+  static Color dashboardSavingsDividerColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardSavingsDividerColor
+          : light.dashboardSavingsDividerColor;
+
+  static Color dashboardIndicatorBgColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardIndicatorBgColor
+          : light.dashboardIndicatorBgColor;
+
+  static Color dashboardIndicatorTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardIndicatorTextColor
+          : light.dashboardIndicatorTextColor;
+
+  static Color dashboardIndicatorDotActive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardIndicatorDotActive
+          : light.dashboardIndicatorDotActive;
+
+  static Color dashboardIndicatorDotInactive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardIndicatorDotInactive
+          : light.dashboardIndicatorDotInactive;
+
+  // 📌 Dashboard Balance Trend Chart Colors
+  static Color dashboardBalanceTrendTitleTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendTitleTextColor
+          : light.dashboardBalanceTrendTitleTextColor;
+
+  static Color dashboardBalanceTrendFilterBgColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendFilterBgColor
+          : light.dashboardBalanceTrendFilterBgColor;
+
+  static Color dashboardBalanceTrendFilterTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendFilterTextColor
+          : light.dashboardBalanceTrendFilterTextColor;
+
+  static Color dashboardBalanceTrendFilterIconColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendFilterIconColor
+          : light.dashboardBalanceTrendFilterIconColor;
+
+  static Color dashboardBalanceTrendTooltipTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendTooltipTextColor
+          : light.dashboardBalanceTrendTooltipTextColor;
+
+  static Color dashboardBalanceTrendTooltipLineColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendTooltipLineColor
+          : light.dashboardBalanceTrendTooltipLineColor;
+
+  static Color dashboardBalanceTrendYAxisLabelTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendYAxisLabelTextColor
+          : light.dashboardBalanceTrendYAxisLabelTextColor;
+
+  static Color dashboardBalanceTrendXAxisLabelTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendXAxisLabelTextColor
+          : light.dashboardBalanceTrendXAxisLabelTextColor;
+
+  static Color dashboardBalanceTrendLineColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendLineColor
+          : light.dashboardBalanceTrendLineColor;
+
+  static Color dashboardBalanceTrendLineGradientStart(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendLineGradientStart
+          : light.dashboardBalanceTrendLineGradientStart;
+
+  static Color dashboardBalanceTrendLineGradientEnd(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendLineGradientEnd
+          : light.dashboardBalanceTrendLineGradientEnd;
+
+  static Color dashboardBalanceTrendBelowLineGradientStart(
+          BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendBelowLineGradientStart
+          : light.dashboardBalanceTrendBelowLineGradientStart;
+
+  static Color dashboardBalanceTrendBelowLineGradientEnd(
+          BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendBelowLineGradientEnd
+          : light.dashboardBalanceTrendBelowLineGradientEnd;
+
+  static Color dashboardBalanceTrendDotFillColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendDotFillColor
+          : light.dashboardBalanceTrendDotFillColor;
+
+  static Color dashboardBalanceTrendDotBorderColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.dashboardBalanceTrendDotBorderColor
+          : light.dashboardBalanceTrendDotBorderColor;
+}
+
+class AppImages {
+  static String backgroundImage(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? 'assets/images/dark_theme.png'
+          : 'assets/images/light_theme.png';
 }

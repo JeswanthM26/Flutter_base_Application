@@ -1,0 +1,38 @@
+{
+    "bankingSimplified": "सरल बैंकिंग",
+    "trustedByMillions": "जैसा आप चाहते हैं। लाखों लोगों का विश्वास",
+    "getStarted": "शुरू करें",
+    "login1": "लॉगिन",
+    "links": "लिंक",
+    "faqs": "प्रश्नोत्तर",
+    "calculate": "गणना करें",
+    "locateUs": "हमें ढूँढें",
+    "replay": "फिर से चलाएँ",
+
+
+  "login": "लॉगिन",
+  "newToBank": "बैंक में नया?",
+  "registerNow": "अभी रजिस्टर करें",
+  "username": "उपयोगकर्ता नाम",
+  "enterUsername": "अपना उपयोगकर्ता नाम दर्ज करें",
+  "continueLabel": "जारी रखें",
+  "troubleLoggingIn": "लॉगिन में समस्या?",
+  "joinUs": "हमसे जुड़ें",
+
+   "welcomeUser": "स्वागत है, {username} 👋",
+  "notUser": "{username} नहीं हैं?",
+  "switchUser": "उपयोगकर्ता बदलें",
+  "mpin": "एमपिन",
+  "enterMpin": "एमपिन दर्ज करें",
+  "password": "पासवर्ड",
+  "enterPassword": "पासवर्ड दर्ज करें",
+  "loginbtn": "लॉगिन",
+  "troubleLoggingInbtn": "लॉगिन में समस्या?",
+
+   "useFaceID": "लॉगिन के लिए फेस आईडी का उपयोग करें",
+  "useFingerprint": "लॉगिन के लिए फिंगरप्रिंट का उपयोग करें",
+  "useMpinPassword": "एमपिन/पासवर्ड का उपयोग करें",
+  "welcomeBackUser": "वापस स्वागत है, {username} 👋"
+
+
+  }

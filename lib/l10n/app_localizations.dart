@@ -5,7 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_hi.dart';
 
 // ignore_for_file: type=lint
 
@@ -62,7 +64,7 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -85,14 +87,198 @@ abstract class AppLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('en'),
+    Locale('hi'),
+  ];
+
+  /// No description provided for @bankingSimplified.
+  ///
+  /// In en, this message translates to:
+  /// **'Banking Simplified'**
+  String get bankingSimplified;
+
+  /// No description provided for @trustedByMillions.
+  ///
+  /// In en, this message translates to:
+  /// **'The way you want. Trusted by Millions'**
+  String get trustedByMillions;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'GET STARTED'**
+  String get getStarted;
+
+  /// No description provided for @login1.
+  ///
+  /// In en, this message translates to:
+  /// **'LOGIN'**
+  String get login1;
+
+  /// No description provided for @links.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get links;
+
+  /// No description provided for @faqs.
+  ///
+  /// In en, this message translates to:
+  /// **'FAQ’s'**
+  String get faqs;
+
+  /// No description provided for @calculate.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate'**
+  String get calculate;
+
+  /// No description provided for @locateUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate Us'**
+  String get locateUs;
+
+  /// No description provided for @replay.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get replay;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @newToBank.
+  ///
+  /// In en, this message translates to:
+  /// **'New To Bank?'**
+  String get newToBank;
+
+  /// No description provided for @registerNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Register Now'**
+  String get registerNow;
+
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @enterUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Username'**
+  String get enterUsername;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get continueLabel;
+
+  /// No description provided for @troubleLoggingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'TROUBLE LOGGING IN?'**
+  String get troubleLoggingIn;
+
+  /// No description provided for @joinUs.
+  ///
+  /// In en, this message translates to:
+  /// **'JOIN US'**
+  String get joinUs;
+
+  /// No description provided for @welcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {username} 👋'**
+  String welcomeUser(Object username);
+
+  /// No description provided for @notUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Not {username}?'**
+  String notUser(Object username);
+
+  /// No description provided for @switchUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch User'**
+  String get switchUser;
+
+  /// No description provided for @mpin.
+  ///
+  /// In en, this message translates to:
+  /// **'MPIN'**
+  String get mpin;
+
+  /// No description provided for @enterMpin.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter MPIN'**
+  String get enterMpin;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Password'**
+  String get enterPassword;
+
+  /// No description provided for @loginbtn.
+  ///
+  /// In en, this message translates to:
+  /// **'LOGIN'**
+  String get loginbtn;
+
+  /// No description provided for @troubleLoggingInbtn.
+  ///
+  /// In en, this message translates to:
+  /// **'TROUBLE LOGGING IN?'**
+  String get troubleLoggingInbtn;
+
+  /// No description provided for @useFaceID.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Face ID to login'**
+  String get useFaceID;
+
+  /// No description provided for @useFingerprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Fingerprint to login'**
+  String get useFingerprint;
+
+  /// No description provided for @useMpinPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Use MPIN/Password'**
+  String get useMpinPassword;
+
+  /// No description provided for @welcomeBackUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back, {username} 👋'**
+  String welcomeBackUser(Object username);
 }
 
 class _AppLocalizationsDelegate
@@ -106,7 +292,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['ar', 'en', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -115,13 +301,18 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
+    case 'hi':
+      return AppLocalizationsHi();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

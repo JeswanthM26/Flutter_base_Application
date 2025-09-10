@@ -14,6 +14,11 @@ dependencies:
   flutter_svg: ^1.1.6
   phonecodes: ^0.0.4
   country_flags: ^3.0.0
+  video_player: ^2.7.0 
+  local_auth: ^2.3.0
+  shared_preferences: ^2.1.0
+  carousel_slider: ^5.1.1
+  fl_chart: ^0.69.0
 
   cupertino_icons: ^1.0.8
   provider: ^6.0.5
@@ -44,8 +49,10 @@ flutter:
     - assets/alerts/
     - mock/
     - mock/products/
+    - mock/Dashboard/
     - mock/mock_datas/
     - assets/loader/
+    - assets/login/
 
   uses-material-design: true
   generate: true

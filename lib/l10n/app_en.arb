@@ -1,0 +1,41 @@
+{
+  "bankingSimplified": "Banking Simplified",
+  "trustedByMillions": "The way you want. Trusted by Millions",
+  "getStarted": "GET STARTED",
+  "login1": "LOGIN",
+  "links": "Links",
+  "faqs": "FAQ’s",
+  "calculate": "Calculate",
+  "locateUs": "Locate Us",
+  "replay": "Replay",
+
+
+
+   "login": "Login",
+  "newToBank": "New To Bank?",
+  "registerNow": "Register Now", 
+  "username": "Username",
+  "enterUsername": "Enter Username",
+  "continueLabel": "CONTINUE", 
+  "troubleLoggingIn": "TROUBLE LOGGING IN?", 
+  "joinUs": "JOIN US",
+
+
+  "welcomeUser": "Welcome, {username} 👋",
+  "notUser": "Not {username}?",
+  "switchUser": "Switch User",
+  "mpin": "MPIN",
+  "enterMpin": "Enter MPIN",
+  "password": "Password",
+  "enterPassword": "Enter Password",
+  "loginbtn":"LOGIN",
+   "troubleLoggingInbtn":"TROUBLE LOGGING IN?",
+
+   "useFaceID": "Use Face ID to login",
+"useFingerprint": "Use Fingerprint to login",
+"useMpinPassword": "Use MPIN/Password",
+"welcomeBackUser": "Welcome back, {username} 👋"
+
+
+
+}

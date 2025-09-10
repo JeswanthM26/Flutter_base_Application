@@ -1,0 +1,129 @@
+ {
+  "apiResponse": {
+    "ResponseHeader": {"ResponseCode": "0", "ResponseMessage": ""},
+    "ResponseBody": {
+      "responseObj": {
+        "serviceStatusCode": "0",
+        "customerDetails": {
+          "customerId": "740442",
+          "customerName": "Chethan K",
+          "customerType": "DEFAULT",
+          "dateOfBirth": "2000-08-03",
+          "mobileNo": "9036737792",
+          "emailId": "chethan.k@gmail.com",
+          "permAddress":
+              "Kormangala Bengaluru Karnataka India - 560068",
+        "communicationAddress":
+              "Kormangala Bengaluru Karnataka India - 560068"
+        },
+        "accountDetails": [
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004422006",
+            "accountType": "CA",
+            "loanType": "",
+            "currency": "INR",
+            "availableBalance": "97000.0",
+            "availBalanceFcy": "97000.0",
+            "nickName": "",
+            "creditAllowed": "Y",
+            "debitAllowed": "Y",
+            "acctName": "Chethan K",
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004425762",
+            "accountType": "SB",
+            "loanType": "",
+            "currency": "INR",
+            "availableBalance": "65951.5",
+            "availBalanceFcy": "65951.5",
+            "nickName": "",
+            "creditAllowed": "Y",
+            "debitAllowed": "Y",
+            "acctName": "Chethan K",
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "1000123940458674",
+            "accountType": "SB",
+            "loanType": "",
+            "currency": "USD",
+            "availableBalance": "310.0",
+            "availBalanceFcy": "310.0",
+            "nickName": "",
+            "creditAllowed": "Y",
+            "debitAllowed": "Y",
+            "acctName": "Chethan K",
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004426393",
+            "accountType": "LN",
+            "loanType": "HL",
+            "currency": "INR",
+            "availableBalance": "180000",
+            "availBalanceFcy": "180000",
+            "nickName": null,
+            "creditAllowed": null,
+            "debitAllowed": null,
+            "acctName": null,
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004428579",
+            "accountType": "LN",
+            "loanType": "CL",
+            "currency": "INR",
+            "availableBalance": "180000",
+            "availBalanceFcy": "180000",
+            "nickName": null,
+            "creditAllowed": null,
+            "debitAllowed": null,
+            "acctName": null,
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004425470",
+            "accountType": "RD",
+            "loanType": "",
+            "currency": "INR",
+            "availableBalance": "375000",
+            "availBalanceFcy": "375000",
+            "nickName": null,
+            "creditAllowed": null,
+            "debitAllowed": null,
+            "acctName": null,
+            "showHideAccounts": ""
+          },
+          {
+            "customerId": "740442",
+            "customerName": "Chethan K",
+            "accountNo": "100004429552",
+            "accountType": "FD",
+            "loanType": "",
+            "currency": "INR",
+            "availableBalance": "375000",
+            "availBalanceFcy": "375000",
+            "nickName": null,
+            "creditAllowed": null,
+            "debitAllowed": null,
+            "acctName": null,
+            "showHideAccounts": ""
+          }
+        ]
+      }
+    }
+  }
+}

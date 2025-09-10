@@ -17,7 +17,7 @@ const TextStyle inputFieldLabelStyle =
 const TextStyle countryCodeStyle =
     TextStyle(fontWeight: FontWeight.w400, fontSize: 14);
 
-const double buttonCornerRadius = 20.0;
+const double buttonCornerRadius = 16.0;
 
 const Map<ApzButtonSize, EdgeInsets> buttonPaddings = {
   ApzButtonSize.small: EdgeInsets.symmetric(vertical: 6, horizontal: 14),
@@ -26,12 +26,12 @@ const Map<ApzButtonSize, EdgeInsets> buttonPaddings = {
 
 const Map<ApzButtonSize, double> buttonHeights = {
   ApzButtonSize.small: 36.0,
-  ApzButtonSize.large: 44.0,
+  ApzButtonSize.large: 48.0,
 };
 
 const Map<ApzButtonSize, double> buttonFontSizes = {
   ApzButtonSize.small: 12.0,
-  ApzButtonSize.large: 15.0,
+  ApzButtonSize.large: 16.0,
 };
 
 const Offset buttonShadowOffset1 = Offset(0, 2);
@@ -113,3 +113,56 @@ const double toastShadowSpreadRadius = 0;
 
 const double input_label_fontsize = 14.0;
 const double input_error_fontsize = 12.0;
+
+const double segmentedControlHeight = 40.0;
+const double segmentedCornerRadius = 12.0;
+const double segmentedOptionRadius = 7.0;
+const EdgeInsets segmentedPadding = EdgeInsets.all(4.0);
+const double segmentedFontSize = 12.0;
+const double segmentedShadowBlur = 8;
+const double segmentedSpreadRadius = 0;
+const Offset segmentedShadowOffset = Offset(0, 3);
+
+// Footer Properties
+const double footer_height = 90.0;
+const EdgeInsets footer_padding =
+    EdgeInsets.only(bottom: 12, top: 12, left: 20, right: 20);
+const double footer_borderRadius = 34.0;
+const double footer_iconSize = 24.0;
+const double footer_labelFontSize = 12.0;
+const FontWeight footer_labelFontWeight = FontWeight.w500;
+const double footer_spacing = 4.0;
+const double footer_centerButtonSize = 60.0;
+const double footer_centerIconSize = 28.0;
+const double footer_borderWidth = 1.0;
+
+// Header Properties
+
+const double header_spacing = 12.0;
+const double header_leadingIconContainerSize = 44.0;
+const double header_leadingIconBorderRadius = 12.0;
+const double header_notificationIconSize = 28.0;
+const double header_notificationDotSize = 8.0;
+const double header_profileIconContainerSize = 40.0;
+const double header_profileIconBorderRadius = 12.0;
+const double header_profileIconSize = 28.0;
+const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 0);
+
+// --- Payment Card Properties ---
+
+const double paymentCardWidth = 323.0;
+const EdgeInsets paymentCardPadding = EdgeInsets.symmetric(horizontal: 8);
+
+const double paymentCardImageSize = 36.0;
+const double paymentCardImageBorderRadius = 10.0;
+
+const BoxShadow paymentCardImageShadow = BoxShadow(
+  color: Color(0x1E000000),
+  blurRadius: 2.91,
+  offset: Offset(3.64, -1.45),
+  spreadRadius: 0,
+);
+
+const double paymentCardTitleFontSize = 12.0;
+const double paymentCardSubtitleFontSize = 12.0;
+const double paymentCardAmountFontSize = 13.0;

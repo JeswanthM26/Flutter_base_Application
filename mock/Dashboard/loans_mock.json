@@ -1,0 +1,42 @@
+{
+  "APZRMB__LoanDetails_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": ""
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "serviceStatusCode": "0",
+          "loans": [
+            {
+              "customerId": "309880",
+              "customerName": "Daniel",
+              "accountNo": "110X XXXX 0009 9880",
+              "accountType": "Retail Loan",
+              "loanType": "RL",
+              "currency": "USD",
+              "availableBalance": "60,609.12",
+              "availBalanceFcy": "55,881.61",
+              "nickName": null,
+              "creditAllowed": null,
+              "debitAllowed": null,
+              "acctName": null,
+              "showHideAccounts": "",
+              "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8nOnvuXIfWdqq_uF_3aIj6JITw9MdKZcTKaDYI7h3U",
+              "accTypeCode": "LN",
+              "group": "LOAN",
+              "currentBalance": "60,609.12",
+              "withdrawBalance": "60,609.12",
+              "availBalance": "60,609.12",
+              "accountCode": "LNA",
+              "currencyIcon": "",
+              "eqCurrency": "Equi Amt: EUR",
+              "eqAvailBalance": "55,881.61"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

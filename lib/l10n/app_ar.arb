@@ -1,0 +1,38 @@
+{
+  "bankingSimplified": "تبسيط الخدمات المصرفية",
+  "trustedByMillions": "بالطريقة التي تريدها. موثوق من قبل الملايين",
+  "getStarted": "ابدأ الآن",
+  "login1": "تسجيل الدخول",
+  "links": "روابط",
+  "faqs": "الأسئلة الشائعة",
+  "calculate": "احسب",
+  "locateUs": "موقعنا",
+  "replay": "إعادة",
+
+
+  "login": "تسجيل الدخول",
+  "newToBank": "جديد في البنك؟",
+  "registerNow": "سجل الآن",
+  "username": "اسم المستخدم",
+  "enterUsername": "أدخل اسم المستخدم",
+  "continueLabel": "استمرار",
+  "troubleLoggingIn": "مشكلة في تسجيل الدخول؟",
+  "joinUs": "انضم إلينا",
+
+   "welcomeUser": "مرحبًا، {username} 👋",
+  "notUser": "لستَ {username}؟",
+  "switchUser": "تبديل المستخدم",
+  "mpin": "الرمز السري",
+  "enterMpin": "أدخل الرمز السري",
+  "password": "كلمة المرور",
+  "enterPassword": "أدخل كلمة المرور",
+  "loginbtn": "تسجيل الدخول",
+  "troubleLoggingInbtn": "مشكلة في تسجيل الدخول؟",
+
+  "useFaceID": "استخدم التعرف على الوجه لتسجيل الدخول",
+  "useFingerprint": "استخدم بصمة الإصبع لتسجيل الدخول",
+  "useMpinPassword": "استخدم الرقم السري الشخصي/كلمة المرور",
+  "welcomeBackUser": "مرحبًا بعودتك، {username} 👋"
+
+
+}

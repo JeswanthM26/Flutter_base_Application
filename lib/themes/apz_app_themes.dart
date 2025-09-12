@@ -467,27 +467,38 @@ class AppColors {
           ? dark.dashboardBalanceTrendDotBorderColor
           : light.dashboardBalanceTrendDotBorderColor;
           
-          static Color donutChartBgColor (BuildContext context) =>
+          static Color donutChartBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
-          ? dark.donutChartBgColor
-          : light.donutChartBgColor;
-  static Color donutChartPrimaryColor(BuildContext context) =>
+          ? dark.donutChartBackgroundColor
+          : light.donutChartBackgroundColor;
+  static Color donutChartTitleColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
-          ? dark.donutChartPrimaryColor
-          : light.donutChartPrimaryColor;
-  static Color donutChartSecondaryColor(BuildContext context) =>
+          ? dark.donutChartTitleColor
+          : light.donutChartTitleColor;
+  static Color donutChartCenterTextColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
-          ? dark.donutChartSecondaryColor
-          : light.donutChartSecondaryColor;
+          ? dark.donutChartCenterTextColor
+          : light.donutChartCenterTextColor;
+  static Color donutChartCenterPercentageColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartCenterPercentageColor
+          : light.donutChartCenterPercentageColor;
   static Color donutChartLegendTextColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.donutChartLegendTextColor
           : light.donutChartLegendTextColor;
-  static Color donutChartLegendLabelColor(BuildContext context) =>
+  static Color donutChartAmountTextColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
-          ? dark.donutChartLegendLabelColor
-          : light.donutChartLegendLabelColor;
-
+          ? dark.donutChartAmountTextColor
+          : light.donutChartAmountTextColor;
+  static Color donutChartDateTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartDateTextColor
+          : light.donutChartDateTextColor;
+  static List<List<Color>> donutChartSectionColors(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartSectionColors
+          : light.donutChartSectionColors;
 }
 
 class AppImages {

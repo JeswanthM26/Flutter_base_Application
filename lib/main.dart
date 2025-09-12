@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
           ],
         );
       },
-      home: FooterHeaderScreen(),
+      home: FinancialDashboardScreen(),
       // home: PaymentCardExample(),
     );
   }

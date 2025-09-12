@@ -1,6 +1,6 @@
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:flutter/material.dart';
-
+import 'package:Retail_Application/ui/components/apz_text.dart';
 // Typography
 const double defaultFontSize = 14.0;
 
@@ -169,10 +169,37 @@ const double paymentCardAmountFontSize = 13.0;
 
 
 
+// const donutChartWidth = 250.0;
+// const donutChartHeight = 125.0;
+// const donutChartCenterSpace = 80.0;
+// const donutChartGapFromTop = 24.0;
+// const donutChartSideLabelYOffset = 40.0; // Tune this
+// const donutChartLegendFontSize = 13.0;
+
+
+
 const donutChartWidth = 250.0;
 const donutChartHeight = 125.0;
 const donutChartCenterSpace = 80.0;
 const donutChartGapFromTop = 24.0;
 const donutChartSideLabelYOffset = 40.0; // Tune this
-const donutChartLegendFontSize = 13.0;
+
+const double donutChartTitleFontSize = 13;
+const ApzFontWeight donutChartTitleFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartCenterTextFontSize = 11.51;
+const ApzFontWeight donutChartCenterTextFontWeight = ApzFontWeight.bodyRegular;
+
+const double donutChartCenterPercentageFontSize = 20;
+const ApzFontWeight donutChartCenterPercentageFontWeight =
+    ApzFontWeight.captionSemibold;
+
+const double donutChartLegendFontSize = 13.0;
+const ApzFontWeight donutChartLegendFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartAmountFontSize = 13.0;
+const ApzFontWeight donutChartAmountFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartDateFontSize = 11.0;
+const ApzFontWeight donutChartDateFontWeight = ApzFontWeight.bodyMedium;
 

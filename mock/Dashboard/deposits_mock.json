@@ -10,7 +10,7 @@
         "accounts":[ 
           {
           "customerId": "",
-          "accountNo": "100XXXXX5470",
+          "accountNo": "1000000004429552",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",
@@ -45,16 +45,16 @@
         },
         {
           "customerId": "",
-          "accountNo": "100XXXXX5471",
+          "accountNo": "1000000004425470",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",
           "accountType": "RD",
           "productName": "Deposit - Norm 2 Years",
           "currency": "INR",
-          "depositAmount": "375000",
+          "depositAmount": "475000",
           "principalAmount": "375000",
-          "interestAmount": "11750",
+          "interestAmount": "21750",
           "maturityAmount": "375000",
           "interestRate": "10",
           "tenorInDays": "",

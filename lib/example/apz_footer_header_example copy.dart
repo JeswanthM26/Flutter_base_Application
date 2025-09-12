@@ -94,6 +94,8 @@
 import 'package:Retail_Application/example/appz_button_example.dart';
 import 'package:Retail_Application/example/appz_radio_example.dart';
 import 'package:Retail_Application/example/apz_dropdown_example.dart';
+import 'package:Retail_Application/example/deposit_chart_example.dart';
+import 'package:Retail_Application/example/loader_example.dart';
 import 'package:Retail_Application/themes/apz_theme_provider.dart';
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
@@ -116,7 +118,7 @@ class _FooterHeaderScreenState extends State<FooterHeaderScreen> {
   // Note: The center item in the footer doesn't have a page, 
   // so we have a placeholder here.
   final _pages = [
-    const ApzDropdownExample(),
+    ApzLoaderExample(onToggleTheme: () {  },),
     const AppzRadioExample(),
     const MenuSheet(options: [],), // Placeholder for the center item
     const AppzButtonExample(),

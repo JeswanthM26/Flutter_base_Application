@@ -146,9 +146,21 @@ const Color dashboardBalanceTrendDotFillColor = Colors.white;
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
 
 
-const donutChartBgColor = Color(0xFF002A4D);
-const donutChartPrimaryColor = Color(0xFF5AB8F0);
-const donutChartSecondaryColor = Color(0xFFB3E0FF);
+// const donutChartBgColor = Color(0xFF002A4D);
+// const donutChartPrimaryColor = Color(0xFF5AB8F0);
+// const donutChartSecondaryColor = Color(0xFFB3E0FF);
+// const donutChartLegendTextColor = Colors.white;
+// const donutChartLegendLabelColor = Color(0xFFBABABA);
+
+const donutChartBackgroundColor = Color(0xFF002A4D);
+const donutChartTitleColor = Color(0xFFE6F2FA);
+const donutChartCenterTextColor = Color(0xFFBABABA);
+const donutChartCenterPercentageColor = Color(0xFFF5F5F5);
 const donutChartLegendTextColor = Colors.white;
-const donutChartLegendLabelColor = Color(0xFFBABABA);
+const donutChartAmountTextColor = Colors.white;
+const donutChartDateTextColor = Color(0xFFBABABA);
+const List<List<Color>> donutChartSectionColors = [
+  [Color(0xFFB3E0FF), Color(0xFFF4F8FF)],
+  [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
+];
 

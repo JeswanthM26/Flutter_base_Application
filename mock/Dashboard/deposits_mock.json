@@ -7,7 +7,8 @@
     "ResponseBody": {
       "responseObj": {
         "serviceStatusCode": "0",
-        "accounts": {
+        "accounts":[ 
+          {
           "customerId": "",
           "accountNo": "100XXXXX5470",
           "branchCode": "111050",
@@ -41,7 +42,43 @@
           "currentInterestAmount": "",
           "currentMaturityAmount": "",
           "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8jOmvKTJfeYrqjnOyTJrEJXw7DPy8w9998Iyg"
+        },
+        {
+          "customerId": "",
+          "accountNo": "100XXXXX5471",
+          "branchCode": "111050",
+          "branchName": "MG Road",
+          "accOpenDate": "06-DEC-2024",
+          "accountType": "RD",
+          "productName": "Deposit - Norm 2 Years",
+          "currency": "INR",
+          "depositAmount": "375000",
+          "principalAmount": "375000",
+          "interestAmount": "11750",
+          "maturityAmount": "375000",
+          "interestRate": "10",
+          "tenorInDays": "",
+          "tenorInMonths": "24",
+          "tenorInYears": "",
+          "interestPayout": "Monthly",
+          "nomineeName": "Tr?ng",
+          "nomineeAddress": "Hai Phong, Vietnam",
+          "accountName": "Jhon K",
+          "maturityDate": "01-JAN-2026",
+          "availBalanceFcy": "",
+          "debitAcctNo": "",
+          "payoutAccount": "",
+          "autoDebit": "",
+          "autoDebitAccNo": "",
+          "autoDebitDate": "",
+          "preCloseCharge": "",
+          "withdrawalLimit": "",
+          "minWithdrawalLimit": "",
+          "currentInterestAmount": "",
+          "currentMaturityAmount": "",
+          "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8jOmvKTJfeYrqjnOyTJrEJXw7DPy8w9998Iyg"
         }
+      ]
       }
     }
   }

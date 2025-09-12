@@ -466,6 +466,28 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.dashboardBalanceTrendDotBorderColor
           : light.dashboardBalanceTrendDotBorderColor;
+          
+          static Color donutChartBgColor (BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartBgColor
+          : light.donutChartBgColor;
+  static Color donutChartPrimaryColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartPrimaryColor
+          : light.donutChartPrimaryColor;
+  static Color donutChartSecondaryColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartSecondaryColor
+          : light.donutChartSecondaryColor;
+  static Color donutChartLegendTextColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartLegendTextColor
+          : light.donutChartLegendTextColor;
+  static Color donutChartLegendLabelColor(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.donutChartLegendLabelColor
+          : light.donutChartLegendLabelColor;
+
 }
 
 class AppImages {

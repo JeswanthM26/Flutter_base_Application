@@ -1,40 +1,46 @@
 {
-  "APZRMB__DepositDetails_Res": {
-    "apiResponse": {
-      "ResponseHeader": {
-        "ResponseCode": "0",
-        "ResponseMessage": ""
-      },
-      "ResponseBody": {
-        "responseObj": {
-          "serviceStatusCode": "0",
-          "deposits": [
-            {
-              "customerId": "309880",
-              "customerName": "Daniel",
-              "accountNo": "100X XXXX 9496 2213",
-              "accountType": "Fixed",
-              "loanType": "",
-              "currency": "USD",
-              "availableBalance": "50,000.00",
-              "availBalanceFcy": "46,100.00",
-              "nickName": null,
-              "creditAllowed": null,
-              "debitAllowed": null,
-              "acctName": null,
-              "showHideAccounts": "",
-              "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8jOmvuUJveUrqbhHPfTITotoWlDhNetKxl5dfw-tUc",
-              "accTypeCode": "FD",
-              "group": "DEPOSIT",
-              "currentBalance": "50,000.00",
-              "withdrawBalance": "50,000.00",
-              "availBalance": "50,000.00",
-              "accountCode": "FDA",
-              "currencyIcon": "",
-              "eqCurrency": "Equi Amt: EUR",
-              "eqAvailBalance": "46,100.00"
-            }
-          ]
+  "apiResponse": {
+    "ResponseHeader": {
+      "ResponseCode": "0",
+      "ResponseMessage": ""
+    },
+    "ResponseBody": {
+      "responseObj": {
+        "serviceStatusCode": "0",
+        "accounts": {
+          "customerId": "",
+          "accountNo": "100XXXXX5470",
+          "branchCode": "111050",
+          "branchName": "MG Road",
+          "accOpenDate": "06-DEC-2024",
+          "accountType": "RD",
+          "productName": "Deposit - Norm 2 Years",
+          "currency": "INR",
+          "depositAmount": "375000",
+          "principalAmount": "375000",
+          "interestAmount": "11750",
+          "maturityAmount": "375000",
+          "interestRate": "10",
+          "tenorInDays": "",
+          "tenorInMonths": "24",
+          "tenorInYears": "",
+          "interestPayout": "Monthly",
+          "nomineeName": "Tr?ng",
+          "nomineeAddress": "Hai Phong, Vietnam",
+          "accountName": "Chethan K",
+          "maturityDate": "01-JAN-2026",
+          "availBalanceFcy": "",
+          "debitAcctNo": "",
+          "payoutAccount": "",
+          "autoDebit": "",
+          "autoDebitAccNo": "",
+          "autoDebitDate": "",
+          "preCloseCharge": "",
+          "withdrawalLimit": "",
+          "minWithdrawalLimit": "",
+          "currentInterestAmount": "",
+          "currentMaturityAmount": "",
+          "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8jOmvKTJfeYrqjnOyTJrEJXw7DPy8w9998Iyg"
         }
       }
     }

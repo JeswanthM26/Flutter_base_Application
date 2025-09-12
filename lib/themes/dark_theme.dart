@@ -144,3 +144,11 @@ const Color dashboardBalanceTrendBelowLineGradientStart = Color(0xFF4A90E2);
 const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Colors.white;
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
+
+
+const donutChartBgColor = Color(0xFF002A4D);
+const donutChartPrimaryColor = Color(0xFF5AB8F0);
+const donutChartSecondaryColor = Color(0xFFB3E0FF);
+const donutChartLegendTextColor = Colors.white;
+const donutChartLegendLabelColor = Color(0xFFBABABA);
+

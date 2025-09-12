@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 /// Model class for menu items
 class MenuOption {
-  final IconData icon;
+  final String icon;
   final String label;
-  final VoidCallback onTap;
+  final String route;
 
   const MenuOption({
     required this.icon,
     required this.label,
-    required this.onTap,
+    required this.route,
   });
 }

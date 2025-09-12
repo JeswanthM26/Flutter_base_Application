@@ -1,4 +1,5 @@
 import 'package:Retail_Application/ui/components/apz_button.dart';
+import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 
 // Typography
@@ -153,7 +154,7 @@ const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 0);
 const double paymentCardWidth = 323.0;
 const EdgeInsets paymentCardPadding = EdgeInsets.symmetric(horizontal: 8);
 
-const double paymentCardImageSize = 36.0;
+const double paymentCardImageSize = 40.0;
 const double paymentCardImageBorderRadius = 10.0;
 
 const BoxShadow paymentCardImageShadow = BoxShadow(
@@ -163,6 +164,33 @@ const BoxShadow paymentCardImageShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-const double paymentCardTitleFontSize = 12.0;
-const double paymentCardSubtitleFontSize = 12.0;
+const double paymentCardTitleFontSize = 14.0;
+const double paymentCardSubtitleFontSize = 14.0;
 const double paymentCardAmountFontSize = 13.0;
+
+
+
+const donutChartWidth = 250.0;
+const donutChartHeight = 125.0;
+const donutChartCenterSpace = 80.0;
+const donutChartGapFromTop = 24.0;
+const donutChartSideLabelYOffset = 40.0; // Tune this
+
+const double donutChartTitleFontSize = 13;
+const ApzFontWeight donutChartTitleFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartCenterTextFontSize = 11.51;
+const ApzFontWeight donutChartCenterTextFontWeight = ApzFontWeight.bodyRegular;
+
+const double donutChartCenterPercentageFontSize = 20;
+const ApzFontWeight donutChartCenterPercentageFontWeight =
+    ApzFontWeight.captionSemibold;
+
+const double donutChartLegendFontSize = 13.0;
+const ApzFontWeight donutChartLegendFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartAmountFontSize = 13.0;
+const ApzFontWeight donutChartAmountFontWeight = ApzFontWeight.bodyMedium;
+
+const double donutChartDateFontSize = 11.0;
+const ApzFontWeight donutChartDateFontWeight = ApzFontWeight.bodyMedium;

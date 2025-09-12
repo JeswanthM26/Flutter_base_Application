@@ -54,5 +54,6 @@ flutter:
     - assets/loader/
     - assets/login/
 
+
   uses-material-design: true
   generate: true

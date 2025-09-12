@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
@@ -17,23 +16,53 @@ class AuthBaseScreen extends StatefulWidget {
 
 class _AuthBaseScreenState extends State<AuthBaseScreen> {
   late VideoPlayerController _controller;
-  String selectedLanguage = 'English';
+  late String selectedLanguage;
   final double baseWidth = 375;
 
-  final List<String> languageList = [
-    'English',
-    'العربية',
-    'हिन्दी',
-  ];
+  final List<Locale> languageList = L10n.all;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        VideoPlayerController.asset('assets/login/login_screen_light.mp4')
-          ..setLooping(true)
-          ..initialize().then((_) => setState(() {}));
+    _initVideo();
+  }
+
+  void _initVideo() {
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+
+    final videoPath = brightness == Brightness.dark
+        ? 'assets/login/login_screen_dark.mp4'
+        : 'assets/login/login_screen_light.mp4';
+
+    _controller = VideoPlayerController.asset(videoPath)
+      ..setLooping(true)
+      ..initialize().then((_) => setState(() {}));
+
     _controller.play();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final currentLocale = Provider.of<LocaleProvider>(context).locale;
+    selectedLanguage = L10n.getLangName(currentLocale.languageCode);
+
+    // Rebuild video if theme changes
+    final brightness = Theme.of(context).brightness;
+    final currentVideo = brightness == Brightness.dark
+        ? 'assets/login/login_screen_dark.mp4'
+        : 'assets/login/login_screen_light.mp4';
+
+    if (_controller.dataSource != currentVideo) {
+      _controller.pause();
+      _controller.dispose();
+      _controller = VideoPlayerController.asset(currentVideo)
+        ..setLooping(true)
+        ..initialize().then((_) => setState(() {}));
+      _controller.play();
+    }
   }
 
   @override
@@ -46,7 +75,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
     final w = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
-      barrierColor: Colors.transparent,
+      barrierColor: AppColors.barrierColor(context),
       builder: (BuildContext context) {
         return Stack(
           children: [
@@ -54,7 +83,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
               right: 16,
               top: 70,
               child: Material(
-                color: Colors.transparent,
+                color: AppColors.barrierColor(context),
                 child: Container(
                   width: 144,
                   decoration: BoxDecoration(
@@ -62,7 +91,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x1A000000),
+                        color: AppColors.languageDropdownShadow(context),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -71,6 +100,9 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: List.generate(languageList.length, (index) {
+                      final locale = languageList[index];
+                      final langName = L10n.getLangName(locale.languageCode);
+
                       return Column(
                         children: [
                           InkWell(
@@ -80,16 +112,10 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                                   Provider.of<LocaleProvider>(context,
                                       listen: false);
 
-                              if (languageList[index] == 'English') {
-                                localeProvider.setLocale(const Locale('en'));
-                              } else if (languageList[index] == 'العربية') {
-                                localeProvider.setLocale(const Locale('ar'));
-                              } else if (languageList[index] == 'हिन्दी') {
-                                localeProvider.setLocale(const Locale('hi'));
-                              }
+                              localeProvider.setLocale(locale);
 
                               setState(() {
-                                selectedLanguage = languageList[index];
+                                selectedLanguage = langName;
                               });
 
                               Navigator.of(context).pop();
@@ -101,10 +127,10 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                               ),
                               alignment: Alignment.centerLeft,
                               child: ApzText(
-                                label: languageList[index],
+                                label: langName,
                                 fontWeight: ApzFontWeight.titlesSemibold,
                                 fontSize: 14 * (w / baseWidth),
-                                color: AppColors.primary_text(context),
+                                color: AppColors.dropdown(context),
                               ),
                             ),
                           ),
@@ -132,6 +158,11 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final w = size.width;
+    final brightness = Theme.of(context).brightness;
+
+    final logoPath = brightness == Brightness.dark
+        ? 'assets/login/logo_dark.png'
+        : 'assets/login/logo_light.png';
 
     return Scaffold(
       body: Stack(
@@ -147,7 +178,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                       child: VideoPlayer(_controller),
                     ),
                   )
-                : Container(color: Colors.black),
+                : Container(color: AppColors.dropdown(context)),
           ),
 
           // Top header
@@ -162,7 +193,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
-                    'assets/login/logo_light.png',
+                    logoPath,
                     filterQuality: FilterQuality.high,
                   ),
                   Container(
@@ -188,7 +219,8 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                                     label: selectedLanguage,
                                     fontWeight: ApzFontWeight.bodyMedium,
                                     fontSize: 14 * (w / baseWidth),
-                                    color: const Color(0x1A000000),
+                                    color: AppColors.languageDropdownShadow(
+                                        context),
                                   ),
                                 ),
                                 ApzText(

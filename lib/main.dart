@@ -62,6 +62,7 @@
 // }
 
 import 'package:Retail_Application/l10n/l10n.dart';
+import 'package:Retail_Application/ui/router/app_router.dart';
 import 'package:Retail_Application/ui/screens/post_login/Dashboard_screen.dart';
 import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +150,7 @@ class _MyAppState extends State<MyApp> {
           ],
         );
       },
+      // routerConfig: AppRouter.router,
       home: FooterHeaderScreen(),
       // home: PaymentCardExample(),
     );

@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:Retail_Application/models/dashboard/actionbuttons_model.dart';
 import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
+import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
+import 'package:Retail_Application/ui/widgets/apz_creditcard_chart.dart';
+import 'package:Retail_Application/ui/widgets/apz_deposit_chart.dart';
+import 'package:Retail_Application/ui/widgets/apz_loan_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -32,6 +36,20 @@ class _DashboardScreenState extends State<AccountScreen> {
     2: 0, // Loans
     3: 0, // Credit Cards
   };
+  Widget _buildChart(int selectedIndex) {
+    switch (selectedIndex) {
+      case 0:
+        return BalanceTrendChart(); // line chart for Accounts
+      case 1:
+        return DepositsChartExample();
+      case 2:
+        return LoansChartExample();
+      case 3:
+        return CreditCardChartExample(); // donut charts for others
+      default:
+        return BalanceTrendChart();
+    }
+  }
 
   final carousel_cs.CarouselSliderController _carouselController =
       carousel_cs.CarouselSliderController();
@@ -270,7 +288,7 @@ class _DashboardScreenState extends State<AccountScreen> {
                   carouselController: _carouselController,
                   itemCount: currentData.length,
                   options: CarouselOptions(
-                    height: 160, // tighter, matches BalanceCard height
+                    height: 100,
                     viewportFraction: 0.85,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: false,
@@ -285,20 +303,62 @@ class _DashboardScreenState extends State<AccountScreen> {
                   itemBuilder: (context, index, realIdx) {
                     return BalanceCard(
                       data: currentData[index],
-                      currentPage: _currentPage,
-                      totalItems: currentData.length,
+                      // currentPage: _currentPage,
+                      // totalItems: currentData.length,
                       carouselController: _carouselController,
                     );
                   },
                 ),
 
-              const SizedBox(height: 8),
+              // const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.dashboardIndicatorBgColor(context),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ApzText(
+                      label: "${_currentPage + 1}/${currentData.length}",
+                      fontSize: 11,
+                      fontWeight: ApzFontWeight.headingsBold,
+                      color: AppColors.dashboardIndicatorTextColor(context),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Row(
+                    children: List.generate(currentData.length, (dotIndex) {
+                      return GestureDetector(
+                        onTap: () {
+                          _carouselController.animateToPage(dotIndex);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 3),
+                          width: 6,
+                          height: 6,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _currentPage == dotIndex
+                                ? AppColors.dashboardIndicatorDotActive(context)
+                                : AppColors.dashboardIndicatorDotInactive(
+                                    context),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
               // dynamic action buttons row (filtered by tab)
               _buildActionButtonsRow(currentActions, selectedIndex),
               const SizedBox(height: 12),
               SizedBox(
                 height: 300,
-                child: BalanceTrendChart(),
+                child: _buildChart(selectedIndex),
               ),
               const SizedBox(height: 12),
               const UpcomingPaymentsCardWidget(),
@@ -315,21 +375,7 @@ class _DashboardScreenState extends State<AccountScreen> {
     final actionName = _actionNameForIndex(selectedIndex);
     final filtered = allActions.where((a) => a.action == actionName).toList();
 
-    // limit to 4 visible buttons (adjust as needed)
-    final visible = filtered.take(4).toList();
-
-    if (visible.isEmpty) {
-      // fallback - show some default placeholders
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _actionButton(Icons.repeat, "Transfer", () {}),
-          _actionButton(Icons.qr_code, "Scan to Pay", () {}),
-          _actionButton(Icons.receipt_long, "Pay Bills", () {}),
-        ],
-      );
-    }
-
+    final visible = filtered;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: visible.map((act) {
@@ -555,15 +601,11 @@ class SelectableInfoCard extends StatelessWidget {
 
 class BalanceCard extends StatefulWidget {
   final dynamic data; // AccountModel or CreditCardModel
-  final int currentPage;
-  final int totalItems;
   final carousel_cs.CarouselSliderController carouselController;
 
   const BalanceCard({
     super.key,
     required this.data,
-    required this.currentPage,
-    required this.totalItems,
     required this.carouselController,
   });
 
@@ -621,8 +663,7 @@ class _BalanceCardState extends State<BalanceCard> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          width: MediaQuery.of(context).size.width * 0.5,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -683,7 +724,6 @@ class _BalanceCardState extends State<BalanceCard> {
               ),
               const SizedBox(height: 8),
               Container(
-                height: 25,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
@@ -717,48 +757,6 @@ class _BalanceCardState extends State<BalanceCard> {
                         fontWeight: ApzFontWeight.bodyMedium),
                   ],
                 ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.dashboardIndicatorBgColor(context),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ApzText(
-                      label: "${widget.currentPage + 1}/${widget.totalItems}",
-                      fontSize: 11,
-                      fontWeight: ApzFontWeight.headingsBold,
-                      color: AppColors.dashboardIndicatorTextColor(context),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Row(
-                    children: List.generate(widget.totalItems, (dotIndex) {
-                      return GestureDetector(
-                        onTap: () {
-                          widget.carouselController.animateToPage(dotIndex);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 3),
-                          width: 6,
-                          height: 6,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: widget.currentPage == dotIndex
-                                ? AppColors.dashboardIndicatorDotActive(context)
-                                : AppColors.dashboardIndicatorDotInactive(
-                                    context),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ],
               ),
             ],
           ),

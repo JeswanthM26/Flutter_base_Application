@@ -18,7 +18,7 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/login',
+        path: 'login',
         builder: (context, state) => const LoginScreen(),
       ),
     ],

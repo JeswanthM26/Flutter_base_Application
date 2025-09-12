@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Promotions",
+    "icon": "local_offer_outlined",
+    "route": "promotions"
+  },
+  {
+    "label": "Payments",
+    "icon": "payment",
+    "route": "payments"
+  },
+  {
+    "label": "Rewards",
+    "icon": "card_giftcard",
+    "route": "rewards"
+  },
+  {
+    "label": "Transfers",
+    "icon": "swap_horiz",
+    "route": "transfers"
+  },
+  {
+    "label": "Settings",
+    "icon": "settings",
+    "route": "settings"
+  },
+  {
+    "label": "Help",
+    "icon": "help_outline",
+    "route": "help"
+  },
+  {
+    "label": "Logout",
+    "icon": "exit_to_app",
+    "route": "logout"
+  }
+]

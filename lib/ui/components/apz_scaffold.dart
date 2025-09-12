@@ -1,4 +1,5 @@
 import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:Retail_Application/ui/widgets/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -10,7 +11,7 @@ class AppScaffold extends StatelessWidget {
     super.key,
     required this.body,
     this.bottomNavigationBar,
-    this.floatingActionButton,
+    this.floatingActionButton, MenuSheet? bottomSheet,
   });
 
   @override

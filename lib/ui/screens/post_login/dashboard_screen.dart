@@ -3,7 +3,7 @@ import 'package:Retail_Application/example/appz_radio_example.dart';
 import 'package:Retail_Application/example/apz_dropdown_example.dart';
 import 'package:Retail_Application/example/apz_searchbar_example.dart';
 import 'package:Retail_Application/themes/apz_theme_provider.dart';
-import 'package:Retail_Application/ui/components/apz_menu.dart';
+import 'package:Retail_Application/ui/widgets/menu_screen.dart';
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
 import 'package:flutter/material.dart';

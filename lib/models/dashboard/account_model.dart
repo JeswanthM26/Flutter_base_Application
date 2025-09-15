@@ -12,7 +12,7 @@ class AccountModel {
   final String? debitAllowed;
   final String? acctName;
   final String showHideAccounts;
-
+ 
   AccountModel({
     required this.customerId,
     required this.customerName,
@@ -27,6 +27,7 @@ class AccountModel {
     this.debitAllowed,
     this.acctName,
     required this.showHideAccounts,
+     
   });
 
   factory AccountModel.fromJson(Map<String, dynamic> json) {
@@ -44,6 +45,7 @@ class AccountModel {
       debitAllowed: json['debitAllowed'],
       acctName: json['acctName'],
       showHideAccounts: json['showHideAccounts'] ?? '',
+     
     );
   }
 }

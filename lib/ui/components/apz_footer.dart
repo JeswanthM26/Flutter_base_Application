@@ -209,7 +209,7 @@ class FooterBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(footer_centerButtonSize / 2),
           child: Center(
             child: Icon(
-              isMenuOpen ? Icons.close : Icons.menu,
+              isMenuOpen ? Icons.close : Icons.merge_rounded,
               color: Colors.white,
               size: footer_centerIconSize,
             ),

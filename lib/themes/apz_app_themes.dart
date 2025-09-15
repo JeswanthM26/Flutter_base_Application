@@ -533,6 +533,41 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.donutChartSectionColors
           : light.donutChartSectionColors;
+
+          static Color menuScrim(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuScrimColor
+          : light.menuScrimColor;
+
+  static Color menuSheetBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetBackgroundColor
+          : light.menuSheetBackgroundColor;
+
+  static Color menuSheetTitle(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetTitleColor
+          : light.menuSheetTitleColor;
+          
+  static Color menuSheetIndicatorActive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetIndicatorActiveColor
+          : light.menuSheetIndicatorActiveColor;
+
+  static Color menuSheetIndicatorInactive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetIndicatorInactiveColor
+          : light.menuSheetIndicatorInactiveColor;
+          
+  static Color menuItemCardBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuItemCardBackgroundColor
+          : light.menuItemCardBackgroundColor;
+
+  static Color menuItemCardContent(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuItemCardContentColor
+          : light.menuItemCardContentColor;
 }
 
 class AppImages {

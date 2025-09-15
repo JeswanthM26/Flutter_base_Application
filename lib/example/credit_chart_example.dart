@@ -118,7 +118,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 
 class CreditCardChartExample extends StatefulWidget {
-  const CreditCardChartExample({Key? key}) : super(key: key);
+  const CreditCardChartExample({Key? key, required CreditCardModel card}) : super(key: key);
 
   @override
   _CreditCardChartExampleState createState() => _CreditCardChartExampleState();

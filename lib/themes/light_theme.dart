@@ -158,7 +158,7 @@ const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Colors.white;
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
 
-const donutChartBackgroundColor = Color(0xFFFFFFFF);
+const donutChartBackgroundColor = Colors.transparent;
 const donutChartTitleColor = Color(0xFF000000);
 const donutChartCenterTextColor = Color(0xFF6D717F);
 const donutChartCenterPercentageColor = Color(0xFF000000);
@@ -169,3 +169,13 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFB3E0FF), Color(0xFFF4F8FF)],
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
+
+
+// Menu Colors
+final Color menuScrimColor = Colors.black.withOpacity(0.5);
+const Color menuSheetBackgroundColor = Colors.black;
+const Color menuSheetTitleColor = Colors.white;
+const Color menuSheetIndicatorActiveColor = Colors.white;
+final Color menuSheetIndicatorInactiveColor = Colors.grey;
+final Color menuItemCardBackgroundColor = Colors.grey.withOpacity(0.1);
+const Color menuItemCardContentColor = Colors.white;

@@ -15,7 +15,7 @@
               "accountNo": "100004426393",
               "accountType": "Retail Loan",
               "loanType": "RL",
-              "currency": "INR",
+              "currency": "USD",
               "availableBalance": "65,609.12",
               "availBalanceFcy": "59,881.61",
               "nickName": null,
@@ -26,11 +26,11 @@
               "encryptedAccountNumber": "AAAAAAAAAAAAAAAAH8nOnvuXIfWdqq_uF_3aIj6JITw9MdKZcTKaDYI7h3U",
               "accTypeCode": "LN",
               "group": "LOAN",
-              "currentBalance": "60,609.12",
-              "withdrawBalance": "60,609.12",
-              "availBalance": "60,609.12",
+              "currentBalance": "50,609.12",
+              "withdrawBalance": "50,609.12",
+              "availBalance": "50,609.12",
               "accountCode": "LNA",
-              "currencyIcon": "",
+              "currencyIcon": "USD",
               "eqCurrency": "Equi Amt: EUR",
               "eqAvailBalance": "55,881.61"
             },
@@ -40,9 +40,9 @@
               "accountNo": "100004428579",
               "accountType": "Retail Loan",
               "loanType": "RL",
-              "currency": "INR",
-              "availableBalance": "60,609.12",
-              "availBalanceFcy": "55,881.61",
+              "currency": "USD",
+              "availableBalance": "70,609.12",
+              "availBalanceFcy": "65,881.61",
               "nickName": null,
               "creditAllowed": null,
               "debitAllowed": null,
@@ -55,9 +55,9 @@
               "withdrawBalance": "60,609.12",
               "availBalance": "60,609.12",
               "accountCode": "LNA",
-              "currencyIcon": "",
+              "currencyIcon": "USD",
               "eqCurrency": "Equi Amt: EUR",
-              "eqAvailBalance": "55,881.61"
+              "eqAvailBalance": "65,881.61"
             }
 
 

@@ -18,6 +18,7 @@ class DepositAccountResponse {
 }
 
 class DepositAccount {
+final String accountType;
   final String accountNo;
   final String accOpenDate;
   final String currency;
@@ -27,6 +28,7 @@ class DepositAccount {
   final String maturityDate;
 
   DepositAccount({
+    required this.accountType,
     required this.accountNo,
     required this.accOpenDate,
     required this.currency,
@@ -44,6 +46,7 @@ class DepositAccount {
       depositAmount: json['depositAmount'],
       interestAmount: json['interestAmount'],
       interestRate: json['interestRate'],
+      accountType: json['accountType'],
       maturityDate: json['maturityDate'],
     );
   }

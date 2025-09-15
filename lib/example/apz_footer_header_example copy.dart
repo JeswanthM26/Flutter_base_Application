@@ -120,7 +120,7 @@ class _FooterHeaderScreenState extends State<FooterHeaderScreen> {
   final _pages = [
     ApzLoaderExample(onToggleTheme: () {  },),
     const AppzRadioExample(),
-    const MenuSheet(options: [],), // Placeholder for the center item
+   //MenuSheet(onClose: _toggleMenu), // Placeholder for the center item
     const AppzButtonExample(),
     const ApzDropdownExample(),
   ];
@@ -172,7 +172,7 @@ class _FooterHeaderScreenState extends State<FooterHeaderScreen> {
         ],
       ),
       // NEW: This line shows the MenuSheet widget when the menu is open.
-      bottomSheet: _isMenuOpen ? const MenuSheet(options: [],) : null,
+     bottomSheet: _isMenuOpen ? MenuSheet(onClose: _toggleMenu,) : null,
       
       // UPDATED: The FooterBar is now connected to our new state and functions.
       bottomNavigationBar: FooterBar(

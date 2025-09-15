@@ -90,67 +90,71 @@ const Color footer_selected = Color(0xFFFFFFFF);
 //header
 const Color header_icon_color = Color(0xFFFFFFFF);
 
-//dashboard
-const Color dashboardActionButtonBgStart = Colors.white;
-const Color dashboardActionButtonBgEnd = Color(0xFFEFF4FF);
-const Color dashboardActionButtonBorderColor = Colors.white;
-const Color dashboardActionButtonShadow1 = Color(0x05000000);
-const Color dashboardActionButtonShadow2 = Color(0x0A000000);
-const Color dashboardActionButtonIconColor = Colors.blue;
-const Color dashboardActionButtonLabelColor = Colors.black;
+//login stories
+const Color onboardingProgressInactive =
+    Color(0x66FFFFFF); // white with 40% opacity
+const Color onboarding = Color(0xFFFFFFFF);
+const Color onboardingSkipButtonBg = Color(0xFF787880);
+
+//login
+const Color barrierColor = Colors.transparent;
+const Color languageDropdownShadow = Color(0x1A000000);
+const Color dropdown = Colors.black;
+
+// Dark Theme Colors for Dashboard
+
+const Color dashboardActionButtonBgStart = Color(0xFF181A20);
+const Color dashboardActionButtonBgEnd = Color(0xFF23262E);
+const Color dashboardActionButtonBorderColor = Color(0xFF2C2F38);
+const Color dashboardActionButtonShadow1 = Color(0x1F000000); // 12% black
+const Color dashboardActionButtonShadow2 = Color(0x0D000000); // 5% black
+const Color dashboardActionButtonIconColor =
+    Color(0xFF4EA8DE); // lighter blue accent
+const Color dashboardActionButtonLabelColor =
+    Color(0xFFE2E2E2); // light grey text
 
 // 🔹 Dashboard Info Card Colors
-const Color dashboardInfoCardSelectedText = Color(0xFF181818);
-const Color dashboardInfoCardUnselectedText =
-    Color(0xFF6D6D6D); // approx grey600
-const Color dashboardInfoCardGradientStart = Color(0xFFB3E0FF);
-const Color dashboardInfoCardGradientEnd = Color(0x33B3E0FF);
-const Color dashboardInfoCardBorderColor = Colors.white;
-const Color dashboardInfoCardCountSelectedBg = Color(0xFF4FA8DE);
-const Color dashboardInfoCardCountUnselectedBg =
-    Color(0xFFBDBDBD); // approx grey400
+const Color dashboardInfoCardSelectedText = Color(0xFFE2E2E2);
+const Color dashboardInfoCardUnselectedText = Color(0xFF999999); // muted grey
+const Color dashboardInfoCardGradientStart = Color(0xFF0D4B6B);
+const Color dashboardInfoCardGradientEnd =
+    Color(0x220D4B6B); // transparent variant
+const Color dashboardInfoCardBorderColor = Color(0xFF181A20);
+const Color dashboardInfoCardCountSelectedBg = Color(0xFF4EA8DE);
+const Color dashboardInfoCardCountUnselectedBg = Color(0xFF555555);
 const Color dashboardInfoCardCountSelectedText = Colors.white;
-const Color dashboardInfoCardCountUnselectedText =
-    Color(0xFF6D6D6D); // approx grey600
+const Color dashboardInfoCardCountUnselectedText = Color(0xFF999999);
 
 // 📌 Dashboard Balance Section Colors
-const Color dashboardAvailableBalanceTextColor = Color(0xFF57768B);
-const Color dashboardBalanceVisibleTextColor = Color(0xFF181818);
-const Color dashboardBalanceHiddenTextColor = Color(0xFF181818);
-const Color dashboardVisibilityIconColor = Colors.black;
+const Color dashboardAvailableBalanceTextColor = Color(0xFF8FA9BE);
+const Color dashboardBalanceVisibleTextColor = Color(0xFFE2E2E2);
+const Color dashboardBalanceHiddenTextColor = Color(0xFF8A8A8A);
+const Color dashboardVisibilityIconColor = Color(0xFFE2E2E2);
 const Color dashboardSavingsTextColor = Color(0xFF4EA8DE);
-const Color dashboardSavingsDividerColor = Color(0x5181B4D6);
-const Color dashboardIndicatorBgColor = Colors.blue;
+const Color dashboardSavingsDividerColor =
+    Color(0x335EA9D8); // transparent blueish
+const Color dashboardIndicatorBgColor = Color(0xFF4EA8DE);
 const Color dashboardIndicatorTextColor = Colors.white;
-const Color dashboardIndicatorDotActive = Colors.blue;
-const Color dashboardIndicatorDotInactive = Color(0xFFBDBDBD); // ~grey.shade400
+const Color dashboardIndicatorDotActive = Color(0xFF4EA8DE);
+const Color dashboardIndicatorDotInactive = Color(0xFF555555);
 
 // 📌 Dashboard Balance Trend Chart Colors
-const Color dashboardBalanceTrendTitleTextColor = Colors.grey;
-const Color dashboardBalanceTrendFilterBgColor = Color(0xFFE8F1FF);
-const Color dashboardBalanceTrendFilterTextColor =
-    Color(0xFF1565C0); // ~Colors.blue[800]
-const Color dashboardBalanceTrendFilterIconColor =
-    Color(0xFF1565C0); // ~Colors.blue[800]
+const Color dashboardBalanceTrendTitleTextColor = Color(0xFFE6F2FA);
+const Color dashboardBalanceTrendFilterBgColor = Color(0xFF23262E);
+const Color dashboardBalanceTrendFilterTextColor = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendFilterIconColor = Color(0xFF4EA8DE);
 const Color dashboardBalanceTrendTooltipTextColor = Colors.white;
-const Color dashboardBalanceTrendTooltipLineColor =
-    Color.fromARGB(255, 207, 207, 209);
-const Color dashboardBalanceTrendYAxisLabelTextColor = Colors.grey;
-const Color dashboardBalanceTrendXAxisLabelTextColor = Colors.grey;
-const Color dashboardBalanceTrendLineColor = Color(0xFF4A90E2);
-const Color dashboardBalanceTrendLineGradientStart = Color(0xFF4A90E2);
-const Color dashboardBalanceTrendLineGradientEnd = Color(0xFF4A90E2);
-const Color dashboardBalanceTrendBelowLineGradientStart = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendTooltipLineColor = Color(0xFF707070);
+const Color dashboardBalanceTrendYAxisLabelTextColor = Color(0xFF999999);
+const Color dashboardBalanceTrendXAxisLabelTextColor = Color(0xFF999999);
+const Color dashboardBalanceTrendLineColor = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendLineGradientStart = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendLineGradientEnd = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendBelowLineGradientStart = Color(0xFF4EA8DE);
 const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
-const Color dashboardBalanceTrendDotFillColor = Colors.white;
-const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
+const Color dashboardBalanceTrendDotFillColor = Color(0xFF23262E);
+const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4EA8DE);
 
-
-// const donutChartBgColor = Color(0xFF002A4D);
-// const donutChartPrimaryColor = Color(0xFF5AB8F0);
-// const donutChartSecondaryColor = Color(0xFFB3E0FF);
-// const donutChartLegendTextColor = Colors.white;
-// const donutChartLegendLabelColor = Color(0xFFBABABA);
 
 const donutChartBackgroundColor = Color(0xFF002A4D);
 const donutChartTitleColor = Color(0xFFE6F2FA);
@@ -163,4 +167,3 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFB3E0FF), Color(0xFFF4F8FF)],
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
-

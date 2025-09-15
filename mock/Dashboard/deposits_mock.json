@@ -1,4 +1,6 @@
 {
+  "APZRMB__DepositDetails_Res": {
+    
   "apiResponse": {
     "ResponseHeader": {
       "ResponseCode": "0",
@@ -10,16 +12,16 @@
         "accounts":[ 
           {
           "customerId": "",
-          "accountNo": "100004429552",
+          "accountNo": "100004425470",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",
           "accountType": "RD",
           "productName": "Deposit - Norm 2 Years",
           "currency": "INR",
-          "depositAmount": "375000",
+          "depositAmount": "50000",
           "principalAmount": "375000",
-          "interestAmount": "11750",
+          "interestAmount": "21750",
           "maturityAmount": "375000",
           "interestRate": "10",
           "tenorInDays": "",
@@ -29,7 +31,7 @@
           "nomineeName": "Tr?ng",
           "nomineeAddress": "Hai Phong, Vietnam",
           "accountName": "Chethan K",
-          "maturityDate": "01-JAN-2026",
+          "maturityDate": "01-JAN-2028",
           "availBalanceFcy": "",
           "debitAcctNo": "",
           "payoutAccount": "",
@@ -45,7 +47,7 @@
         },
         {
           "customerId": "",
-          "accountNo": "100004425470",
+          "accountNo": "100004429552",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",
@@ -82,4 +84,4 @@
       }
     }
   }
-}
+}}

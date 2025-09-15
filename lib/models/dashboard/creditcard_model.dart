@@ -4,7 +4,7 @@ class CreditCardModel {
   final String currency;
   final double availableCredit;
   final double cardBalance;
- 
+
   CreditCardModel({
     required this.cardNumber,
     required this.cardType,
@@ -12,7 +12,7 @@ class CreditCardModel {
     required this.availableCredit,
     required this.cardBalance,
   });
- 
+
   factory CreditCardModel.fromJson(Map<String, dynamic> json) {
     return CreditCardModel(
       cardNumber: json['cardNumber'] ?? "",
@@ -23,5 +23,3 @@ class CreditCardModel {
     );
   }
 }
- 
- 

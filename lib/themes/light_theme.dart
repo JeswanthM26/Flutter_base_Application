@@ -91,6 +91,17 @@ const Color footer_selected = Color(0xFF4FA8DE);
 // Header Colors
 const Color header_icon_color = Color(0xFF181818);
 
+//login stories
+const Color onboardingProgressInactive =
+    Color(0x66FFFFFF); // white with 40% opacity
+const Color onboarding = Color(0xFFFFFFFF);
+const Color onboardingSkipButtonBg = Color(0xFF787880);
+
+//login
+const Color barrierColor = Colors.transparent;
+const Color languageDropdownShadow = Color(0x1A000000);
+const Color dropdown = Colors.black;
+
 //dashboard
 // 🔹 Dashboard Action Button Colors
 const Color dashboardActionButtonBgStart = Colors.white;
@@ -128,7 +139,7 @@ const Color dashboardIndicatorDotActive = Colors.blue;
 const Color dashboardIndicatorDotInactive = Color(0xFFBDBDBD); // ~grey.shade400
 
 // 📌 Dashboard Balance Trend Chart Colors
-const Color dashboardBalanceTrendTitleTextColor = Colors.grey;
+const Color dashboardBalanceTrendTitleTextColor = Color(0xFF57778C);
 const Color dashboardBalanceTrendFilterBgColor = Color(0xFFE8F1FF);
 const Color dashboardBalanceTrendFilterTextColor =
     Color(0xFF1565C0); // ~Colors.blue[800]
@@ -146,12 +157,6 @@ const Color dashboardBalanceTrendBelowLineGradientStart = Color(0xFF4A90E2);
 const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Colors.white;
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
-
-// const donutChartBgColor = Color(0xFF002A4D);
-// const donutChartPrimaryColor = Color(0xFF5AB8F0);
-// const donutChartSecondaryColor = Color(0xFFB3E0FF);
-// const donutChartLegendTextColor = Colors.white;
-// const donutChartLegendLabelColor = Color(0xFFBABABA);
 
 const donutChartBackgroundColor = Color(0xFFFFFFFF);
 const donutChartTitleColor = Color(0xFF000000);

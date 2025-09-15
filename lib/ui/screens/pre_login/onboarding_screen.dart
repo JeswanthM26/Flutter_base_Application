@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -112,7 +113,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             margin: const EdgeInsets.symmetric(horizontal: 2),
             height: 3,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.4),
+              color: AppColors.onboardingProgressInactive(context),
               borderRadius: BorderRadius.circular(2),
             ),
             child: index == _currentPage
@@ -124,7 +125,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         widthFactor: _animationController.value,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.onboarding(context),
                             borderRadius: BorderRadius.circular(2),
                           ),
                         ),
@@ -134,7 +135,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 : index < _currentPage
                     ? Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.onboarding(context),
                           borderRadius: BorderRadius.circular(2),
                         ),
                       )
@@ -189,7 +190,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     right: 20,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: const Color(0xFF787880),
+                        backgroundColor:
+                            AppColors.onboardingSkipButtonBg(context),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 6),
                         shape: RoundedRectangleBorder(
@@ -206,13 +208,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             label: 'Skip',
                             fontWeight: ApzFontWeight.headingSemibold,
                             fontSize: 14,
-                            color: Colors.white,
+                            color: AppColors.onboarding(context),
                           ),
                           SizedBox(width: 4),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 14,
-                            color: Colors.white,
+                            color: AppColors.onboarding(context),
                           )
                         ],
                       ),
@@ -228,14 +230,14 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         ApzText(
                           label: story.title,
                           fontWeight: ApzFontWeight.titlesSemibold,
-                          color: Colors.white,
+                          color: AppColors.onboarding(context),
                           fontSize: 26,
                         ),
                         const SizedBox(height: 8),
                         ApzText(
                           label: story.description,
                           fontWeight: ApzFontWeight.labelRegular,
-                          color: Colors.white,
+                          color: AppColors.onboarding(context),
                           fontSize: 17,
                         ),
                       ],

@@ -10,7 +10,7 @@
         "accounts":[ 
           {
           "customerId": "",
-          "accountNo": "1000000004429552",
+          "accountNo": "100004429552",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",
@@ -45,7 +45,7 @@
         },
         {
           "customerId": "",
-          "accountNo": "1000000004425470",
+          "accountNo": "100004425470",
           "branchCode": "111050",
           "branchName": "MG Road",
           "accOpenDate": "06-DEC-2024",

@@ -6,6 +6,7 @@ import 'package:Retail_Application/themes/apz_theme_provider.dart';
 import 'package:Retail_Application/ui/widgets/menu_screen.dart';
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
+import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
 import 'package:flutter/material.dart';
 import 'package:Retail_Application/ui/components/apz_footer.dart';
 import 'package:Retail_Application/ui/components/apz_header.dart';
@@ -22,7 +23,8 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
 
   final _pages = [
     const AccountScreen(),
-    const AppzRadioExample(),
+    const UpcomingPaymentsCardWidget(),
+    //const AppzRadioExample(),
     MenuSheet(
       options: const [],
     ),

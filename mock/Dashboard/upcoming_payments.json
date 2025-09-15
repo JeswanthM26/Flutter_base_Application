@@ -1,0 +1,68 @@
+{
+  "APZRMB__UpcomingPayments_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": ""
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "serviceStatusCode": "0",
+          "upcomingPayments": [
+            {
+              "scheduleId": "10000003F1741161857952",
+              "appId": "APZRMB",
+              "custId": "10000003",
+              "debitAccNo": "100XXXXX19019090",
+              "debitAccCurrency": "INR",
+              "txnType": "BIL",
+              "txnAmt": 1500.00,
+              "txnCurrency": "INR",
+              "scheduleType": "F",
+              "scheduleStartDate": {
+                "year": 2025,
+                "month": 4,
+                "day": 1
+              },
+              "noOfSchedules": 0,
+              "status": "O",
+              "txnMode": "Postpaid",
+              "serviceProviderCode": "5",
+              "productOrBillName": "Mobile",
+              "billerAccountNumber": "151",
+              "billNickName": "West Bengal Electricity",
+              "lastExecStatus": "RETRY",
+              "lastExecutionDate": {
+                "year": 2025,
+                "month": 9,
+                "day": 10
+              },
+              "nextExecutionDate": {
+                "year": 2025,
+                "month": 4,
+                "day": 1
+              },
+              "scheduleExecTs": {
+                "date": {
+                  "year": 2025,
+                  "month": 9,
+                  "day": 10
+                },
+                "time": {
+                  "hour": 3,
+                  "minute": 0,
+                  "second": 0,
+                  "nano": 981000000
+                }
+              },
+              "favBillerId": "West Bengal Electricity Distribution Company",
+              "noOfRetry": 0,
+              "encryptedDebitAccountNo": "AAAAAAAAAAAAAAAAH8jOmvaeIfWco6_mF_XbIsZ_y9sBK-koNqoUWGTCMWk",
+              "nextExecutionDateStr": "1 APR 2025"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

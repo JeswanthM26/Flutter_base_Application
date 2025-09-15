@@ -1,0 +1,101 @@
+{
+  "APZRMB__ActionButtons_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": ""
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "serviceStatusCode": "0",
+          "actionButtons": [
+            {
+              "appID": "Transa",
+              "icon": "transfer-new",
+              "screenID": "TransactionApp",
+              "value": "Transfers",
+              "action": "Account"
+            },
+            {
+              "appID": "DynBil",
+              "icon": "scan-pay-new",
+              "screenID": "DynamicBillPayment",
+              "value": "Scan QR",
+              "action": "Account"
+            },
+            {
+              "appID": "DynBil",
+              "icon": "pay-bill-new",
+              "screenID": "DynamicBillPayment",
+              "value": "Bill Payment",
+              "action": "Account"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-applyDeposit",
+              "screenID": "ApplyDeposit",
+              "value": "ApplyDeposit",
+              "action": "Deposit"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "view-details",
+              "screenID": "ApplyDeposit",
+              "value": "DepositSummary",
+              "action": "Deposit"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-raiseComplaint",
+              "screenID": "ApplyDeposit",
+              "value": "Raise Complaint",
+              "action": "Deposit"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-applyDeposit",
+              "screenID": "ApplyLoan",
+              "value": "ApplyLoan",
+              "action": "Loan"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "view-details",
+              "screenID": "ApplyLoan",
+              "value": "LoanStatement",
+              "action": "Loan"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-raiseComplaint",
+              "screenID": "ApplyLoan",
+              "value": "RaiseComplaint",
+              "action": "Loan"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-card",
+              "screenID": "ApplyLoan",
+              "value": "Pay Due",
+              "action": "Credit Card"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "view-details",
+              "screenID": "ApplyLoan",
+              "value": "Card Statement",
+              "action": "Credit Card"
+            },
+            {
+              "appID": "Accoun",
+              "icon": "icon-manageLimits",
+              "screenID": "ApplyLoan",
+              "value": "Manage Limit",
+              "action": "Credit Card"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

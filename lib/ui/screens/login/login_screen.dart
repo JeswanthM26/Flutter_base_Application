@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Icon(
             icon,
             size: 24 * (w / baseWidth),
-            color: const Color(0xFF131927),
+            color: AppColors.primary_text(context),
           ),
           const SizedBox(height: 10),
           ApzText(

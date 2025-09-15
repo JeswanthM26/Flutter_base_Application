@@ -94,44 +94,59 @@ class _PaymentCardState extends State<PaymentCard> {
     return Container(
       width: double.infinity,
       padding: paymentCardPadding,
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        minLeadingWidth: 0,
-        leading: Container(
-          width: paymentCardImageSize,
-          height: paymentCardImageSize,
-          decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
+      child: Row(
+        crossAxisAlignment:
+            CrossAxisAlignment.start, // ✅ Top align text with image
+        children: [
+          // Image
+          Container(
+            width: paymentCardImageSize,
+            height: paymentCardImageSize,
+            decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(paymentCardImageBorderRadius),
+              ),
+              shadows: const [paymentCardImageShadow],
+            ),
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(paymentCardImageBorderRadius),
-            ),
-            shadows: const [paymentCardImageShadow],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(paymentCardImageBorderRadius),
-            child: Image.asset(
-              widget.imageUrl,
-              fit: BoxFit.cover,
+              child: Image.asset(
+                widget.imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        title: ApzText(
-          label: widget.title,
-          fontWeight: ApzFontWeight.headingsMedium,
-          fontSize: paymentCardTitleFontSize,
-          color: AppColors.primary_text(context),
-        ),
-        subtitle: ApzText(
-          label: widget.subtitle,
-          fontWeight: ApzFontWeight.bodyRegular,
-          fontSize: paymentCardSubtitleFontSize,
-          color: AppColors.secondary_text(context),
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min, // ✅ Keeps it tight to the end
-          children: [
-            trailing ?? const SizedBox(),
+          const SizedBox(width: 12),
+
+          // Title + Subtitle
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ApzText(
+                  label: widget.title,
+                  fontWeight: ApzFontWeight.headingsMedium,
+                  fontSize: paymentCardTitleFontSize,
+                  color: AppColors.primary_text(context),
+                ),
+                const SizedBox(height: 4),
+                ApzText(
+                  label: widget.subtitle,
+                  fontWeight: ApzFontWeight.bodyRegular,
+                  fontSize: paymentCardSubtitleFontSize,
+                  color: AppColors.secondary_text(context),
+                ),
+              ],
+            ),
+          ),
+
+          // Trailing
+          if (trailing != null) ...[
+            const SizedBox(width: 12),
+            trailing,
           ],
-        ),
+        ],
       ),
     );
   }

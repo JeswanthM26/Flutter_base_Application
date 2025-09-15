@@ -1252,10 +1252,11 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
+        const SizedBox(height: 20),
         if (_data.isEmpty)
           const Center(child: CircularProgressIndicator())
         else

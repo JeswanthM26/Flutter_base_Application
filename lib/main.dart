@@ -62,9 +62,9 @@
 // }
 
 import 'package:Retail_Application/example/apz_donut_chart_example.dart';
-import 'package:Retail_Application/ui/screens/post_login/Dashboard_screen.dart';
-import 'package:Retail_Application/example/apz_payment_example.dart';
 import 'package:Retail_Application/l10n/l10n.dart';
+import 'package:Retail_Application/ui/screens/post_login/Dashboard_screen.dart';
+import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

@@ -1,46 +1,67 @@
+
+
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:Retail_Application/models/dashboard/account_model.dart';
 import 'package:Retail_Application/models/financials/deposit_model.dart';
 import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
 
 class DepositsChartExample extends StatefulWidget {
-  const DepositsChartExample({Key? key}) : super(key: key);
+  final DepositAccount deposit;
+
+  const DepositsChartExample({Key? key, required this.deposit})
+      : super(key: key);
 
   @override
-  _DepositsChartExampleState createState() => _DepositsChartExampleState();
+  State<DepositsChartExample> createState() => _DepositsChartExampleState();
 }
 
 class _DepositsChartExampleState extends State<DepositsChartExample> {
-  DepositAccount? depositData;
-  bool isLoading = true;
+  DepositAccount? _detailedDeposit;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadDepositDetails();
   }
 
-  Future<void> _loadData() async {
+  @override
+  void didUpdateWidget(DepositsChartExample oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.deposit.accountNo != oldWidget.deposit.accountNo) {
+      _loadDepositDetails();
+    }
+  }
+
+  Future<void> _loadDepositDetails() async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       final depositJson =
           await rootBundle.loadString('mock/dashboard/deposits_mock.json');
       final decodedJson = json.decode(depositJson);
       final response = DepositAccountResponse.fromJson(decodedJson);
+      final foundAccount = response.accounts.firstWhere(
+        (acc) => acc.accountNo == widget.deposit.accountNo,
+        orElse: () => response.accounts.first, // Fallback
+      );
 
       setState(() {
-        // Take the first account only (like before)
-        depositData = response.accounts.first;
-        isLoading = false;
+        _detailedDeposit = foundAccount;
+        _isLoading = false;
       });
     } catch (e) {
+      print('Error loading detailed deposit data: $e');
       setState(() {
-        isLoading = false;
+        _isLoading = false;
       });
-      print('Error loading financial data: $e');
     }
   }
-
+  
+  
   double _safeParse(String? value) {
     if (value == null || value.isEmpty) return 0.0;
     return double.tryParse(value.replaceAll(',', '')) ?? 0.0;
@@ -48,25 +69,21 @@ class _DepositsChartExampleState extends State<DepositsChartExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-//appBar: AppBar(title: const Text('Deposits Donut Chart')),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  if (depositData != null) _buildDepositChart(),
-                ],
-              ),
-            ),
-    );
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (_detailedDeposit == null) {
+      return const Center(child: Text('Could not load deposit details.'));
+    }
+
+    return _buildDepositChart();
   }
 
   Widget _buildDepositChart() {
-    final deposit = depositData!;
+    final deposit = _detailedDeposit!;
     final principal = _safeParse(deposit.depositAmount);
     final interest = _safeParse(deposit.interestAmount);
+    
 
     return HalfDonutChart(
       title: 'Deposits',

@@ -91,7 +91,7 @@ class _FooterExampleScreenState extends State<FooterExampleScreen> {
         index: _selectedIndex,
         children: _pages,
       ),
-      bottomSheet: _isMenuOpen ? const MenuSheet(options: [],) : null,
+      bottomSheet: _isMenuOpen ? MenuSheet(onClose: _toggleMenu) : null,
       bottomNavigationBar: FooterBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onItemSelected,

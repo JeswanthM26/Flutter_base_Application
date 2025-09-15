@@ -200,6 +200,7 @@
 //     );
 //   }
 // }
+import 'package:Retail_Application/models/dashboard/account_model.dart';
 import 'package:Retail_Application/models/financials/deposit_model.dart';
 import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:flutter/material.dart';
@@ -207,7 +208,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 
 class DepositsChartExample extends StatefulWidget {
-  const DepositsChartExample({Key? key}) : super(key: key);
+  const DepositsChartExample({Key? key, required AccountModel deposit}) : super(key: key);
 
   @override
   _DepositsChartExampleState createState() => _DepositsChartExampleState();

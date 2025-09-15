@@ -20,14 +20,13 @@ class FooterHeaderScreen extends StatefulWidget {
 
 class _FooterExampleScreenState extends State<FooterHeaderScreen> {
   int _selectedIndex = 0;
+    bool _isMenuOpen = false;
+
 
   final _pages = [
     const AccountScreen(),
     const UpcomingPaymentsCardWidget(),
-    //const AppzRadioExample(),
-    MenuSheet(
-      options: const [],
-    ),
+   const AppzRadioExample(),
     const AppzButtonExample(),
     const ApzDropdownExample(),
   ];
@@ -35,6 +34,11 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
   void _onItemSelected(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+  void _toggleMenu() {
+    setState(() {
+      _isMenuOpen = !_isMenuOpen;
     });
   }
 
@@ -66,12 +70,28 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
               },
             ),
           ),
-
-          /// ✅ Page content below header
-          Expanded(
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: _pages,
+ Expanded(
+            child: Stack(
+              children: [
+                IndexedStack(
+                  index: _selectedIndex,
+                  children: _pages,
+                ),
+                if (_isMenuOpen)
+                  Positioned.fill(
+                    child: GestureDetector(
+                      onTap: _toggleMenu,
+                      child: Container(
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                    ),
+                  ),
+                if (_isMenuOpen)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: MenuSheet(onClose: _toggleMenu),
+                  ),
+              ],
             ),
           ),
         ],
@@ -81,14 +101,41 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
       bottomNavigationBar: FooterBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onItemSelected,
-        onCenterTap: () {},
+        onCenterTap: _toggleMenu,
+        isMenuOpen: _isMenuOpen,
       ),
+          /// ✅ Page content below header
+      //     Expanded(
+      //       child: IndexedStack(
+      //         index: _selectedIndex,
+      //         children: _pages,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+
+      // /// ✅ Footer stays fixed at bottom
+      // bottomNavigationBar: FooterBar(
+      //   selectedIndex: _selectedIndex,
+      //   onItemSelected: _onItemSelected,
+      //   onCenterTap: () {
+      //     showModalBottomSheet(
+      //       context: context,
+      //       isScrollControlled: true,
+      //       backgroundColor: Colors.transparent,
+      //       builder: (context) => const MenuSheet(),
+      //     );
+      //   },
       //  floatingActionButton: FloatingActionButton(
       //   onPressed: () {
       //     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
       //   },
       //  child: const Icon(Icons.brightness_6),
       // ),
+    
     );
   }
 }
+
+
+

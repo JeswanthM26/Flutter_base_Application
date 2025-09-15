@@ -17,16 +17,20 @@ class LoanResponse {
 }
 
 class Loan {
+  final String loanType;
   final String customerId;
   final String customerName;
   final String accountNo;
   final String accountType;
   final String currency;
   final String currentBalance;
+  final  String availableBalance;
 
   Loan({
+     required this.loanType,
     required this.customerId,
     required this.customerName,
+    required this.availableBalance,
     required this.accountNo,
     required this.accountType,
     required this.currency,
@@ -40,6 +44,8 @@ class Loan {
       accountNo: json['accountNo'],
       accountType: json['accountType'],
       currency: json['currency'],
+      loanType: json['loanType'],
+      availableBalance: json['availableBalance'],
       currentBalance: json['currentBalance'],
     );
   }

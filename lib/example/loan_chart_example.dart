@@ -116,7 +116,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 
 class LoansChartExample extends StatefulWidget {
-  const LoansChartExample({Key? key}) : super(key: key);
+  const LoansChartExample({Key? key, required AccountModel loan}) : super(key: key);
 
   @override
   _LoansChartExampleState createState() => _LoansChartExampleState();

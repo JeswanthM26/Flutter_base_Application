@@ -1,68 +1,28 @@
+// import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
 import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
 import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
 
-class CreditCardChartExample extends StatefulWidget {
-  const CreditCardChartExample({Key? key}) : super(key: key);
+class CreditCardChartExample extends StatelessWidget {
+  final CreditCardModel creditData;
 
-  @override
-  _CreditCardChartExampleState createState() => _CreditCardChartExampleState();
-}
-
-class _CreditCardChartExampleState extends State<CreditCardChartExample> {
-  CreditCardModel? creditCardData;
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadData();
-  }
-
-  Future<void> _loadData() async {
-    try {
-      final creditCardJson =
-          await rootBundle.loadString('mock/dashboard/credit_mock.json');
-      final decodedJson = json.decode(creditCardJson);
-      final cardData = decodedJson['APZRMB__CreditCardDetails_Res']
-          ['apiResponse']['ResponseBody']['responseObj']['creditCards'][0];
-      setState(() {
-        creditCardData = CreditCardModel.fromJson(cardData);
-        isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      print('Error loading financial data: $e');
-    }
-  }
+  const CreditCardChartExample({
+    Key? key,
+    required this.creditData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Credit Card Donut Chart'),
-      // ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  if (creditCardData != null) _buildCreditCardChart(),
-                ],
-              ),
-            ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: _buildCreditCardChart(),
     );
   }
 
   Widget _buildCreditCardChart() {
-    final card = creditCardData!;
-    // The new CreditCardModel doesn't have creditLmt, so we can't calculate usedCredit accurately.
-    // We'll use cardBalance as usedCredit for this example.
+    final card = creditData;
+
+    // Example: cardBalance = used, availableCredit = remaining
     final usedCredit = card.cardBalance;
     final totalCredit = usedCredit + card.availableCredit;
     final usedPercentage = (usedCredit / totalCredit) * 100;

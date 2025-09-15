@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:math' as developer;
+import 'package:Retail_Application/models/dashboard/account_model.dart';
+import 'package:Retail_Application/models/dashboard/balancetrend_model.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -6,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BalanceTrendChart extends StatefulWidget {
-  const BalanceTrendChart({super.key});
-
+  final AccountModel? accountData;
+  const BalanceTrendChart({super.key, this.accountData});
   @override
   State<BalanceTrendChart> createState() => _BalanceTrendChartState();
 }
@@ -29,20 +32,50 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
     _loadMockData();
   }
 
+  @override
+  void didUpdateWidget(covariant BalanceTrendChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Reload data if the account changed
+    if (oldWidget.accountData?.accountNo != widget.accountData?.accountNo) {
+      _loadMockData();
+    }
+  }
+
   Future<void> _loadMockData() async {
+    // Load JSON
     final String response =
         await rootBundle.loadString('mock/Dashboard/balance_mock.json');
     final jsonResult = json.decode(response);
-    final list = jsonResult["APZRMB__BalanceTrend_Res"]["apiResponse"]
-        ["ResponseBody"]["responseObj"]["balanceTrend"] as List;
-    final rawData = list.map((e) {
+
+    // Extract list of balance trend details
+    final balanceTrendList = jsonResult["apiResponse"]["ResponseBody"]
+        ["responseObj"]["balanceTrendDetails"] as List;
+
+    // Convert to List<BalanceTrendModel>
+    final allAccounts =
+        balanceTrendList.map((e) => BalanceTrendModel.fromJson(e)).toList();
+
+    // Select account
+    final selectedAccount = widget.accountData != null
+        ? allAccounts.firstWhere(
+            (acc) => acc.accountNo == widget.accountData!.accountNo,
+            orElse: () => BalanceTrendModel(accountNo: '', trend: []),
+          )
+        : allAccounts.isNotEmpty
+            ? allAccounts.first
+            : BalanceTrendModel(accountNo: '', trend: []);
+
+    // Convert trend to your internal format
+    allData = selectedAccount.trend.map((e) {
       return {
         "date": e["date"],
-        "balance": double.parse(e["balance"].replaceAll(",", "")),
+        "balance":
+            double.tryParse(e["balance"].toString().replaceAll(",", "")) ?? 0,
       };
     }).toList();
-    allData = rawData;
 
+    // Prepare unique months for pagination (keep your existing logic)
     final dates = allData.map((e) => DateTime.parse(e["date"])).toList();
     dates.sort();
     DateTime? lastStart;
@@ -60,6 +93,7 @@ class _BalanceTrendChartState extends State<BalanceTrendChart> {
       }
     }
     maxPageIndex = uniqueMonthStarts.length;
+
     _updateView();
   }
 

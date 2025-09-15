@@ -164,11 +164,9 @@ const BoxShadow paymentCardImageShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-const double paymentCardTitleFontSize = 14.0;
-const double paymentCardSubtitleFontSize = 14.0;
+const double paymentCardTitleFontSize = 12.0;
+const double paymentCardSubtitleFontSize = 12.0;
 const double paymentCardAmountFontSize = 13.0;
-
-
 
 const donutChartWidth = 250.0;
 const donutChartHeight = 125.0;

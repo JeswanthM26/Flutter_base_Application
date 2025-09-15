@@ -1,0 +1,32 @@
+{
+  "apiResponse": {
+    "ResponseBody": {
+      "promotions": [
+        {
+          "title": "Open an all-in-1 Savings Account",
+          "subtitle": "Get high interest rates and exciting benefits",
+          "image1": "assets/promotions/promotion1.png"
+      
+        },
+        {
+          "title": "Get a Gold Loan in 2 minutes",
+          "subtitle": "Interest rate starting at 0.96% monthly",
+          "image1": "assets/promotions/promotion2.png"
+       
+        },
+        {
+          "title": "Get the most rewarding Credit Card",
+          "subtitle": "Assured cashback on UPI & card spends",
+          "image1": "assets/promotions/promotion3.png"
+        
+        },
+        {
+          "title": "Exclusive Personal Loan Offer",
+          "subtitle": "Instant approval up to 5 Lakhs",
+          "image1": "assets/promotions/promotion1.png"
+        
+        }
+      ]
+    }
+  }
+}

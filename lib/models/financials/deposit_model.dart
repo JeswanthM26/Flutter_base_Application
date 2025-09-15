@@ -19,6 +19,7 @@ class DepositAccountResponse {
 
 class DepositAccount {
   final String accountNo;
+  final String accountType;
   final String accOpenDate;
   final String currency;
   final String depositAmount;
@@ -28,6 +29,7 @@ class DepositAccount {
 
   DepositAccount({
     required this.accountNo,
+    required this.accountType,
     required this.accOpenDate,
     required this.currency,
     required this.depositAmount,
@@ -39,6 +41,7 @@ class DepositAccount {
   factory DepositAccount.fromJson(Map<String, dynamic> json) {
     return DepositAccount(
       accountNo: json['accountNo'],
+      accountType: json['accountType'],
       accOpenDate: json['accOpenDate'],
       currency: json['currency'],
       depositAmount: json['depositAmount'],

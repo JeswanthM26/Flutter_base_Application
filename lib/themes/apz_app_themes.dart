@@ -501,7 +501,7 @@ class AppColors {
           ? dark.dashboardBalanceTrendDotBorderColor
           : light.dashboardBalanceTrendDotBorderColor;
 
- static Color donutChartBackgroundColor(BuildContext context) =>
+  static Color donutChartBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.donutChartBackgroundColor
           : light.donutChartBackgroundColor;
@@ -533,6 +533,65 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.donutChartSectionColors
           : light.donutChartSectionColors;
+
+  // 📌 Upcoming Payments Card Colors
+  static Color upcomingPaymentsCardBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsCardBackground
+          : light.upcomingPaymentsCardBackground;
+
+  static Color upcomingPaymentsFooterNote(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsFooterNote
+          : light.upcomingPaymentsFooterNote;
+
+  static Color upcomingPaymentsGradientStart(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsGradientStart
+          : light.upcomingPaymentsGradientStart;
+
+  static Color upcomingPaymentsGradientEnd(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsGradientEnd
+          : light.upcomingPaymentsGradientEnd;
+
+  static Color upcomingPaymentsReminderText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsReminderText
+          : light.upcomingPaymentsReminderText;
+
+  static Color upcomingPaymentsHeader(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsHeader
+          : light.upcomingPaymentsHeader;
+
+  static Color upcomingPaymentsAddPaymentBlue(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsAddPaymentBlue
+          : light.upcomingPaymentsAddPaymentBlue;
+
+  static Color upcomingPaymentsDivider(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsDivider
+          : light.upcomingPaymentsDivider;
+
+  static Color upcomingPaymentsPaymentCount(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsPaymentCount
+          : light.upcomingPaymentsPaymentCount;
+
+  //recent transaction
+  static Color cardBackground(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? dark.cardBackground
+        : light.cardBackground;
+  }
+
+  static Color transactionTagBackground(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? dark.transactionTagBackground
+        : light.transactionTagBackground;
+  }
 }
 
 class AppImages {

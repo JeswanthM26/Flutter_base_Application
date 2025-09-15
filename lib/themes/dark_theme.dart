@@ -141,8 +141,8 @@ const Color dashboardIndicatorDotInactive = Color(0xFF555555);
 // 📌 Dashboard Balance Trend Chart Colors
 const Color dashboardBalanceTrendTitleTextColor = Color(0xFFE6F2FA);
 const Color dashboardBalanceTrendFilterBgColor = Color(0xFF23262E);
-const Color dashboardBalanceTrendFilterTextColor = Color(0xFF4EA8DE);
-const Color dashboardBalanceTrendFilterIconColor = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendFilterTextColor = Color(0xFFFFFFFF);
+const Color dashboardBalanceTrendFilterIconColor = Color(0xFFFFFFFF);
 const Color dashboardBalanceTrendTooltipTextColor = Colors.white;
 const Color dashboardBalanceTrendTooltipLineColor = Color(0xFF707070);
 const Color dashboardBalanceTrendYAxisLabelTextColor = Color(0xFF999999);
@@ -155,8 +155,7 @@ const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Color(0xFF23262E);
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4EA8DE);
 
-
-const donutChartBackgroundColor = Color(0xFF002A4D);
+final donutChartBackgroundColor = Colors.transparent;
 const donutChartTitleColor = Color(0xFFE6F2FA);
 const donutChartCenterTextColor = Color(0xFFBABABA);
 const donutChartCenterPercentageColor = Color(0xFFF5F5F5);
@@ -167,3 +166,22 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFB3E0FF), Color(0xFFF4F8FF)],
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
+
+//upcoming payments
+const Color upcomingPaymentsCardBackground = Color(0xFF353535); // same as light
+const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55); // same as light
+const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF); // gradient start
+const Color upcomingPaymentsGradientEnd =
+    Color(0x33B3E0FF); // gradient end (transparent)
+const Color upcomingPaymentsReminderText =
+    Color(0xFFE6F2FA); // reminder text color in dark
+const Color upcomingPaymentsHeader = Color(0xFFEFF8FF); // header/title text
+const Color upcomingPaymentsAddPaymentBlue =
+    Color(0xFF0073C0); // button background for dark theme
+const Color upcomingPaymentsDivider = Color(0x6668696A); // same as light
+const Color upcomingPaymentsPaymentCount =
+    Color(0xFFEFF8FF); // count number color
+
+//reecnt transaction
+const Color cardBackground = Color(0xFF353535);
+const Color transactionTagBackground = Color.fromARGB(255, 104, 102, 102);

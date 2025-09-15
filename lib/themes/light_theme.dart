@@ -158,7 +158,7 @@ const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Colors.white;
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4A90E2);
 
-const donutChartBackgroundColor = Color(0xFFFFFFFF);
+const donutChartBackgroundColor = Colors.transparent;
 const donutChartTitleColor = Color(0xFF000000);
 const donutChartCenterTextColor = Color(0xFF6D717F);
 const donutChartCenterPercentageColor = Color(0xFF000000);
@@ -169,3 +169,18 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFB3E0FF), Color(0xFFF4F8FF)],
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
+
+//upcoming payments
+const Color upcomingPaymentsCardBackground = Colors.transparent;
+const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55);
+const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF);
+const Color upcomingPaymentsGradientEnd = Color(0x33B3E0FF);
+const Color upcomingPaymentsReminderText = Color(0xFF181818);
+const Color upcomingPaymentsHeader = Color(0xFF57778C);
+const Color upcomingPaymentsAddPaymentBlue = Color(0xFF0073C0);
+const Color upcomingPaymentsDivider = Color(0x6668696A);
+const Color upcomingPaymentsPaymentCount = Color(0xFFFFFFFF);
+
+//recent transaction
+const Color cardBackground = Color(0xFFEDF2FA);
+const Color transactionTagBackground = Color.fromARGB(255, 209, 209, 209);

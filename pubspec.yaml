@@ -53,6 +53,7 @@ flutter:
     - mock/mock_datas/
     - assets/loader/
     - assets/login/
+    - assets/promotions/
 
 
   uses-material-design: true

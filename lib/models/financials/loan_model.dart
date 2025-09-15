@@ -18,29 +18,35 @@ class LoanResponse {
 
 class Loan {
   final String customerId;
+  final String loanType;
   final String customerName;
   final String accountNo;
   final String accountType;
   final String currency;
   final String currentBalance;
+  final String availableBalance;
 
   Loan({
     required this.customerId,
+    required this.loanType,
     required this.customerName,
     required this.accountNo,
     required this.accountType,
     required this.currency,
     required this.currentBalance,
+    required this.availableBalance,
   });
 
   factory Loan.fromJson(Map<String, dynamic> json) {
     return Loan(
       customerId: json['customerId'],
+      loanType: json['loanType'],
       customerName: json['customerName'],
       accountNo: json['accountNo'],
       accountType: json['accountType'],
       currency: json['currency'],
       currentBalance: json['currentBalance'],
+      availableBalance: json['availableBalance'],
     );
   }
 }

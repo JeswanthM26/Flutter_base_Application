@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:Retail_Application/models/dashboard/actionbuttons_model.dart';
 import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
+import 'package:Retail_Application/models/financials/deposit_model.dart';
+import 'package:Retail_Application/models/financials/loan_model.dart';
 import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_creditcard_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_deposit_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_loan_chart.dart';
+import 'package:Retail_Application/ui/widgets/promotions.dart';
+import 'package:Retail_Application/ui/widgets/recent_transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,6 +21,7 @@ import 'package:Retail_Application/ui/widgets/balance_chart.dart';
 import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
 import 'package:Retail_Application/models/dashboard/account_model.dart';
 import 'package:Retail_Application/models/dashboard/customer_model.dart';
+import 'package:intl/intl.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -36,18 +41,25 @@ class _DashboardScreenState extends State<AccountScreen> {
     2: 0, // Loans
     3: 0, // Credit Cards
   };
-  Widget _buildChart(int selectedIndex) {
+  Widget _buildChart(int selectedIndex, dynamic currentItem) {
     switch (selectedIndex) {
       case 0:
-        return BalanceTrendChart(); // line chart for Accounts
+        return BalanceTrendChart(
+            accountData: currentItem); // line chart for Accounts
       case 1:
-        return DepositsChartExample();
+        return DepositsChartExample(
+          depositData: currentItem,
+        );
       case 2:
-        return LoansChartExample();
+        return LoansChartExample(
+          loan: currentItem,
+        );
       case 3:
-        return CreditCardChartExample(); // donut charts for others
+        return CreditCardChartExample(
+          creditData: currentItem,
+        ); // donut charts for others
       default:
-        return BalanceTrendChart();
+        return BalanceTrendChart(accountData: currentItem);
     }
   }
 
@@ -56,7 +68,9 @@ class _DashboardScreenState extends State<AccountScreen> {
 
   // include action buttons future
   late final Future<List<dynamic>> _allDataFuture = Future.wait([
-    _loadDashboardData(), // Accounts + Deposits + Loans
+    _loadDashboardData(), // Accounts
+    _loadDepositData(),
+    _loadLoanData(),
     _loadCreditData(), // Credit cards
     _loadActionButtons(), // action buttons
   ]);
@@ -75,6 +89,26 @@ class _DashboardScreenState extends State<AccountScreen> {
     final jsonResult = json.decode(data);
     return jsonResult['APZRMB__CreditCardDetails_Res']['apiResponse']
         ['ResponseBody']['responseObj'];
+  }
+
+  Future<Map<String, dynamic>> _loadDepositData() async {
+    final String data =
+        await rootBundle.loadString('mock/Dashboard/deposits_mock.json');
+    final jsonResult = json.decode(data);
+
+    return jsonResult['APZRMB__DepositDetails_Res']?['apiResponse']
+            ?['ResponseBody']?['responseObj'] ??
+        {}; // return empty map if null
+  }
+
+  Future<Map<String, dynamic>> _loadLoanData() async {
+    final String data =
+        await rootBundle.loadString('mock/Dashboard/loans_mock.json');
+    final jsonResult = json.decode(data);
+
+    return jsonResult['APZRMB__LoanDetails_Res']?['apiResponse']
+            ?['ResponseBody']?['responseObj'] ??
+        {}; // return empty map if null
   }
 
   Future<List<ActionButtonModel>> _loadActionButtons() async {
@@ -141,8 +175,10 @@ class _DashboardScreenState extends State<AccountScreen> {
 
         // unpack futures
         final accountResponse = snapshot.data![0] as Map<String, dynamic>;
-        final creditResponse = snapshot.data![1] as Map<String, dynamic>;
-        final actionButtons = snapshot.data![2] as List<ActionButtonModel>;
+        final depositResponse = snapshot.data![1] as Map<String, dynamic>;
+        final loanResponse = snapshot.data![2] as Map<String, dynamic>;
+        final creditResponse = snapshot.data![3] as Map<String, dynamic>;
+        final actionButtons = snapshot.data![4] as List<ActionButtonModel>;
 
         final customer =
             CustomerModel.fromJson(accountResponse['customerDetails']);
@@ -156,12 +192,13 @@ class _DashboardScreenState extends State<AccountScreen> {
             .where((acc) => acc.accountType == "SB" || acc.accountType == "CA")
             .toList();
 
-        final deposits = allAccounts
-            .where((acc) => acc.accountType == "FD" || acc.accountType == "RD")
+        final deposits = (depositResponse['accounts'] as List? ?? [])
+            .map((dep) => DepositAccount.fromJson(dep))
             .toList();
 
-        final loans =
-            allAccounts.where((acc) => acc.accountType == "LN").toList();
+        final loans = (loanResponse['loans'] as List? ?? [])
+            .map((loan) => Loan.fromJson(loan))
+            .toList();
 
         final creditCards = (creditResponse['creditCards'] as List?)
                 ?.map((cc) => CreditCardModel.fromJson(cc))
@@ -358,10 +395,16 @@ class _DashboardScreenState extends State<AccountScreen> {
               const SizedBox(height: 12),
               SizedBox(
                 height: 300,
-                child: _buildChart(selectedIndex),
+                child: _buildChart(
+                  selectedIndex,
+                  currentData.isNotEmpty ? currentData[_currentPage] : null,
+                ),
               ),
+
               const SizedBox(height: 12),
               const UpcomingPaymentsCardWidget(),
+              const RecentTransactions(),
+              const Promotions()
             ],
           ),
         ),
@@ -624,6 +667,10 @@ class _BalanceCardState extends State<BalanceCard> {
       uniqueKey = (widget.data as AccountModel).accountNo;
     } else if (widget.data is CreditCardModel) {
       uniqueKey = (widget.data as CreditCardModel).cardNumber;
+    } else if (widget.data is DepositAccount) {
+      uniqueKey = (widget.data as DepositAccount).accountNo;
+    } else if (widget.data is Loan) {
+      uniqueKey = (widget.data as Loan).accountNo;
     } else {
       uniqueKey = "unknown";
     }
@@ -635,28 +682,57 @@ class _BalanceCardState extends State<BalanceCard> {
     String balance = "";
     String currency = "";
 
+    final formatter =
+        NumberFormat.currency(locale: 'en_IN', symbol: '', decimalDigits: 2);
+
     if (widget.data is AccountModel) {
       final acc = widget.data as AccountModel;
       title = acc.accountType == "CA"
           ? "Current Account"
           : acc.accountType == "SB"
               ? "Savings Account"
-              : acc.accountType == "LN"
-                  ? "Loan Account"
-                  : acc.accountType == "FD"
-                      ? "Fixed Deposit"
-                      : acc.accountType == "RD"
-                          ? "Recurring Deposit"
-                          : "Account";
+              : "Account";
       subtitle = "** ${acc.accountNo.substring(acc.accountNo.length - 4)}";
-      balance = double.parse(acc.availableBalance).toStringAsFixed(2);
+      balance = formatter.format(double.parse(acc.availableBalance));
       currency = acc.currency;
     } else if (widget.data is CreditCardModel) {
       final cc = widget.data as CreditCardModel;
-      title = "Credit Card"; // generic title
+      title = "Credit Card";
       subtitle = "** ${cc.cardNumber.substring(cc.cardNumber.length - 4)}";
-      balance = (cc.availableCredit).toStringAsFixed(2);
+      balance = formatter.format(cc.availableCredit);
       currency = cc.currency;
+    } else if (widget.data is DepositAccount) {
+      final dep = widget.data as DepositAccount;
+      title = dep.accountType == "FD"
+          ? "Fixed Deposit"
+          : dep.accountType == "RD"
+              ? "Recurring Deposit"
+              : "Deposit";
+      subtitle = "** ${dep.accountNo.substring(dep.accountNo.length - 4)}";
+      balance = formatter.format(
+        (double.tryParse(dep.depositAmount ?? "0") ?? 0) +
+            (double.tryParse(dep.interestAmount ?? "0") ?? 0),
+      );
+      currency = dep.currency;
+    } else if (widget.data is Loan) {
+      final loan = widget.data as Loan;
+      title = loan.loanType == "RL"
+          ? "Retail Loan"
+          : loan.loanType == "CL"
+              ? "Consumer Loan"
+              : loan.loanType == "VL"
+                  ? "Vehicle Loan"
+                  : loan.loanType == "HL"
+                      ? "Home Loan"
+                      : loan.loanType == "PL"
+                          ? "Personal Loan"
+                          : loan.loanType == "EL"
+                              ? "Education Loan"
+                              : "Loan";
+      subtitle = "** ${loan.accountNo.substring(loan.accountNo.length - 4)}";
+      balance =
+          formatter.format(double.tryParse(loan.availableBalance ?? "0") ?? 0);
+      currency = loan.currency;
     }
 
     return Column(
@@ -708,8 +784,7 @@ class _BalanceCardState extends State<BalanceCard> {
                     onTap: () {
                       setState(() {
                         _isBalanceVisible = !_isBalanceVisible;
-                        _visibilityMap[uniqueKey] =
-                            _isBalanceVisible; // remember per card
+                        _visibilityMap[uniqueKey] = _isBalanceVisible;
                       });
                     },
                     child: Icon(

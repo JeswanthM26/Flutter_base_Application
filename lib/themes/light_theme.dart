@@ -171,7 +171,7 @@ const List<List<Color>> donutChartSectionColors = [
 ];
 
 //upcoming payments
-const Color upcomingPaymentsCardBackground = Colors.transparent;
+const Color upcomingPaymentsCardBackground = Color(0xFFEDF2FA);
 const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55);
 const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF);
 const Color upcomingPaymentsGradientEnd = Color(0x33B3E0FF);
@@ -184,3 +184,19 @@ const Color upcomingPaymentsPaymentCount = Color(0xFFFFFFFF);
 //recent transaction
 const Color cardBackground = Color(0xFFEDF2FA);
 const Color transactionTagBackground = Color.fromARGB(255, 209, 209, 209);
+
+//menu
+final Color menuScrimColor = Colors.white.withOpacity(0.5);
+
+const Color menuSheetBackgroundColor = Color(0xFFF5F5F5);
+const Color menuSheetTitleColor = Color(0xFF181818);
+const Color menuSheetIndicatorActiveColor = Color(0xFFEDF2FA);
+final Color menuSheetIndicatorInactiveColor = Color(0x80EDF2FA);
+
+final Color menuItemCardBackgroundColor = Color(0xFFEDF2FA);
+const Color menuItemCardContentColor = Color(0xFF181818);
+
+//favourites
+const Color favouriteHeader = Color(0xFF57778C);
+const Color favouriteBoxShadow = Color(0x33000000);
+const Color favouriteText = Color(0xFF181818);

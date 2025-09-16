@@ -43,13 +43,12 @@ class _PromotionsState extends State<Promotions> {
     if (promotions.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
-
         child: Center(
           child: ApzText(
             label: "No promotions available",
             fontWeight: ApzFontWeight.bodyRegular,
             fontSize: 14,
-             color: AppColors.tertiary_text(context),
+            color: AppColors.tertiary_text(context),
           ),
         ),
       );
@@ -58,17 +57,17 @@ class _PromotionsState extends State<Promotions> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: ApzText(
             label: "Discover the product offers",
             fontWeight: ApzFontWeight.bodyRegular,
-            color: AppColors.tertiary_text(context),
+            color: AppColors.upcomingPaymentsHeader(context),
           ),
         ),
         const SizedBox(height: 6),
         SizedBox(
-          height: 200, 
+          height: 200,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -87,22 +86,20 @@ class _PromotionsState extends State<Promotions> {
                   );
                 },
                 child: Container(
-                  width: 180, 
+                  width: 180,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: promo.image1.isNotEmpty
                         ? DecorationImage(
                             image: AssetImage(promo.image1),
-                            fit: BoxFit.fill, 
+                            fit: BoxFit.fill,
                           )
                         : null,
-                
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
-                      mainAxisAlignment:
-                          MainAxisAlignment.center, 
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 90),
@@ -110,14 +107,14 @@ class _PromotionsState extends State<Promotions> {
                           label: promo.title,
                           fontWeight: ApzFontWeight.headingSemibold,
                           fontSize: 13,
-                         color: AppColors.button_text_black(context),
+                          color: AppColors.button_text_black(context),
                         ),
                         const SizedBox(height: 4),
                         ApzText(
                           label: promo.subtitle,
                           fontSize: 11,
                           fontWeight: ApzFontWeight.labelRegular,
-                          color:const Color.fromARGB(255, 94, 94, 94),
+                          color: const Color.fromARGB(255, 94, 94, 94),
                         ),
                       ],
                     ),

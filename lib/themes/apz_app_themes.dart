@@ -592,6 +592,56 @@ class AppColors {
         ? dark.transactionTagBackground
         : light.transactionTagBackground;
   }
+
+  //menu
+  static Color menuScrim(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuScrimColor
+          : light.menuScrimColor;
+
+  static Color menuSheetBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetBackgroundColor
+          : light.menuSheetBackgroundColor;
+
+  static Color menuSheetTitle(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetTitleColor
+          : light.menuSheetTitleColor;
+
+  static Color menuSheetIndicatorActive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetIndicatorActiveColor
+          : light.menuSheetIndicatorActiveColor;
+
+  static Color menuSheetIndicatorInactive(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuSheetIndicatorInactiveColor
+          : light.menuSheetIndicatorInactiveColor;
+
+  static Color menuItemCardBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuItemCardBackgroundColor
+          : light.menuItemCardBackgroundColor;
+
+  static Color menuItemCardContent(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.menuItemCardContentColor
+          : light.menuItemCardContentColor;
+
+          //favourites
+  static Color favouriteHeader(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark 
+          ? dark.favouriteHeader
+          : light.favouriteHeader;
+  static Color favouriteBoxShadow(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favouriteBoxShadow
+          : light.favouriteBoxShadow;
+  static Color favouriteText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favouriteText
+          : light.favouriteText;
 }
 
 class AppImages {

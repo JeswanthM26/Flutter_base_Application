@@ -25,6 +25,7 @@ class Loan {
   final String currency;
   final String currentBalance;
   final String availableBalance;
+  final String? interestRate;
 
   Loan({
     required this.customerId,
@@ -35,6 +36,7 @@ class Loan {
     required this.currency,
     required this.currentBalance,
     required this.availableBalance,
+    this.interestRate,
   });
 
   factory Loan.fromJson(Map<String, dynamic> json) {
@@ -47,6 +49,7 @@ class Loan {
       currency: json['currency'],
       currentBalance: json['currentBalance'],
       availableBalance: json['availableBalance'],
+      interestRate: json['interestRate'],
     );
   }
 }

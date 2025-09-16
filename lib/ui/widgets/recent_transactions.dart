@@ -4,10 +4,12 @@ import 'package:Retail_Application/models/dashboard/transaction_model.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show rootBundle, HapticFeedback;
 import 'package:Retail_Application/ui/components/apz_payment.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:intl/intl.dart';
+
+import '../components/apz_alert.dart';
 
 class RecentTransactions extends StatefulWidget {
   const RecentTransactions({super.key});
@@ -43,16 +45,20 @@ class _RecentTransactionsState extends State<RecentTransactions> {
       context: context,
       barrierDismissible: true,
       barrierLabel: "Dismiss",
-      transitionDuration: const Duration(milliseconds: 200),
+      transitionDuration: const Duration(milliseconds: 300),
       pageBuilder: (context, anim1, anim2) {
         return Center(child: TransactionModal(transaction: tx));
       },
       transitionBuilder: (context, anim1, anim2, child) {
+        final curved =
+            CurvedAnimation(parent: anim1, curve: Curves.easeOutBack);
         return FadeTransition(
           opacity: anim1,
-          child: ScaleTransition(
-            scale: CurvedAnimation(parent: anim1, curve: Curves.easeOutBack),
-            child: child,
+          child: SlideTransition(
+            position:
+                Tween<Offset>(begin: const Offset(0, 0.1), end: Offset.zero)
+                    .animate(curved),
+            child: ScaleTransition(scale: curved, child: child),
           ),
         );
       },
@@ -105,27 +111,27 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onLongPress: () async {
-                            setState(() {
-                              _highlightedIndex = index;
-                            });
+                            HapticFeedback.mediumImpact();
+                            setState(() => _highlightedIndex = index);
                             await Future.delayed(
                                 const Duration(milliseconds: 750));
                             _showTransactionModal(tx);
-                            setState(() {
-                              _highlightedIndex = -1;
-                            });
+                            setState(() => _highlightedIndex = -1);
                           },
                           child: AnimatedScale(
                             scale: isHighlighted ? 1.05 : 1.0,
                             duration: const Duration(milliseconds: 150),
-                            child: PaymentCard(
-                              title: tx.nickName ?? tx.remarks,
-                              subtitle: "${tx.txnDate} • ${tx.txnType}",
-                              imageUrl: "assets/mock/person.png",
-                              actionType: PaymentCardActionType.text,
-                              amount:
-                                  "${isCredit ? "+ " : "- "}${tx.txnCurrency} ${tx.txnAmount.toStringAsFixed(2)}",
-                              isCredit: isCredit,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: PaymentCard(
+                                title: tx.nickName ?? tx.remarks,
+                                subtitle: "${tx.txnDate} • ${tx.txnType}",
+                                imageUrl: "assets/mock/person.png",
+                                actionType: PaymentCardActionType.text,
+                                amount:
+                                    "${isCredit ? "+ " : "- "}${tx.txnCurrency} ${tx.txnAmount.toStringAsFixed(2)}",
+                                isCredit: isCredit,
+                              ),
                             ),
                           ),
                         ),
@@ -144,11 +150,15 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                   label: 'See All',
                   appearance: ApzButtonAppearance.tertiary,
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Feature coming soon'),
-                        duration: Duration(seconds: 2),
-                      ),
+                    ApzAlert.show(
+                      context,
+                      title: "Coming Soon",
+                      message: "This feature is under development.",
+                      messageType: ApzAlertMessageType.info,
+                      buttons: ["OK"],
+                      onButtonPressed: (btn) {
+                        // Optional: handle button tap
+                      },
                     );
                   },
                 ),
@@ -161,7 +171,6 @@ class _RecentTransactionsState extends State<RecentTransactions> {
   }
 }
 
-// --- TransactionModal remains the same ---
 class TransactionModal extends StatelessWidget {
   final Transaction transaction;
   const TransactionModal({super.key, required this.transaction});
@@ -178,9 +187,7 @@ class TransactionModal extends StatelessWidget {
           children: [
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              child: Container(
-                color: Colors.black.withOpacity(0.3),
-              ),
+              child: Container(color: Colors.transparent), // only blur
             ),
             Center(
               child: GestureDetector(
@@ -390,7 +397,7 @@ class TransactionModal extends StatelessWidget {
             child: ApzText(
               label: label,
               fontWeight: ApzFontWeight.buttonTextMedium,
-              color: Colors.white,
+              color: AppColors.primary_text(context),
               fontSize: 12,
             ),
           ),
@@ -401,7 +408,7 @@ class TransactionModal extends StatelessWidget {
 
   Widget _buildDetailRow(BuildContext context, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

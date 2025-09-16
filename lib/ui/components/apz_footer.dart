@@ -1,31 +1,21 @@
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/themes/common_properties.dart';
 import 'package:flutter/material.dart';
-
+ 
 class FooterBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onItemSelected;
-  //final List<Widget> pages;
-
+  final VoidCallback onCenterTap;
+  final bool isMenuOpen;
+ 
   const FooterBar({
     Key? key,
     required this.selectedIndex,
     required this.onItemSelected,
-    required Null Function() onCenterTap,
-    //  required this.pages,
+    required this.onCenterTap,
+    this.isMenuOpen = false,
   }) : super(key: key);
-  //assert(pages.length == 5, 'Pass exactly 5 pages'),
-
-  // void _handleTap(BuildContext context, int index) {
-  //   if (index == selectedIndex) return;
-  //   onItemSelected(index);
-
-  //   Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(builder: (_) => pages[index]),
-  //   );
-  // }
-
+ 
   Widget _buildTabItem({
     required BuildContext context,
     required IconData iconData,
@@ -57,8 +47,8 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildCenterButton(BuildContext context, int index) {
+ 
+  Widget _buildCenterButton(BuildContext context) {
     return Container(
       width: footer_centerButtonSize,
       height: footer_centerButtonSize,
@@ -73,11 +63,11 @@ class FooterBar extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => onItemSelected(index),
+          onTap: onCenterTap,
           borderRadius: BorderRadius.circular(footer_centerButtonSize / 2),
-          child: const Center(
+          child: Center(
             child: Icon(
-              Icons.ac_unit, // Replace with your custom icon or SVG
+              isMenuOpen ? Icons.close : Icons.grid_3x3,
               color: Colors.white,
               size: footer_centerIconSize,
             ),
@@ -86,7 +76,7 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -120,7 +110,7 @@ class FooterBar extends StatelessWidget {
             isSelected: selectedIndex == 1,
             index: 1,
           ),
-          _buildCenterButton(context, 2),
+          _buildCenterButton(context),
           _buildTabItem(
             context: context,
             iconData: Icons.credit_card_outlined,
@@ -140,3 +130,5 @@ class FooterBar extends StatelessWidget {
     );
   }
 }
+ 
+ 

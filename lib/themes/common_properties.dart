@@ -192,3 +192,21 @@ const ApzFontWeight donutChartAmountFontWeight = ApzFontWeight.bodyMedium;
 
 const double donutChartDateFontSize = 11.0;
 const ApzFontWeight donutChartDateFontWeight = ApzFontWeight.bodyMedium;
+
+// Menu Sheet Properties
+const double menuSheetHeightFactor = 0.65;
+const double menuSheetBorderRadius = 24.0;
+const EdgeInsets menuSheetPadding = EdgeInsets.all(16.0);
+const double menuSheetTitleFontSize = 24.0;
+const FontWeight menuSheetTitleFontWeight = FontWeight.bold;
+const EdgeInsets menuSheetGridViewPadding = EdgeInsets.all(16.0);
+const double menuSheetGridViewSpacing = 16.0;
+const double menuSheetGridViewAspectRatio = 0.9;
+const double menuSheetIndicatorDotSize = 8.0;
+const double menuSheetIndicatorBottomSpacing = 16.0;
+
+// Menu Item Card Properties
+const double menuItemCardBorderRadius = 12.0;
+const double menuItemCardIconSize = 30.0;
+const double menuItemCardIconSpacing = 8.0;
+const double menuItemCardLabelFontSize = 12.0;

@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final provider = Provider.of<LocaleProvider>(context);
 
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       locale: provider.locale,
       localizationsDelegates: const [
@@ -150,9 +150,8 @@ class _MyAppState extends State<MyApp> {
           ],
         );
       },
-      // routerConfig: AppRouter.router,
-      home: FooterHeaderScreen(),
-      // home: PaymentCardExample(),
+      routerConfig: AppRouter.router,
+      //home: FooterHeaderScreen(),
     );
   }
 }

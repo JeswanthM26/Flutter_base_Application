@@ -8,6 +8,7 @@ import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_creditcard_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_deposit_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_loan_chart.dart';
+import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
 import 'package:Retail_Application/ui/widgets/promotions.dart';
 import 'package:Retail_Application/ui/widgets/recent_transactions.dart';
 import 'package:flutter/material.dart';
@@ -403,6 +404,7 @@ class _DashboardScreenState extends State<AccountScreen> {
 
               const SizedBox(height: 12),
               const UpcomingPaymentsCardWidget(),
+              const FavoriteTransactionsRow(),
               const RecentTransactions(),
               const Promotions()
             ],
@@ -674,6 +676,17 @@ class _BalanceCardState extends State<BalanceCard> {
     } else {
       uniqueKey = "unknown";
     }
+    String balanceLabel = "";
+
+    if (widget.data is AccountModel) {
+      balanceLabel = "AVAILABLE BALANCE";
+    } else if (widget.data is DepositAccount) {
+      balanceLabel = "DEPOSIT AMOUNT";
+    } else if (widget.data is Loan) {
+      balanceLabel = "OUTSTANDING BALANCE";
+    } else if (widget.data is CreditCardModel) {
+      balanceLabel = "TOTAL OUTSTANDING";
+    }
 
     _isBalanceVisible = _visibilityMap[uniqueKey] ?? false;
 
@@ -730,8 +743,13 @@ class _BalanceCardState extends State<BalanceCard> {
                               ? "Education Loan"
                               : "Loan";
       subtitle = "** ${loan.accountNo.substring(loan.accountNo.length - 4)}";
-      balance =
-          formatter.format(double.tryParse(loan.availableBalance ?? "0") ?? 0);
+      double _safeParse(String? value) {
+        if (value == null || value.isEmpty) return 0.0;
+        return double.tryParse(value.replaceAll(',', '')) ?? 0.0;
+      }
+
+      balance = formatter.format(_safeParse(loan.availableBalance));
+
       currency = loan.currency;
     }
 
@@ -739,13 +757,13 @@ class _BalanceCardState extends State<BalanceCard> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.5,
+          width: double.infinity,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ApzText(
-                label: 'AVAILABLE BALANCE',
+                label: balanceLabel,
                 color: AppColors.dashboardAvailableBalanceTextColor(context),
                 fontSize: 13,
                 fontWeight: ApzFontWeight.titlesRegular,

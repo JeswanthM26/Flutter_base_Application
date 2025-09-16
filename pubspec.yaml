@@ -51,9 +51,11 @@ flutter:
     - mock/products/
     - mock/Dashboard/
     - mock/mock_datas/
+    - mock/menu_options/
     - assets/loader/
     - assets/login/
     - assets/promotions/
+    - assets/accountdashboard/
 
 
   uses-material-design: true

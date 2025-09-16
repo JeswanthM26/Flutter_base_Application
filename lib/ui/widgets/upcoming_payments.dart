@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:Retail_Application/ui/components/apz_alert.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_payment.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
@@ -17,7 +18,7 @@ class UpcomingPaymentsCardWidget extends StatefulWidget {
 
 class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
     with TickerProviderStateMixin {
-  bool _isExpanded = true;
+  bool _isExpanded = false;
   List<Map<String, dynamic>> upcomingPayments = [];
 
   @override
@@ -46,12 +47,11 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
             dateObj["month"],
             dateObj["day"],
           );
-          // Ensure leading zero for day
           String day = date.day.toString().padLeft(2, '0');
-          String month = DateFormat('MMM').format(date); // e.g., "Aug"
-          formattedDate = "due on $day $month"; // "due on 01 Aug"
+          String month = DateFormat('MMM').format(date);
+          formattedDate = "due on $day $month";
         } catch (ex) {
-          formattedDate = ""; // fallback if parsing fails
+          formattedDate = "";
         }
       }
 
@@ -79,37 +79,58 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 24),
         // 🔹 Payments + Add New header
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          ApzText(
-            label: "Payments",
-            color: AppColors.upcomingPaymentsHeader(context),
-            fontSize: 14,
-            fontWeight: ApzFontWeight.titlesRegular,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.add,
-                  size: 24,
-                  color: AppColors.upcomingPaymentsAddPaymentBlue(
-                      context)), // plus symbol
-              const SizedBox(width: 4),
-              ApzButton(
-                label: "Add a New payment",
-                onPressed: () {
-                  // TODO: handle add new payment action
-                },
-                appearance: ApzButtonAppearance.tertiary,
-                size: ApzButtonSize.large,
-                textColor: AppColors.upcomingPaymentsAddPaymentBlue(context),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ApzText(
+              label: "Payments",
+              color: AppColors.upcomingPaymentsHeader(context),
+              fontSize: 14,
+              fontWeight: ApzFontWeight.titlesRegular,
+            ),
+            Flexible(
+              // ✅ Prevent overflow on small screens
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.add,
+                    size: 24,
+                    color: AppColors.upcomingPaymentsAddPaymentBlue(context),
+                  ),
+                  const SizedBox(width: 4),
+                  Flexible(
+                    child: ApzButton(
+                      label: "Add a New payment",
+                      onPressed: () {
+                        ApzAlert.show(
+                          context,
+                          title: "Coming Soon",
+                          message:
+                              "This feature is under development.",
+                          messageType: ApzAlertMessageType.info,
+                          buttons: ["OK"],
+                          onButtonPressed: (btn) {
+                            // Optional: handle button tap
+                          },
+                        );
+                      },
+                      appearance: ApzButtonAppearance.tertiary,
+                      size: ApzButtonSize.large,
+                      textColor:
+                          AppColors.upcomingPaymentsAddPaymentBlue(context),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          )
-        ]),
+            )
+          ],
+        ),
         const SizedBox(height: 12),
 
-        // 🔹 Your existing container
+        // 🔹 Card container
         Container(
           padding: const EdgeInsets.all(12),
           decoration: ShapeDecoration(
@@ -126,51 +147,52 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Reminder Section
-                  Row(
-                    children: [
-                      // Gradient number box
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: ShapeDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment(1.00, 0.50),
-                            end: Alignment(-1.24, 0.50),
-                            colors: [
-                              AppColors.upcomingPaymentsGradientStart(context),
-                              AppColors.upcomingPaymentsGradientEnd(context)
-                            ],
+                  Expanded(
+                    // ✅ Use Expanded instead of fixed width
+                    child: Row(
+                      children: [
+                        // Gradient number box
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(1.00, 0.50),
+                              end: Alignment(-1.24, 0.50),
+                              colors: [
+                                AppColors.upcomingPaymentsGradientStart(
+                                    context),
+                                AppColors.upcomingPaymentsGradientEnd(context)
+                              ],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                          child: Center(
+                            child: ApzText(
+                              label: formatNumber(paymentCount),
+                              color: AppColors.upcomingPaymentsPaymentCount(
+                                  context),
+                              fontSize: 20,
+                              fontWeight: ApzFontWeight.headingSemibold,
+                            ),
                           ),
                         ),
-                        child: Center(
+                        const SizedBox(width: 8),
+                        Expanded(
                           child: ApzText(
-                            label: formatNumber(paymentCount),
+                            label:
+                                "Remainder: You've got payments scheduled soon",
                             color:
-                                AppColors.upcomingPaymentsPaymentCount(context),
-                            fontSize: 20,
-                            fontWeight: ApzFontWeight.headingSemibold,
+                                AppColors.upcomingPaymentsReminderText(context),
+                            fontSize: 12,
+                            fontWeight: ApzFontWeight.titlesRegular,
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      SizedBox(
-                        width: 234,
-                        child: ApzText(
-                          label:
-                              "Remainder: You've got payments scheduled soon",
-                          color:
-                              AppColors.upcomingPaymentsReminderText(context),
-                          fontSize: 12,
-                          fontWeight: ApzFontWeight.titlesRegular,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  // Right Arrow Icon (original functionality)
                   IconButton(
                     icon: AnimatedRotation(
                       turns: _isExpanded ? 0.5 : 0,
@@ -187,7 +209,6 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
               ),
 
               const SizedBox(height: 8),
-              // Divider under header
               Opacity(
                 opacity: 0.8,
                 child: Divider(
@@ -222,11 +243,12 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
                                         ),
                                         const SizedBox(height: 8),
                                         Divider(
-                                            thickness: 0.3,
-                                            color: AppColors
-                                                .upcomingPaymentsDivider(
-                                                    context),
-                                            height: 0),
+                                          thickness: 0.3,
+                                          color:
+                                              AppColors.upcomingPaymentsDivider(
+                                                  context),
+                                          height: 0,
+                                        ),
                                         const SizedBox(height: 8),
                                       ],
                                     ))
@@ -244,7 +266,7 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
                   Icon(Icons.info,
                       size: 16,
                       color: AppColors.upcomingPaymentsFooterNote(context)),
-                  SizedBox(width: 6),
+                  const SizedBox(width: 6),
                   Flexible(
                     child: ApzText(
                       label: "Set up autopay to avoid late fee on bills",
@@ -255,6 +277,15 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
                 ],
               ),
             ],
+          ),
+        ),
+        const SizedBox(height: 24), // 🔹 spacing below
+        Opacity(
+          opacity: 0.8,
+          child: Divider(
+            thickness: 0.3,
+            color: AppColors.upcomingPaymentsDivider(context),
+            height: 0,
           ),
         ),
       ],

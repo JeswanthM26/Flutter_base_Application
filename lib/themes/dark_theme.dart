@@ -54,7 +54,7 @@ const Color secondary_shadow_2 = Color(0x29606170);
 
 const Color popup_shadow = Color(0x29000108);
 
-const Color container_box = Color(0xFFFFFFFF);
+const Color container_box = Colors.transparent;
 
 const Color searchbar_placeholder_default =
     Color(0xB3FFFFFF); // 70% opacity on #FFFFFF
@@ -168,14 +168,14 @@ const List<List<Color>> donutChartSectionColors = [
 ];
 
 //upcoming payments
-const Color upcomingPaymentsCardBackground = Color(0xFF353535); // same as light
+const Color upcomingPaymentsCardBackground = Color(0xFF353535);
 const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55); // same as light
 const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF); // gradient start
 const Color upcomingPaymentsGradientEnd =
     Color(0x33B3E0FF); // gradient end (transparent)
 const Color upcomingPaymentsReminderText =
     Color(0xFFE6F2FA); // reminder text color in dark
-const Color upcomingPaymentsHeader = Color(0xFFEFF8FF); // header/title text
+const Color upcomingPaymentsHeader = Color(0xFFE6F2FA); // header/title text
 const Color upcomingPaymentsAddPaymentBlue =
     Color(0xFF0073C0); // button background for dark theme
 const Color upcomingPaymentsDivider = Color(0x6668696A); // same as light
@@ -185,3 +185,17 @@ const Color upcomingPaymentsPaymentCount =
 //reecnt transaction
 const Color cardBackground = Color(0xFF353535);
 const Color transactionTagBackground = Color.fromARGB(255, 104, 102, 102);
+
+//menu
+final Color menuScrimColor = Colors.black.withOpacity(0.5);
+const Color menuSheetBackgroundColor = Color(0xFF353535);
+const Color menuSheetTitleColor = Colors.white;
+const Color menuSheetIndicatorActiveColor = Colors.white;
+final Color menuSheetIndicatorInactiveColor = Colors.grey;
+final Color menuItemCardBackgroundColor = Colors.grey.withOpacity(0.1);
+const Color menuItemCardContentColor = Colors.white;
+
+//favourites
+const Color favouriteHeader = Color(0xFFE6F2FA);
+const Color favouriteBoxShadow = Color(0x33000000);
+const Color favouriteText = Color(0xFF181818);

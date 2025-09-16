@@ -54,10 +54,10 @@ class HalfDonutChart extends StatelessWidget {
               fontWeight: donutChartTitleFontWeight,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 88),
           SizedBox(
             width: 250,
-            height: 125,
+            height: 100,
             child: Stack(
               children: [
                 Align(
@@ -85,7 +85,8 @@ class HalfDonutChart extends StatelessWidget {
                     ),
                   ),
                 ),
-                Center(
+                Align(
+                  alignment: const Alignment(0.0, -1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -166,8 +167,7 @@ class HalfDonutChart extends StatelessWidget {
     );
   }
 
-  Widget _buildLegend(
-      BuildContext context, String text, List<Color> colors) {
+  Widget _buildLegend(BuildContext context, String text, List<Color> colors) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(

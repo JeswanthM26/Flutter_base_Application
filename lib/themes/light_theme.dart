@@ -178,7 +178,7 @@ const Color upcomingPaymentsGradientEnd = Color(0x33B3E0FF);
 const Color upcomingPaymentsReminderText = Color(0xFF181818);
 const Color upcomingPaymentsHeader = Color(0xFF57778C);
 const Color upcomingPaymentsAddPaymentBlue = Color(0xFF0073C0);
-const Color upcomingPaymentsDivider = Color(0x6668696A);
+const Color upcomingPaymentsDivider = Color(0x66696A6A);
 const Color upcomingPaymentsPaymentCount = Color(0xFFFFFFFF);
 
 //recent transaction
@@ -200,3 +200,13 @@ const Color menuItemCardContentColor = Color(0xFF181818);
 const Color favouriteHeader = Color(0xFF57778C);
 const Color favouriteBoxShadow = Color(0x33000000);
 const Color favouriteText = Color(0xFF181818);
+const Color favoritesTransactionColor1 = Color(0xFFD594EC); // lilac
+const Color favoritesTransactionColor2 = Color(0xFFFF9FC1); // pink variant
+const Color favoritesTransactionColor3 = Color(0xFFFFA0C2); // pastel pink
+const Color favoritesTransactionColor4 = Color(0xFF91EFB5); // mint green
+const Color favoritesTransactionColor5 = Color(0xFFF7E798); // pastel yellow
+
+//profile
+const Color profileFooterBg = Color(0xFFF8FBFF);
+const Color profileFooterShadow = Color(0x1EC1C1C1);
+const Color profileFooterButton = Color(0xFFF04248);

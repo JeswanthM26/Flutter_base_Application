@@ -438,7 +438,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   setState(() {
                     showMpinForm = false;
-                    showBiometricForm = true;
+                    showSuccessPage = true;
                     cameFromBiometric = false; // reset the flag
                   });
                 },
@@ -533,7 +533,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          // SizedBox(height: 16),
         ],
       );
     } else {

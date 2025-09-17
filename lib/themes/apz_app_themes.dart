@@ -629,9 +629,9 @@ class AppColors {
           ? dark.menuItemCardContentColor
           : light.menuItemCardContentColor;
 
-          //favourites
+  //favourites
   static Color favouriteHeader(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark 
+      Theme.of(context).brightness == Brightness.dark
           ? dark.favouriteHeader
           : light.favouriteHeader;
   static Color favouriteBoxShadow(BuildContext context) =>
@@ -642,6 +642,39 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.favouriteText
           : light.favouriteText;
+  static Color favoritesTransactionColor1(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor1
+          : light.favoritesTransactionColor1;
+  static Color favoritesTransactionColor2(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor2
+          : light.favoritesTransactionColor2;
+  static Color favoritesTransactionColor3(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor3
+          : light.favoritesTransactionColor3;
+  static Color favoritesTransactionColor4(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor4
+          : light.favoritesTransactionColor4;
+  static Color favoritesTransactionColor5(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor5
+          : light.favoritesTransactionColor5;
+  //profile
+  static Color profileFooterBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterBg
+          : light.profileFooterBg;
+  static Color profileFooterShadow(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterShadow
+          : light.profileFooterShadow;
+  static Color profileFooterButton(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterButton
+          : light.profileFooterButton;
 }
 
 class AppImages {

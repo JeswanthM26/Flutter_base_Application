@@ -1,5 +1,6 @@
 import 'package:Retail_Application/ui/screens/login/login_screen.dart';
 import 'package:Retail_Application/ui/screens/post_login/Dashboard_screen.dart';
+import 'package:Retail_Application/ui/screens/post_login/profile_screen.dart';
 import 'package:Retail_Application/ui/screens/pre_login/onboarding_screen.dart';
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
 import 'package:Retail_Application/ui/widgets/menu_placeholder.dart';
@@ -59,6 +60,10 @@ class AppRouter {
       GoRoute(
         path: '/logout',
         builder: (context, state) => const PlaceholderScreen(title: 'Logout'),
+      ),
+      GoRoute(
+        path: '/profile', // New route for profile
+        builder: (context, state) => const ProfileScreen(),
       ),
     ],
   );

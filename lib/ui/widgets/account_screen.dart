@@ -284,7 +284,7 @@ class _DashboardScreenState extends State<AccountScreen> {
                   {
                     "title": "Deposits",
                     "count": deposits.length,
-                    "icon": Icons.savings
+                    "icon": Icons.save_outlined
                   },
                   {
                     "title": "Loans",

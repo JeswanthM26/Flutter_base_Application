@@ -30,6 +30,11 @@ const Map<ApzButtonSize, double> buttonHeights = {
   ApzButtonSize.large: 48.0,
 };
 
+const Map<ApzButtonSize, double> buttonIconSizes = {
+  ApzButtonSize.small: 24.0,
+  ApzButtonSize.large: 24.0,
+};
+
 const Map<ApzButtonSize, double> buttonFontSizes = {
   ApzButtonSize.small: 12.0,
   ApzButtonSize.large: 16.0,
@@ -147,7 +152,7 @@ const double header_notificationDotSize = 8.0;
 const double header_profileIconContainerSize = 40.0;
 const double header_profileIconBorderRadius = 12.0;
 const double header_profileIconSize = 28.0;
-const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 0);
+const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 8);
 
 // --- Payment Card Properties ---
 

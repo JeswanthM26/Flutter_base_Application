@@ -37,11 +37,12 @@ class _FavoriteTransactionsRowState extends State<FavoriteTransactionsRow> {
   }
 
   Color _getBgColor(int index) {
-    const colors = [
-      Color(0xFF97E5F6),
-      Color(0xFFD594EC),
-      Color(0xFFFF9FC1),
-      Color(0xFFB3E0FF),
+    final colors = [
+      AppColors.favoritesTransactionColor1(context),
+      AppColors.favoritesTransactionColor2(context),
+      AppColors.favoritesTransactionColor3(context),
+      AppColors.favoritesTransactionColor4(context),
+      AppColors.favoritesTransactionColor5(context),
     ];
     return colors[index % colors.length];
   }

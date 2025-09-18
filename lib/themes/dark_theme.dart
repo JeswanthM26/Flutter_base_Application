@@ -54,7 +54,7 @@ const Color secondary_shadow_2 = Color(0x29606170);
 
 const Color popup_shadow = Color(0x29000108);
 
-const Color container_box = Color(0xFFFFFFFF);
+const Color container_box = Colors.transparent;
 
 const Color searchbar_placeholder_default =
     Color(0xB3FFFFFF); // 70% opacity on #FFFFFF
@@ -141,8 +141,8 @@ const Color dashboardIndicatorDotInactive = Color(0xFF555555);
 // 📌 Dashboard Balance Trend Chart Colors
 const Color dashboardBalanceTrendTitleTextColor = Color(0xFFE6F2FA);
 const Color dashboardBalanceTrendFilterBgColor = Color(0xFF23262E);
-const Color dashboardBalanceTrendFilterTextColor = Color(0xFF4EA8DE);
-const Color dashboardBalanceTrendFilterIconColor = Color(0xFF4EA8DE);
+const Color dashboardBalanceTrendFilterTextColor = Color(0xFFFFFFFF);
+const Color dashboardBalanceTrendFilterIconColor = Color(0xFFFFFFFF);
 const Color dashboardBalanceTrendTooltipTextColor = Colors.white;
 const Color dashboardBalanceTrendTooltipLineColor = Color(0xFF707070);
 const Color dashboardBalanceTrendYAxisLabelTextColor = Color(0xFF999999);
@@ -155,8 +155,7 @@ const Color dashboardBalanceTrendBelowLineGradientEnd = Colors.transparent;
 const Color dashboardBalanceTrendDotFillColor = Color(0xFF23262E);
 const Color dashboardBalanceTrendDotBorderColor = Color(0xFF4EA8DE);
 
-
-const donutChartBackgroundColor = Colors.transparent;
+final donutChartBackgroundColor = Colors.transparent;
 const donutChartTitleColor = Color(0xFFE6F2FA);
 const donutChartCenterTextColor = Color(0xFFBABABA);
 const donutChartCenterPercentageColor = Color(0xFFF5F5F5);
@@ -168,12 +167,45 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
 
+//upcoming payments
+const Color upcomingPaymentsCardBackground = Color(0xFF353535);
+const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55); // same as light
+const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF); // gradient start
+const Color upcomingPaymentsGradientEnd =
+    Color(0x33B3E0FF); // gradient end (transparent)
+const Color upcomingPaymentsReminderText =
+    Color(0xFFE6F2FA); // reminder text color in dark
+const Color upcomingPaymentsHeader = Color(0xFFE6F2FA); // header/title text
+const Color upcomingPaymentsAddPaymentBlue =
+    Color(0xFF0073C0); // button background for dark theme
+const Color upcomingPaymentsDivider = Color(0x66696A6A); // same as light
+const Color upcomingPaymentsPaymentCount =
+    Color(0xFFEFF8FF); // count number color
 
-// Menu Colors
+//reecnt transaction
+const Color cardBackground = Color(0xFF353535);
+const Color transactionTagBackground = Color.fromARGB(255, 104, 102, 102);
+
+//menu
 final Color menuScrimColor = Colors.black.withOpacity(0.5);
-const Color menuSheetBackgroundColor = Colors.black;
+const Color menuSheetBackgroundColor = Color(0xFF353535);
 const Color menuSheetTitleColor = Colors.white;
 const Color menuSheetIndicatorActiveColor = Colors.white;
 final Color menuSheetIndicatorInactiveColor = Colors.grey;
 final Color menuItemCardBackgroundColor = Colors.grey.withOpacity(0.1);
 const Color menuItemCardContentColor = Colors.white;
+
+//favourites
+const Color favouriteHeader = Color(0xFFE6F2FA);
+const Color favouriteBoxShadow = Color(0x33000000);
+const Color favouriteText = Color(0xFF181818);
+const Color favoritesTransactionColor1 = Color(0xFFD594EC); // lilac
+const Color favoritesTransactionColor2 = Color(0xFFFF9FC1); // pink variant
+const Color favoritesTransactionColor3 = Color(0xFFFFA0C2); // pastel pink
+const Color favoritesTransactionColor4 = Color(0xFF91EFB5); // mint green
+const Color favoritesTransactionColor5 = Color(0xFFF7E798); // pastel yellow
+
+//profile
+const Color profileFooterBg = Color(0xFF171717);
+const Color profileFooterShadow = Color(0x1E333333);
+const Color profileFooterButton = Color(0xFFF04248);

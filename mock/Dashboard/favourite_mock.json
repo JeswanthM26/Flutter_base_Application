@@ -1,0 +1,38 @@
+{
+  "APZRMB__FavoriteTransactions_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": ""
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "serviceStatusCode": "0",
+          "favoriteTransactions": [
+            {
+              "name": "Rahul",
+              "imageUrl": "assets/mock/person.png"
+            },
+            {
+              "name": "Mitha"
+            },
+            {
+              "name": "Andrea",
+              "imageUrl": "assets/mock/person.png"
+            },
+            {
+              "name": "Carol",
+              "imageUrl": "assets/mock/person.png"
+            },
+            {
+              "name": "Priya"
+            },
+            {
+              "name": "Suresh"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

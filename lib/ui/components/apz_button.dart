@@ -15,6 +15,7 @@ class ApzButton extends StatefulWidget {
 
   // New optional textColor parameter
   final Color? textColor;
+  final double? iconSize;
 
   const ApzButton({
     Key? key,
@@ -27,6 +28,7 @@ class ApzButton extends StatefulWidget {
     this.iconTrailing,
     this.iconOnly,
     this.textColor,
+    this.iconSize,
   }) : super(key: key);
 
   @override
@@ -118,6 +120,7 @@ class _AppzButtonState extends State<ApzButton> {
   Widget build(BuildContext context) {
     final height = buttonHeights[widget.size]!;
     final fontSize = buttonFontSizes[widget.size]!;
+    final iconSize = buttonIconSizes[widget.size]!;
 
     final bgColor = _backgroundColor(context);
     final txtColor = _textColor(context);
@@ -125,12 +128,12 @@ class _AppzButtonState extends State<ApzButton> {
     List<Widget> content = [];
 
     if (widget.iconOnly != null) {
-      content.add(_buildIcon(widget.iconOnly!, txtColor, fontSize));
+      content.add(_buildIcon(widget.iconOnly!, txtColor, iconSize));
     } else {
       if (widget.iconLeading != null) {
         content.add(Padding(
           padding: const EdgeInsets.only(right: 8),
-          child: _buildIcon(widget.iconLeading!, txtColor, fontSize),
+          child: _buildIcon(widget.iconLeading!, txtColor, iconSize),
         ));
       }
       if (widget.label != null) {
@@ -145,7 +148,11 @@ class _AppzButtonState extends State<ApzButton> {
       if (widget.iconTrailing != null) {
         content.add(Padding(
           padding: const EdgeInsets.only(left: 8),
-          child: _buildIcon(widget.iconTrailing!, txtColor, fontSize),
+          child: _buildIcon(
+            widget.iconTrailing!,
+            txtColor,
+            iconSize,
+          ),
         ));
       }
     }

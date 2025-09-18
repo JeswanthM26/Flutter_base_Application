@@ -5,6 +5,7 @@ import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import '../pre_login/auth_base_screen.dart';
 import '../pre_login/auth_overlay_container.dart';
 import 'package:Retail_Application/ui/components/apz_segment_control.dart';
@@ -246,6 +247,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       );
     } else if (showSuccessPage) {
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted && showSuccessPage) {
+          context.go('/dashboard');
+        }
+      });
       bottomContent = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +334,7 @@ class _LoginScreenState extends State<LoginScreen> {
           // ✅ Show image and "Welcome back" only if coming from biometric
           if (cameFromBiometric) ...[
             Image.asset("assets/mock/person.png"),
-            SizedBox(height: 12),
+            SizedBox(height: 6),
             ApzText(
               label: local.welcomeBackUser(_enteredUsername),
               fontWeight: ApzFontWeight.displayHeadingExpandedRegular,
@@ -374,7 +380,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
 
           // Segmented control (MPIN / Password)
           Center(
@@ -408,7 +414,7 @@ class _LoginScreenState extends State<LoginScreen> {
               isMandatory: true,
             ),
 
-          SizedBox(height: 40),
+          SizedBox(height: 20),
 
           SizedBox(
             width: double.infinity,
@@ -432,13 +438,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   setState(() {
                     showMpinForm = false;
-                    showBiometricForm = true;
+                    showSuccessPage = true;
                     cameFromBiometric = false; // reset the flag
                   });
                 },
               ),
             ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           ApzButton(
             label: local.troubleLoggingInbtn,
             appearance: ApzButtonAppearance.tertiary,
@@ -527,7 +533,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          // SizedBox(height: 16),
         ],
       );
     } else {

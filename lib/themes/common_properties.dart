@@ -30,6 +30,11 @@ const Map<ApzButtonSize, double> buttonHeights = {
   ApzButtonSize.large: 48.0,
 };
 
+const Map<ApzButtonSize, double> buttonIconSizes = {
+  ApzButtonSize.small: 24.0,
+  ApzButtonSize.large: 24.0,
+};
+
 const Map<ApzButtonSize, double> buttonFontSizes = {
   ApzButtonSize.small: 12.0,
   ApzButtonSize.large: 16.0,
@@ -147,7 +152,7 @@ const double header_notificationDotSize = 8.0;
 const double header_profileIconContainerSize = 40.0;
 const double header_profileIconBorderRadius = 12.0;
 const double header_profileIconSize = 28.0;
-const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 0);
+const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 8);
 
 // --- Payment Card Properties ---
 
@@ -164,11 +169,9 @@ const BoxShadow paymentCardImageShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-const double paymentCardTitleFontSize = 14.0;
-const double paymentCardSubtitleFontSize = 14.0;
+const double paymentCardTitleFontSize = 12.0;
+const double paymentCardSubtitleFontSize = 12.0;
 const double paymentCardAmountFontSize = 13.0;
-
-
 
 const donutChartWidth = 250.0;
 const donutChartHeight = 125.0;
@@ -195,10 +198,8 @@ const ApzFontWeight donutChartAmountFontWeight = ApzFontWeight.bodyMedium;
 const double donutChartDateFontSize = 11.0;
 const ApzFontWeight donutChartDateFontWeight = ApzFontWeight.bodyMedium;
 
-
-
 // Menu Sheet Properties
-const double menuSheetHeightFactor = 0.5;
+const double menuSheetHeightFactor = 0.65;
 const double menuSheetBorderRadius = 24.0;
 const EdgeInsets menuSheetPadding = EdgeInsets.all(16.0);
 const double menuSheetTitleFontSize = 24.0;

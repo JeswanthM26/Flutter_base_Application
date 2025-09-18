@@ -170,12 +170,43 @@ const List<List<Color>> donutChartSectionColors = [
   [Color(0xFFF4F8FF), Color(0xFF5AB8F0)],
 ];
 
+//upcoming payments
+const Color upcomingPaymentsCardBackground = Color(0xFFEDF2FA);
+const Color upcomingPaymentsFooterNote = Color(0xFFFFCB55);
+const Color upcomingPaymentsGradientStart = Color(0xFFB3E0FF);
+const Color upcomingPaymentsGradientEnd = Color(0x33B3E0FF);
+const Color upcomingPaymentsReminderText = Color(0xFF181818);
+const Color upcomingPaymentsHeader = Color(0xFF57778C);
+const Color upcomingPaymentsAddPaymentBlue = Color(0xFF0073C0);
+const Color upcomingPaymentsDivider = Color(0x66696A6A);
+const Color upcomingPaymentsPaymentCount = Color(0xFFFFFFFF);
 
-// Menu Colors
-final Color menuScrimColor = Colors.black.withOpacity(0.5);
-const Color menuSheetBackgroundColor = Colors.black;
-const Color menuSheetTitleColor = Colors.white;
-const Color menuSheetIndicatorActiveColor = Colors.white;
-final Color menuSheetIndicatorInactiveColor = Colors.grey;
-final Color menuItemCardBackgroundColor = Colors.grey.withOpacity(0.1);
-const Color menuItemCardContentColor = Colors.white;
+//recent transaction
+const Color cardBackground = Color(0xFFEDF2FA);
+const Color transactionTagBackground = Color.fromARGB(255, 209, 209, 209);
+
+//menu
+final Color menuScrimColor = Colors.white.withOpacity(0.5);
+
+const Color menuSheetBackgroundColor = Color(0xFFF5F5F5);
+const Color menuSheetTitleColor = Color(0xFF181818);
+const Color menuSheetIndicatorActiveColor = Color(0xFFEDF2FA);
+final Color menuSheetIndicatorInactiveColor = Color(0x80EDF2FA);
+
+final Color menuItemCardBackgroundColor = Color(0xFFEDF2FA);
+const Color menuItemCardContentColor = Color(0xFF181818);
+
+//favourites
+const Color favouriteHeader = Color(0xFF57778C);
+const Color favouriteBoxShadow = Color(0x33000000);
+const Color favouriteText = Color(0xFF181818);
+const Color favoritesTransactionColor1 = Color(0xFFD594EC); // lilac
+const Color favoritesTransactionColor2 = Color(0xFFFF9FC1); // pink variant
+const Color favoritesTransactionColor3 = Color(0xFFFFA0C2); // pastel pink
+const Color favoritesTransactionColor4 = Color(0xFF91EFB5); // mint green
+const Color favoritesTransactionColor5 = Color(0xFFF7E798); // pastel yellow
+
+//profile
+const Color profileFooterBg = Color(0xFFF8FBFF);
+const Color profileFooterShadow = Color(0x1EC1C1C1);
+const Color profileFooterButton = Color(0xFFF04248);

@@ -1,0 +1,26 @@
+{
+  "apiResponse": {
+    "ResponseBody": {
+      "promotions": [
+        {
+          "title": "Grow your savings effortlessly",
+          "subtitle": "Open a Appzillon Bank Savings Account today!",
+          "description": "Choose good,Feel great!",
+          "image1": "assets/accountdashboard/ad_promotion3.png"
+        },
+        {
+          "title": "eposite today & Earn more",
+          "subtitle": "Enjoy Exclusive Fixed Deposite Returns!",
+          "description": "Small Savings,Big Future",
+          "image1": "assets/accountdashboard/ad_promotion2.png"
+        },
+        {
+          "title": "Need a financial boost?",
+          "subtitle": "Quick and easy personal loans,just for you!",
+          "description": "Low interest,Easy Payments",
+          "image1": "assets/accountdashboard/ad_promotion1.png"
+        }
+      ]
+    }
+  }
+}

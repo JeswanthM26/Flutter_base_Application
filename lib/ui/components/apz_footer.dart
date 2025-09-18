@@ -143,13 +143,13 @@
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/themes/common_properties.dart';
 import 'package:flutter/material.dart';
-
+ 
 class FooterBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onItemSelected;
   final VoidCallback onCenterTap;
   final bool isMenuOpen;
-
+ 
   const FooterBar({
     Key? key,
     required this.selectedIndex,
@@ -157,7 +157,7 @@ class FooterBar extends StatelessWidget {
     required this.onCenterTap,
     this.isMenuOpen = false,
   }) : super(key: key);
-
+ 
   Widget _buildTabItem({
     required BuildContext context,
     required IconData iconData,
@@ -189,7 +189,7 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
-
+ 
   Widget _buildCenterButton(BuildContext context) {
     return Container(
       width: footer_centerButtonSize,
@@ -209,7 +209,7 @@ class FooterBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(footer_centerButtonSize / 2),
           child: Center(
             child: Icon(
-              isMenuOpen ? Icons.close : Icons.merge_rounded,
+              isMenuOpen ? Icons.close : Icons.grid_3x3,
               color: Colors.white,
               size: footer_centerIconSize,
             ),
@@ -218,7 +218,7 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -272,3 +272,5 @@ class FooterBar extends StatelessWidget {
     );
   }
 }
+ 
+ 

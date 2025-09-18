@@ -72,7 +72,8 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
   }
 
   void _showCustomLanguageDropdown(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size; // ✅ responsive change
+    final w = size.width;
     showDialog(
       context: context,
       barrierColor: AppColors.barrierColor(context),
@@ -80,12 +81,12 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
         return Stack(
           children: [
             Positioned(
-              right: 16,
-              top: 70,
+              right: size.width * 0.04, // ✅ responsive change
+              top: size.height * 0.1, // ✅ responsive change
               child: Material(
                 color: AppColors.barrierColor(context),
                 child: Container(
-                  width: 144,
+                  width: size.width * 0.4, // ✅ responsive change
                   decoration: BoxDecoration(
                     color: AppColors.container_box(context),
                     borderRadius: BorderRadius.circular(12),
@@ -121,9 +122,9 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                               Navigator.of(context).pop();
                             },
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 12,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.04, // ✅ responsive
+                                vertical: size.height * 0.015, // ✅ responsive
                               ),
                               alignment: Alignment.centerLeft,
                               child: ApzText(
@@ -195,6 +196,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                   Image.asset(
                     logoPath,
                     filterQuality: FilterQuality.high,
+                    height: size.height * 0.05, // ✅ responsive change
                   ),
                   Container(
                     width: size.width * 0.25,
@@ -214,7 +216,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                               children: [
                                 Positioned(
                                   left: 0,
-                                  top: 2,
+                                  top: size.height * 0.003, // ✅ responsive
                                   child: ApzText(
                                     label: selectedLanguage,
                                     fontWeight: ApzFontWeight.bodyMedium,
@@ -231,8 +233,9 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 6),
-                            const Icon(Icons.expand_more, size: 22),
+                            SizedBox(width: size.width * 0.015), // ✅ responsive
+                            Icon(Icons.expand_more,
+                                size: size.width * 0.06), // ✅ responsive
                           ],
                         ),
                       ),

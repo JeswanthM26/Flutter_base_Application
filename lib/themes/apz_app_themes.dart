@@ -501,7 +501,7 @@ class AppColors {
           ? dark.dashboardBalanceTrendDotBorderColor
           : light.dashboardBalanceTrendDotBorderColor;
 
- static Color donutChartBackgroundColor(BuildContext context) =>
+  static Color donutChartBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.donutChartBackgroundColor
           : light.donutChartBackgroundColor;
@@ -534,7 +534,67 @@ class AppColors {
           ? dark.donutChartSectionColors
           : light.donutChartSectionColors;
 
-          static Color menuScrim(BuildContext context) =>
+  // 📌 Upcoming Payments Card Colors
+  static Color upcomingPaymentsCardBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsCardBackground
+          : light.upcomingPaymentsCardBackground;
+
+  static Color upcomingPaymentsFooterNote(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsFooterNote
+          : light.upcomingPaymentsFooterNote;
+
+  static Color upcomingPaymentsGradientStart(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsGradientStart
+          : light.upcomingPaymentsGradientStart;
+
+  static Color upcomingPaymentsGradientEnd(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsGradientEnd
+          : light.upcomingPaymentsGradientEnd;
+
+  static Color upcomingPaymentsReminderText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsReminderText
+          : light.upcomingPaymentsReminderText;
+
+  static Color upcomingPaymentsHeader(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsHeader
+          : light.upcomingPaymentsHeader;
+
+  static Color upcomingPaymentsAddPaymentBlue(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsAddPaymentBlue
+          : light.upcomingPaymentsAddPaymentBlue;
+
+  static Color upcomingPaymentsDivider(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsDivider
+          : light.upcomingPaymentsDivider;
+
+  static Color upcomingPaymentsPaymentCount(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.upcomingPaymentsPaymentCount
+          : light.upcomingPaymentsPaymentCount;
+
+  //recent transaction
+  static Color cardBackground(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? dark.cardBackground
+        : light.cardBackground;
+  }
+
+  static Color transactionTagBackground(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? dark.transactionTagBackground
+        : light.transactionTagBackground;
+  }
+
+  //menu
+  static Color menuScrim(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuScrimColor
           : light.menuScrimColor;
@@ -548,7 +608,7 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuSheetTitleColor
           : light.menuSheetTitleColor;
-          
+
   static Color menuSheetIndicatorActive(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuSheetIndicatorActiveColor
@@ -558,7 +618,7 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuSheetIndicatorInactiveColor
           : light.menuSheetIndicatorInactiveColor;
-          
+
   static Color menuItemCardBackground(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuItemCardBackgroundColor
@@ -568,6 +628,53 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuItemCardContentColor
           : light.menuItemCardContentColor;
+
+  //favourites
+  static Color favouriteHeader(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favouriteHeader
+          : light.favouriteHeader;
+  static Color favouriteBoxShadow(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favouriteBoxShadow
+          : light.favouriteBoxShadow;
+  static Color favouriteText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favouriteText
+          : light.favouriteText;
+  static Color favoritesTransactionColor1(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor1
+          : light.favoritesTransactionColor1;
+  static Color favoritesTransactionColor2(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor2
+          : light.favoritesTransactionColor2;
+  static Color favoritesTransactionColor3(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor3
+          : light.favoritesTransactionColor3;
+  static Color favoritesTransactionColor4(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor4
+          : light.favoritesTransactionColor4;
+  static Color favoritesTransactionColor5(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.favoritesTransactionColor5
+          : light.favoritesTransactionColor5;
+  //profile
+  static Color profileFooterBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterBg
+          : light.profileFooterBg;
+  static Color profileFooterShadow(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterShadow
+          : light.profileFooterShadow;
+  static Color profileFooterButton(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileFooterButton
+          : light.profileFooterButton;
 }
 
 class AppImages {

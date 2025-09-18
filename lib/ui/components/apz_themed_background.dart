@@ -10,7 +10,7 @@ class ApzThemedBackground extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final backgroundImage = isDarkMode
         ? 'assets/images/dark_theme.png'
-        : 'assets/images/light_theme.png';
+        : 'assets/images/White_bg.png';
 
     return Container(
       decoration: BoxDecoration(

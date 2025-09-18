@@ -675,11 +675,38 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.profileFooterButton
           : light.profileFooterButton;
+
+  //profile header
+  static Color profileHeaderIconBg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileHeaderIconBg
+          : light.profileHeaderIconBg;
+  static Color profileHeaderIconGradient1(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileHeaderIconGradient1
+          : light.profileHeaderIconGradient1;
+  static Color profileHeaderIconGradient2(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileHeaderIconGradient2
+          : light.profileHeaderIconGradient2;
+  static Color profileHeaderIconGradient3(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileHeaderIconGradient3
+          : light.profileHeaderIconGradient3;
+  static Color profileHeaderIconGradient4(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileHeaderIconGradient4
+          : light.profileHeaderIconGradient4;
+
+  static Color slidebuttonBackground(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.slidebuttonBackground
+          : light.slidebuttonBackground;
 }
 
 class AppImages {
   static String backgroundImage(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? 'assets/images/dark_theme.png'
-          : 'assets/images/light_theme.png';
+          : 'assets/images/White_bg.png';
 }

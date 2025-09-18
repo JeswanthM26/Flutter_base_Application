@@ -4,12 +4,12 @@
       "promotions": [
         {
           "title": "Grow your savings effortlessly",
-          "subtitle": "Open a Appzillon Bank Savings Account today!",
+          "subtitle": "Open a Savings Account today!",
           "description": "Choose good,Feel great!",
           "image1": "assets/accountdashboard/ad_promotion3.png"
         },
         {
-          "title": "eposite today & Earn more",
+          "title": "Deposite today & Earn more",
           "subtitle": "Enjoy Exclusive Fixed Deposite Returns!",
           "description": "Small Savings,Big Future",
           "image1": "assets/accountdashboard/ad_promotion2.png"
@@ -24,3 +24,5 @@
     }
   }
 }
+ 
+ 

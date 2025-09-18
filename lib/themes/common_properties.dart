@@ -157,7 +157,8 @@ const EdgeInsets header_padding = EdgeInsets.fromLTRB(16, 8, 16, 8);
 // --- Payment Card Properties ---
 
 const double paymentCardWidth = 323.0;
-const EdgeInsets paymentCardPadding = EdgeInsets.symmetric(horizontal: 8);
+const EdgeInsets paymentCardPadding =
+    EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0);
 
 const double paymentCardImageSize = 40.0;
 const double paymentCardImageBorderRadius = 10.0;

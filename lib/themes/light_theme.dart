@@ -210,3 +210,14 @@ const Color favoritesTransactionColor5 = Color(0xFFF7E798); // pastel yellow
 const Color profileFooterBg = Color(0xFFF8FBFF);
 const Color profileFooterShadow = Color(0x1EC1C1C1);
 const Color profileFooterButton = Color(0xFFF04248);
+
+//profile header
+final Color profileHeaderIconBg = Color(0xFFF0F0FF);
+final Color profileHeaderIconGradient1 = Colors.white.withOpacity(0.3);
+final Color profileHeaderIconGradient2 = Colors.white.withOpacity(0.05);
+final Color profileHeaderIconGradient3 = Colors.white.withOpacity(0.05);
+final Color profileHeaderIconGradient4 = Colors.white.withOpacity(0.3);
+
+
+const Color slidebuttonBackground =Color.fromARGB(255, 33, 127, 204);
+ 

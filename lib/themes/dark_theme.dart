@@ -54,7 +54,7 @@ const Color secondary_shadow_2 = Color(0x29606170);
 
 const Color popup_shadow = Color(0x29000108);
 
-const Color container_box = Colors.transparent;
+const Color container_box = Color(0xFF353535);
 
 const Color searchbar_placeholder_default =
     Color(0xB3FFFFFF); // 70% opacity on #FFFFFF
@@ -209,3 +209,12 @@ const Color favoritesTransactionColor5 = Color(0xFFF7E798); // pastel yellow
 const Color profileFooterBg = Color(0xFF171717);
 const Color profileFooterShadow = Color(0x1E333333);
 const Color profileFooterButton = Color(0xFFF04248);
+
+//profile header
+final Color profileHeaderIconBg = Color(0xFF000000).withOpacity(0.05);
+final Color profileHeaderIconGradient1 = Colors.white.withOpacity(0.3);
+final Color profileHeaderIconGradient2 = Colors.white.withOpacity(0.05);
+final Color profileHeaderIconGradient3 = Colors.white.withOpacity(0.05);
+final Color profileHeaderIconGradient4 = Colors.white.withOpacity(0.3);
+
+const Color slidebuttonBackground = Color.fromARGB(255, 0, 0, 0);

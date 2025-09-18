@@ -1,13 +1,14 @@
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/themes/common_properties.dart';
 import 'package:flutter/material.dart';
- 
+import 'package:go_router/go_router.dart';
+
 class FooterBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onItemSelected;
   final VoidCallback onCenterTap;
   final bool isMenuOpen;
- 
+
   const FooterBar({
     Key? key,
     required this.selectedIndex,
@@ -15,7 +16,7 @@ class FooterBar extends StatelessWidget {
     required this.onCenterTap,
     this.isMenuOpen = false,
   }) : super(key: key);
- 
+
   Widget _buildTabItem({
     required BuildContext context,
     required IconData iconData,
@@ -28,7 +29,13 @@ class FooterBar extends StatelessWidget {
         : AppColors.footer_default(context);
     return Expanded(
       child: InkWell(
-        onTap: () => onItemSelected(index),
+        onTap: () {
+          onItemSelected(index); // ✅ just call this
+          //REMOVE this part:
+          if (index == 1) {
+            context.push('/AccountsScreen');
+          }
+        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -47,7 +54,7 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
- 
+
   Widget _buildCenterButton(BuildContext context) {
     return Container(
       width: footer_centerButtonSize,
@@ -76,7 +83,7 @@ class FooterBar extends StatelessWidget {
       ),
     );
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -130,5 +137,3 @@ class FooterBar extends StatelessWidget {
     );
   }
 }
- 
- 

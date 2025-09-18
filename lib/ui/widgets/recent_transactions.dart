@@ -8,7 +8,6 @@ import 'package:flutter/services.dart' show rootBundle, HapticFeedback;
 import 'package:Retail_Application/ui/components/apz_payment.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:intl/intl.dart';
-
 import '../components/apz_alert.dart';
 
 class RecentTransactions extends StatefulWidget {
@@ -122,7 +121,7 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                             scale: isHighlighted ? 1.05 : 1.0,
                             duration: const Duration(milliseconds: 150),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 0),
                               child: PaymentCard(
                                 title: tx.nickName ?? tx.remarks,
                                 subtitle: "${tx.txnDate} • ${tx.txnType}",
@@ -153,7 +152,7 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                     ApzAlert.show(
                       context,
                       title: "Coming Soon",
-                      message: "This feature is under development.",
+                      message: "The 'See All' feature is under development.",
                       messageType: ApzAlertMessageType.info,
                       buttons: ["OK"],
                       onButtonPressed: (btn) {
@@ -187,7 +186,7 @@ class TransactionModal extends StatelessWidget {
           children: [
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              child: Container(color: Colors.transparent), // only blur
+              child: Container(color: Colors.transparent),
             ),
             Center(
               child: GestureDetector(

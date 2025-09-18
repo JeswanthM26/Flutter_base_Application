@@ -1,33 +1,20 @@
 import 'package:Retail_Application/example/appz_button_example.dart';
-
 import 'package:Retail_Application/example/appz_radio_example.dart';
-
 import 'package:Retail_Application/example/apz_dropdown_example.dart';
-
 import 'package:Retail_Application/example/apz_searchbar_example.dart';
-
 import 'package:Retail_Application/themes/apz_theme_provider.dart';
+import 'package:Retail_Application/ui/screens/post_login/accounts_dashboard_screen.dart';
 import 'package:Retail_Application/ui/widgets/account_dashoard.dart';
-
 import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
-
 import 'package:Retail_Application/ui/widgets/menu_screen.dart';
-
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';
-
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
-
 import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
-
 import 'package:Retail_Application/ui/components/apz_footer.dart';
-
 import 'package:Retail_Application/ui/components/apz_header.dart';
-
 import 'package:Retail_Application/ui/components/apz_alert.dart';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:provider/provider.dart';
 
 class FooterHeaderScreen extends StatefulWidget {
@@ -39,58 +26,33 @@ class FooterHeaderScreen extends StatefulWidget {
 
 class _FooterExampleScreenState extends State<FooterHeaderScreen> {
   int _selectedIndex = 0;
-
   bool _isMenuOpen = false;
 
   // Only include pages that are implemented
-
   final _pages = [
     const AccountScreen(),
-    const AccountDashboard(),
   ];
 
   void _onItemSelected(int index) {
     // Tabs that are implemented
-
     if (index < _pages.length) {
       setState(() {
         _selectedIndex = index;
       });
-
       return;
     }
 
-    // Tabs that are under development
-
-    String featureName;
-
-    switch (index) {
-      case 2:
-        featureName = "Appz Radio";
-
-        break;
-
-      case 3:
-        featureName = "Appz Button";
-
-        break;
-
-      case 4:
-        featureName = "Appz Dropdown";
-
-        break;
-
-      default:
-        featureName = "This feature";
+    if (index == 3 || index == 4) {
+      ApzAlert.show(
+        context,
+        title: "Coming Soon",
+        message: "This feature is under development.",
+        messageType: ApzAlertMessageType.info,
+        buttons: ["OK"],
+      );
     }
 
-    ApzAlert.show(
-      context,
-      title: "Coming Soon",
-      message: "This feature is under development.",
-      messageType: ApzAlertMessageType.info,
-      buttons: ["OK"],
-    );
+    // You can ignore other indexes or handle them differently if needed
   }
 
   void _toggleMenu() {
@@ -111,12 +73,8 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Search tapped")));
               },
-              // onNotificationTap: () {
-              //   ScaffoldMessenger.of(context).showSnackBar(
-              //       const SnackBar(content: Text("Notifications tapped")));
-              // },
               onProfileTap: () {
-                context.push('/profile'); // 👈 set your route path here
+                context.push('/profile'); // Navigate to profile screen
               },
             ),
           ),
@@ -131,9 +89,7 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
                   Positioned.fill(
                     child: GestureDetector(
                       onTap: _toggleMenu,
-                      child: Container(
-                        color: Colors.black.withOpacity(0.5),
-                      ),
+                      child: Container(color: Colors.black.withOpacity(0.5)),
                     ),
                   ),
                 if (_isMenuOpen)

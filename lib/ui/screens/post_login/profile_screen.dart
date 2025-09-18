@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
 
 /// ✅ Load Customer Mock Data
@@ -19,6 +20,7 @@ Future<CustomerModel> loadCustomerData() async {
 }
 
 /// ✅ Custom Header Widget (Stateful)
+
 class ProfileHeaderWidget extends StatefulWidget {
   final String title;
   final VoidCallback? onBackPressed;
@@ -38,6 +40,51 @@ class ProfileHeaderWidget extends StatefulWidget {
 }
 
 class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
+  Widget _profileHeaderIcon({
+    required IconData icon,
+    required VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          color: AppColors.profileHeaderIconBg(context),
+          border: GradientBoxBorder(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.profileHeaderIconGradient1(context),
+                AppColors.profileHeaderIconGradient2(context),
+                AppColors.profileHeaderIconGradient3(context),
+                AppColors.profileHeaderIconGradient4(context),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.10), // 10% opacity
+              offset: Offset(0, 2), // X:0, Y:2
+              blurRadius: 2, // Blur: 4
+              spreadRadius: 0, // Spread: 0
+            ),
+          ],
+        ),
+        child: Center(
+          child: Icon(
+            icon,
+            size: 24,
+            color: AppColors.primary_text(context),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,13 +94,9 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: 24,
-                color: AppColors.primary_text(context),
-              ),
-              onPressed: widget.onBackPressed,
+            _profileHeaderIcon(
+              icon: Icons.arrow_back_ios_new,
+              onTap: widget.onBackPressed,
             ),
             Expanded(
               child: Center(
@@ -65,17 +108,12 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
                 ),
               ),
             ),
-            if (widget.trailingIcon != null)
-              IconButton(
-                icon: Icon(
-                  widget.trailingIcon,
-                  size: 24,
-                  color: AppColors.primary_text(context),
-                ),
-                onPressed: widget.onActionPressed,
-              )
-            else
-              const SizedBox(width: 48),
+            widget.trailingIcon != null
+                ? _profileHeaderIcon(
+                    icon: widget.trailingIcon!,
+                    onTap: widget.onActionPressed,
+                  )
+                : SizedBox(width: 32),
           ],
         ),
       ),

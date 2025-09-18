@@ -28,6 +28,8 @@ dependencies:
   rename: ^3.1.0
   calendar_date_picker2: ^1.0.0
   intl: ^0.20.2
+  gradient_borders: ^1.0.2
+  flutter_slidable: ^3.1.0
 
 dev_dependencies:
   flutter_test:

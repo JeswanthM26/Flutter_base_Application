@@ -4,13 +4,13 @@ import 'package:Retail_Application/models/dashboard/actionbuttons_model.dart';
 import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
 import 'package:Retail_Application/models/financials/deposit_model.dart';
 import 'package:Retail_Application/models/financials/loan_model.dart';
-import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_creditcard_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_deposit_chart.dart';
 import 'package:Retail_Application/ui/widgets/apz_loan_chart.dart';
 import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
 import 'package:Retail_Application/ui/widgets/promotions.dart';
 import 'package:Retail_Application/ui/widgets/recent_transactions.dart';
+import 'package:Retail_Application/ui/widgets/show_transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -34,6 +34,8 @@ class AccountScreen extends StatefulWidget {
 class _DashboardScreenState extends State<AccountScreen> {
   int _currentPage = 0;
   int selectedIndex = 0;
+  final Map<String, GlobalKey<State<StatefulWidget>>> _actionButtonKeys = {};
+  String? _highlightedButtonScreenID;
 
   // keep per-tab last pages
   Map<int, int> _carouselPages = {
@@ -261,14 +263,6 @@ class _DashboardScreenState extends State<AccountScreen> {
 
     return Stack(
       children: [
-        Positioned.fill(
-          child: Image.asset(
-            Theme.of(context).brightness == Brightness.dark
-                ? "assets/images/dark_theme.png"
-                : "assets/images/light_theme.png",
-            fit: BoxFit.cover,
-          ),
-        ),
         SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, kToolbarHeight),
           child: Column(
@@ -420,74 +414,115 @@ class _DashboardScreenState extends State<AccountScreen> {
     final actionName = _actionNameForIndex(selectedIndex);
     final filtered = allActions.where((a) => a.action == actionName).toList();
 
-    final visible = filtered;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: visible.map((act) {
+      children: filtered.map((act) {
+        // Fix: properly get or create key
+        final key = _actionButtonKeys[act.value ?? ''] ??
+            GlobalKey<State<StatefulWidget>>();
+        _actionButtonKeys[act.value ?? ''] = key;
+
         final icon = _mapIcon(act.icon ?? '');
-        return _actionButton(icon, act.value ?? '', () {
-          debugPrint(
-              'Action tapped: screen=${act.screenID} value=${act.value}');
-          // TODO: Navigate to act.screenID or handle action
-        });
+
+        return _actionButton(
+          key: key,
+          icon: icon,
+          label: act.value ?? '',
+          screenID: act.screenID,
+          onTap: () {
+            debugPrint(
+                'Action tapped: screen=${act.screenID} value=${act.value}');
+          },
+          onLongPress: act.screenID == "TransactionApp"
+              ? () {
+                  HapticFeedback.mediumImpact();
+                  showTransferModelAtButton(
+                    context,
+                    key,
+                    (isHighlighted) {
+                      setState(() {
+                        _highlightedButtonScreenID =
+                            isHighlighted ? act.screenID : null;
+                      });
+                    },
+                  );
+                }
+              : null,
+        );
       }).toList(),
     );
   }
 
-  Widget _actionButton(IconData icon, String label, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: ShapeDecoration(
-              gradient: LinearGradient(
-                begin: const Alignment(0.50, -0.32),
-                end: const Alignment(0.50, 1.32),
-                colors: [
-                  AppColors.dashboardActionButtonBgStart(context),
-                  AppColors.dashboardActionButtonBgEnd(context),
+  Widget _actionButton({
+    required Key key,
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+    VoidCallback? onLongPress,
+    String? screenID,
+  }) {
+    final isHighlighted = _highlightedButtonScreenID == screenID;
+
+    return AnimatedScale(
+      scale: isHighlighted ? 1.05 : 1.0, // Lift animation
+      duration: const Duration(milliseconds: 150),
+      curve: Curves.easeOut,
+      child: GestureDetector(
+        key: key,
+        onTap: onTap,
+        onLongPress: onLongPress,
+        child: Column(
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: ShapeDecoration(
+                gradient: LinearGradient(
+                  begin: const Alignment(0.50, -0.32),
+                  end: const Alignment(0.50, 1.32),
+                  colors: [
+                    AppColors.dashboardActionButtonBgStart(context),
+                    AppColors.dashboardActionButtonBgEnd(context),
+                  ],
+                ),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.dashboardActionButtonBorderColor(context),
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: AppColors.dashboardActionButtonShadow1(context),
+                    blurRadius: 2,
+                    offset: const Offset(0, 4),
+                  ),
+                  BoxShadow(
+                    color: AppColors.dashboardActionButtonShadow2(context),
+                    blurRadius: 4,
+                    offset: const Offset(0, -4),
+                  ),
                 ],
               ),
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  width: 1,
-                  color: AppColors.dashboardActionButtonBorderColor(context),
+              child: Center(
+                child: Icon(
+                  icon,
+                  size: 28,
+                  color: AppColors.dashboardActionButtonIconColor(context),
                 ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              shadows: [
-                BoxShadow(
-                  color: AppColors.dashboardActionButtonShadow1(context),
-                  blurRadius: 2,
-                  offset: const Offset(0, 4),
-                ),
-                BoxShadow(
-                  color: AppColors.dashboardActionButtonShadow2(context),
-                  blurRadius: 4,
-                  offset: const Offset(0, -4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Icon(
-                icon,
-                size: 28,
-                color: AppColors.dashboardActionButtonIconColor(context),
               ),
             ),
-          ),
-          const SizedBox(height: 6),
-          ApzText(
-            label: label,
-            fontSize: 12,
-            fontWeight: ApzFontWeight.titlesMedium,
-            color: AppColors.dashboardActionButtonLabelColor(context),
-          ),
-        ],
+            const SizedBox(height: 6),
+            ApzText(
+              label: label,
+              fontSize: 12,
+              fontWeight: ApzFontWeight.titlesMedium,
+              color: AppColors.dashboardActionButtonLabelColor(context),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -542,6 +577,7 @@ class _DashboardInfoCardsState extends State<DashboardInfoCards> {
               icon: item['icon'],
               selected: localSelectedIndex == index,
               onTap: () {
+                HapticFeedback.heavyImpact();
                 setState(() {
                   localSelectedIndex = index;
                 });

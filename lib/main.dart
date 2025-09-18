@@ -140,7 +140,7 @@ class _MyAppState extends State<MyApp> {
             ),
             // The theme toggle button
             Positioned(
-              bottom: 80, // Positioned above the bottom navigation bar
+              bottom: 140, // Positioned above the bottom navigation bar
               right: 20,
               child: FloatingActionButton(
                 onPressed: _toggleTheme,

@@ -6,6 +6,7 @@ import 'package:Retail_Application/ui/components/apz_payment.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 class UpcomingPaymentsCardWidget extends StatefulWidget {
@@ -108,8 +109,7 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
                         ApzAlert.show(
                           context,
                           title: "Coming Soon",
-                          message:
-                              "This feature is under development.",
+                          message: "This feature is under development.",
                           messageType: ApzAlertMessageType.info,
                           buttons: ["OK"],
                           onButtonPressed: (btn) {
@@ -228,31 +228,136 @@ class _UpcomingPaymentsCardWidgetState extends State<UpcomingPaymentsCardWidget>
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            children: upcomingPayments
-                                .map((payment) => Column(
-                                      children: [
-                                        PaymentCard(
-                                          title: payment["title"],
-                                          subtitle: payment["subtitle"],
-                                          imageUrl: payment["imageUrl"],
-                                          actionType:
-                                              PaymentCardActionType.button,
-                                          buttonLabel:
-                                              "Pay ${payment["amount"]}",
+                          ClipRRect(
+                            child: Column(
+                              children: upcomingPayments.map((payment) {
+                                return Column(
+                                  children: [
+                                    Slidable(
+                                      key: ValueKey(payment["title"]),
+
+                                      // 👉 Full Swipe Left = Delete with Undo
+                                      endActionPane: ActionPane(
+                                        motion: const DrawerMotion(),
+                                        extentRatio: 0.5,
+                                        dismissible: DismissiblePane(
+                                          onDismissed: () {
+                                            final removedPayment = payment;
+                                            final removedIndex =
+                                                upcomingPayments.indexOf(
+                                                    payment); // original index
+
+                                            setState(() {
+                                              upcomingPayments
+                                                  .removeAt(removedIndex);
+                                            });
+
+                                            // Snackbar with Undo option
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                    "${removedPayment["title"]} deleted"),
+                                                action: SnackBarAction(
+                                                  label: "UNDO",
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      upcomingPayments.insert(
+                                                          removedIndex,
+                                                          removedPayment);
+                                                    });
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
-                                        const SizedBox(height: 8),
-                                        Divider(
-                                          thickness: 0.3,
-                                          color:
-                                              AppColors.upcomingPaymentsDivider(
-                                                  context),
-                                          height: 0,
-                                        ),
-                                        const SizedBox(height: 8),
-                                      ],
-                                    ))
-                                .toList(),
+                                        children: [
+                                          // 👉 Half swipe = show actions
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              ApzAlert.show(
+                                                context,
+                                                title: "Edit Payment",
+                                                message:
+                                                    "Editing ${payment["title"]}",
+                                                messageType:
+                                                    ApzAlertMessageType.info,
+                                                buttons: ["OK"],
+                                                onButtonPressed: (_) {},
+                                              );
+                                            },
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            backgroundColor: Colors.blue,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.edit,
+                                            label: "Edit",
+                                            padding: const EdgeInsets.only(
+                                                right: 12),
+                                          ),
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              final removedPayment = payment;
+                                              final removedIndex =
+                                                  upcomingPayments.indexOf(
+                                                      payment); // original index
+
+                                              setState(() {
+                                                upcomingPayments
+                                                    .removeAt(removedIndex);
+                                              });
+
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                      "${removedPayment["title"]} deleted"),
+                                                  action: SnackBarAction(
+                                                    label: "UNDO",
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        upcomingPayments.insert(
+                                                            removedIndex,
+                                                            removedPayment);
+                                                      });
+                                                    },
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            backgroundColor: Colors.red,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.delete,
+                                            label: "Delete",
+                                          ),
+                                        ],
+                                      ),
+
+                                      // 👇 Your existing payment card
+                                      child: PaymentCard(
+                                        title: payment["title"],
+                                        subtitle: payment["subtitle"],
+                                        imageUrl: payment["imageUrl"],
+                                        actionType:
+                                            PaymentCardActionType.button,
+                                        buttonLabel: "Pay ${payment["amount"]}",
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Divider(
+                                      thickness: 0.3,
+                                      color: AppColors.upcomingPaymentsDivider(
+                                          context),
+                                      height: 0,
+                                    ),
+                                    const SizedBox(height: 8),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
                           )
                         ],
                       )

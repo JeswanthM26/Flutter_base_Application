@@ -32,7 +32,8 @@
               "accountCode": "LNA",
               "currencyIcon": "USD",
               "eqCurrency": "Equi Amt: EUR",
-              "eqAvailBalance": "55,881.61"
+              "eqAvailBalance": "55,881.61",
+              "interestRate": "8"
             },
             {
               "customerId": "309881",
@@ -57,14 +58,17 @@
               "accountCode": "LNA",
               "currencyIcon": "USD",
               "eqCurrency": "Equi Amt: EUR",
+<<<<<<< HEAD
               "eqAvailBalance": "65,881.61"
+=======
+              "eqAvailBalance": "65,881.61",
+              "interestRate": "9.5"
+>>>>>>> 8640d825809d5f522af9a57075ec5fb5feeff189
             }
-
-
-            
           ]
         }
       }
     }
   }
 }
+ 

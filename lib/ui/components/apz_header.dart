@@ -2,6 +2,8 @@ import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/themes/common_properties.dart';
 import 'package:Retail_Application/ui/components/apz_searchbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ApzHeader extends StatelessWidget {
   final bool hasNotification;
@@ -45,13 +47,15 @@ class ApzHeader extends StatelessWidget {
                 )
               ],
             ),
-            child: Image(
-              image: AssetImage(
-                Theme.of(context).brightness == Brightness.dark
-                    ? 'assets/images/dark_icon.png'
-                    : 'assets/images/Icon.png',
-              ),
-            ),
+            child: Theme.of(context).brightness == Brightness.dark
+                ? SvgPicture.asset(
+                    'assets/images/dark_icon.svg',
+                    fit: BoxFit.contain,
+                  )
+                : Image.asset(
+                    'assets/images/Icon.png',
+                    fit: BoxFit.contain,
+                  ),
           ),
           const SizedBox(width: header_spacing),
 

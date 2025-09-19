@@ -91,8 +91,14 @@ class FooterBar extends StatelessWidget {
       padding: footer_padding,
       decoration: BoxDecoration(
         color: AppColors.footer_background(context),
-        borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(footer_borderRadius)),
+        borderRadius: BorderRadius.vertical(
+          top: isMenuOpen
+              ? Radius.zero
+              : const Radius.circular(footer_borderRadius),
+        ),
+
+        // borderRadius: const BorderRadius.vertical(
+        //  top: Radius.circular(footer_borderRadius)),
         border: Border(
           top: BorderSide(
             color: AppColors.footer_default(context),

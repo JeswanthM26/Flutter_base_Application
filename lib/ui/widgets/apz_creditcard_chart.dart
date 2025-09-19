@@ -46,23 +46,24 @@ class _CreditCardChartExampleState extends State<CreditCardChartExample> {
         totalCredit != 0 ? (usedCredit / totalCredit) * 100 : 0.0;
     final availablePercentage = 100 - usedPercentage;
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
+    // return SingleChildScrollView(
+    //   padding: const EdgeInsets.all(16.0),
+    return IgnorePointer(
       child: HalfDonutChart(
-        title: 'Credit Card Usage',
+        title: 'Spends Summary',
         centerText: 'Total Credit Limit',
         percentage: '${card.currency} ${totalCredit.toStringAsFixed(2)}',
         sections: [
           DonutChartSectionDetails(
             value: usedCredit,
-            label: 'Used',
+            label: 'Limit Utilized',
             amount: '${card.currency} ${usedCredit.toStringAsFixed(2)}',
             date: '${usedPercentage.toStringAsFixed(1)}%',
             colors: [const Color(0xFFB3E0FF), const Color(0xFFF4F8FF)],
           ),
           DonutChartSectionDetails(
             value: card.availableCredit,
-            label: 'Available',
+            label: 'Available Limit',
             amount:
                 '${card.currency} ${card.availableCredit.toStringAsFixed(2)}',
             date: '${availablePercentage.toStringAsFixed(1)}%',

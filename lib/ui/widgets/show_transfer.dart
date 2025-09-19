@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -49,7 +50,7 @@ Future<void> showTransferModelAtButton(BuildContext context,
                     width: 170,
                     padding: const EdgeInsets.all(8),
                     decoration: ShapeDecoration(
-                      color: const Color(0xFF353535),
+                      color: AppColors.container_box(context),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -65,21 +66,42 @@ Future<void> showTransferModelAtButton(BuildContext context,
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _transferRow('Own Bank', () {
-                          debugPrint("Own Bank tapped");
-                        }),
-                        _divider(),
-                        _transferRow('Within Bank', () {
-                          debugPrint("Within Bank tapped");
-                        }),
-                        _divider(),
-                        _transferRow('Other Bank', () {
-                          debugPrint("Other Bank tapped");
-                        }),
-                        _divider(),
-                        _transferRow('International Bank', () {
-                          debugPrint("International Bank tapped");
-                        }),
+                        _transferRow(
+                          'Own Bank',
+                          Icons.account_balance, // 🏦 icon
+                          () {
+                            debugPrint("Own Bank tapped");
+                          },
+                          context,
+                        ),
+                        _divider(context),
+                        _transferRow(
+                          'Within Bank',
+                          Icons.account_balance_wallet, // 💼 wallet icon
+                          () {
+                            debugPrint("Within Bank tapped");
+                          },
+                          context,
+                        ),
+                        _divider(context),
+                        _transferRow(
+                          'Other Bank',
+                          Icons
+                              .account_balance_outlined, // 🏛 outlined bank icon
+                          () {
+                            debugPrint("Other Bank tapped");
+                          },
+                          context,
+                        ),
+                        _divider(context),
+                        _transferRow(
+                          'International Bank',
+                          Icons.public, // 🌍 globe icon
+                          () {
+                            debugPrint("International Bank tapped");
+                          },
+                          context,
+                        ),
                       ],
                     ),
                   ),
@@ -107,7 +129,9 @@ Future<void> showTransferModelAtButton(BuildContext context,
   onHighlightChange(false);
 }
 
-Widget _transferRow(String label, VoidCallback onTap) {
+Widget _transferRow(String label, IconData icon, VoidCallback onTap, context) {
+  final Color textColor = AppColors.primary_text(context);
+
   return GestureDetector(
     onTap: onTap,
     child: Padding(
@@ -123,13 +147,17 @@ Widget _transferRow(String label, VoidCallback onTap) {
                 borderRadius: BorderRadius.all(Radius.circular(125)),
               ),
             ),
-            child: const SizedBox.shrink(),
+            child: Icon(
+              icon,
+              size: 18,
+              color: textColor, // ✅ same as text color
+            ),
           ),
           const SizedBox(width: 4),
           Text(
             label,
-            style: const TextStyle(
-              color: Color(0xFFEFF8FF),
+            style: TextStyle(
+              color: textColor,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.20,
@@ -141,21 +169,10 @@ Widget _transferRow(String label, VoidCallback onTap) {
   );
 }
 
-Widget _divider() {
-  return Opacity(
-    opacity: 0.8,
-    child: Container(
-      width: double.infinity,
-      height: 1,
-      decoration: const ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            width: 0.3,
-            color: Color(0x6668696A),
-            strokeAlign: BorderSide.strokeAlignCenter,
-          ),
-        ),
-      ),
-    ),
+Widget _divider(BuildContext context) {
+  return Divider(
+    color: AppColors.upcomingPaymentsDivider(context),
+    thickness: 0.3,
+    height: 0.5, // reduces extra space
   );
 }

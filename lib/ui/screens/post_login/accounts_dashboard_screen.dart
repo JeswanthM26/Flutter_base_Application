@@ -11,6 +11,7 @@ import 'package:Retail_Application/ui/components/apz_payment.dart'
     as apz_payment;
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
 
 // ---------------------- ACCOUNT ITEM CARD ----------------------
 class AccountItemCard extends StatelessWidget {
@@ -18,6 +19,7 @@ class AccountItemCard extends StatelessWidget {
   final AccountModel account;
   final bool isCredit;
   final VoidCallback? onViewDetails;
+  final VoidCallback? onTap;
 
   const AccountItemCard({
     super.key,
@@ -25,6 +27,7 @@ class AccountItemCard extends StatelessWidget {
     required this.account,
     required this.isCredit,
     this.onViewDetails,
+    this.onTap,
   });
 
   String _maskedAccountNumber(String accNo) {
@@ -51,8 +54,11 @@ class AccountItemCard extends StatelessWidget {
             children: [
               CustomSlidableAction(
                 onPressed: (context) {
-                  debugPrint(
-                      "View Details tapped for account: ${account.accountNo}");
+                  if (onViewDetails != null) {
+                    onViewDetails!();
+                  } else {
+                    context.push('/accountdetails', extra: account);
+                  }
                 },
                 backgroundColor: AppColors.slidebuttonBackground(context),
                 child: Container(
@@ -86,13 +92,27 @@ class AccountItemCard extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(3),
-            child: PaymentCard(
-              title: title,
-              subtitle: maskedAccNo,
-              imageUrl: "assets/mock/person.png",
-              actionType: apz_payment.PaymentCardActionType.text,
-              amount: '${account.currency} $balance',
-              isCredit: isCredit,
+            child: InkWell(
+              onTap: () {
+                if (onTap != null) {
+                  onTap!();
+                  return;
+                }
+                if (account.accountType == 'SB' ||
+                    account.accountType == 'CA') {
+                  context.push('/transactions', extra: account);
+                } else {
+                  context.push('/accountdetails', extra: account);
+                }
+              },
+              child: PaymentCard(
+                title: title,
+                subtitle: maskedAccNo,
+                imageUrl: "assets/mock/person.png",
+                actionType: apz_payment.PaymentCardActionType.text,
+                amount: '${account.currency} $balance',
+                isCredit: isCredit,
+              ),
             ),
           ),
         ),
@@ -141,10 +161,6 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleColor = AppColors.primary_text(context);
-    final subtitleColor = AppColors.primary_text(context);
-    final amountColor = AppColors.primary_text(context);
-
     return Container(
       width: data.cardWidth ?? 311,
       margin: const EdgeInsets.only(right: 16),
@@ -352,7 +368,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
     if (list.isNotEmpty && list.first.currency.isNotEmpty) {
       return list.first.currency;
     }
-    return 'INR';
+    return '';
   }
 
   @override
@@ -407,12 +423,11 @@ class _AccountDashboardState extends State<AccountDashboard> {
     const gradientSavings = LinearGradient(
       begin: Alignment(-0.56, 0.51),
       end: Alignment(1.57, 0.51),
-      colors: [
-        Color(0xFFFFCB55),
+      colors: const [
+        Color(0xFFFFD982),
         Color(0xFFFFE5AB),
-        Color(0xFFFDFDFD),
-        Color(0xFFFFE1A0),
-        Color(0x06FFCB55),
+        Color(0xFFFEFEFE),
+        Color(0xFFFFE2A1),
       ],
     );
     const gradientDeposit = LinearGradient(
@@ -490,7 +505,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          // const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CardCarousel(
@@ -527,7 +542,8 @@ class _AccountDashboardState extends State<AccountDashboard> {
                         account: acc,
                         isCredit: false,
                         onViewDetails: () =>
-                            debugPrint("View Details tapped: ${acc.accountNo}"),
+                            context.push('/accountdetails', extra: acc),
+                        onTap: () => context.push('/transactions', extra: acc),
                       ))
                   .toList(),
             ),
@@ -543,7 +559,9 @@ class _AccountDashboardState extends State<AccountDashboard> {
                         account: acc,
                         isCredit: false,
                         onViewDetails: () =>
-                            debugPrint("View Details tapped: ${acc.accountNo}"),
+                            context.push('/accountdetails', extra: acc),
+                        onTap: () =>
+                            context.push('/accountdetails', extra: acc),
                       ))
                   .toList(),
             ),
@@ -557,7 +575,9 @@ class _AccountDashboardState extends State<AccountDashboard> {
                         account: acc,
                         isCredit: false,
                         onViewDetails: () =>
-                            debugPrint("View Details tapped: ${acc.accountNo}"),
+                            context.push('/accountdetails', extra: acc),
+                        onTap: () =>
+                            context.push('/accountdetails', extra: acc),
                       ))
                   .toList(),
             ),
@@ -624,14 +644,30 @@ class _AccountDashboardState extends State<AccountDashboard> {
   }
 
   Widget _buildPaymentCardContainer({required List<Widget> children}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground(context),
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Column(
         children: children
-            .map((child) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: child,
-                ))
+            .asMap()
+            .entries
+            .map(
+              (entry) => Column(
+                children: [
+                  entry.value,
+                  if (entry.key != children.length - 1)
+                    Divider(
+                      height: 16,
+                      color: AppColors.dashboardSavingsDividerColor(context),
+                    ),
+                ],
+              ),
+            )
             .toList(),
       ),
     );

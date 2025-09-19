@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:Retail_Application/models/dashboard/customer_model.dart';
+import 'package:Retail_Application/ui/components/apz_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
 
@@ -128,6 +130,7 @@ class ProfileAvatarWidget extends StatefulWidget {
   final double avatarRadius;
   final bool showEditIcon;
   final VoidCallback? onEdit;
+  final IconData? editIcon; // 👈 new parameter
 
   const ProfileAvatarWidget({
     super.key,
@@ -136,6 +139,7 @@ class ProfileAvatarWidget extends StatefulWidget {
     this.avatarRadius = 48,
     this.showEditIcon = false,
     this.onEdit,
+    this.editIcon,
   });
 
   @override
@@ -170,8 +174,8 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                       radius: 16,
                       backgroundColor: AppColors.inverse_text(context),
                       child: Icon(
-                        Icons.edit,
-                        size: 24,
+                        widget.editIcon, // 👈 now dynamic
+                        size: 20,
                         color: AppColors.primary_text(context),
                       ),
                     ),
@@ -296,7 +300,9 @@ class _ProfileFooterWidgetState extends State<ProfileFooterWidget> {
                 size: ApzButtonSize.large,
                 iconTrailing: Icons.logout,
                 textColor: AppColors.profileFooterButton(context),
-                onPressed: () {},
+                onPressed: () {
+                  context.push('/login');
+                },
               ),
             ],
           ),
@@ -323,6 +329,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _customerFuture = loadCustomerData();
   }
 
+  Widget _buildInfoContainer(List<Map<String, String>> infoList) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: ShapeDecoration(
+        color: AppColors.container_box(context),
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(width: 1, color: Color(0x7FD7E2ED)),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x1E636363),
+            blurRadius: 8,
+            offset: Offset(0, 2.5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: infoList
+            .map((info) => ProfileInfoTile(
+                  label: info["label"]!,
+                  value: info["value"]!,
+                ))
+            .toList(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -347,14 +383,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
           final customer = snapshot.data!;
           String formatDate(String dob) {
             try {
-              final date = DateTime.parse(dob); // parses "1994-09-01"
-              return DateFormat("dd MMM yyyy").format(date); // "01 Sep 1994"
+              final date = DateTime.parse(dob);
+              return DateFormat("dd MMM yyyy").format(date);
             } catch (e) {
               return dob;
             }
           }
 
-          final profileInfo = [
+          // Separate two groups of info
+          final addressInfo = [
+            {"label": "Permanent Address", "value": customer.permAddress},
+            {
+              "label": "Communication Address",
+              "value": customer.communicationAddress
+            },
+          ];
+
+          final generalInfo = [
             {"label": "Customer ID", "value": customer.customerId},
             {
               "label": "Date of Birth",
@@ -364,59 +409,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
             {"label": "Mobile Number", "value": customer.mobileNo},
             {"label": "Email ID", "value": customer.emailId},
             {"label": "Type", "value": customer.customerType},
-            {"label": "Permanent Address", "value": customer.permAddress},
-            {
-              "label": "Communication Address",
-              "value": customer.communicationAddress
-            },
           ];
 
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                ProfileHeaderWidget(
-                  onBackPressed: () {
-                    Navigator.pop(context);
-                  },
-                  onActionPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Action tapped")),
-                    );
-                  },
-                  trailingIcon: Icons.edit,
-                  title: "Profile",
-                ),
-                ProfileAvatarWidget(
-                  name: customer.customerName,
-                  imageAsset: "assets/mock/person.png",
-                ),
-                ...profileInfo.map((info) {
-                  if (info["label"] == "Permanent Address") {
-                    return Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16), // adjust padding
-                          child: Divider(
-                            thickness: 0.3,
-                            color: AppColors.upcomingPaymentsDivider(context)
-                              ..withOpacity(0.8), // matches your theme
-                          ),
-                        ),
-                        ProfileInfoTile(
-                          label: info["label"]!,
-                          value: info["value"]!,
-                        ),
-                      ],
-                    );
-                  } else {
-                    return ProfileInfoTile(
-                      label: info["label"]!,
-                      value: info["value"]!,
-                    );
-                  }
-                }).toList(),
-              ],
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ProfileHeaderWidget(
+                    onBackPressed: () {
+                      Navigator.pop(context);
+                    },
+                    onActionPressed: () {
+                      ApzAlert.show(
+                        context,
+                        title: "Coming Soon",
+                        message: "This feature is under development.",
+                        messageType: ApzAlertMessageType.info,
+                        buttons: ["OK"],
+                      );
+                    },
+                    trailingIcon: Icons.edit,
+                    title: "Profile",
+                  ),
+                  ProfileAvatarWidget(
+                    name: customer.customerName,
+                    imageAsset: "assets/images/Person.png",
+                    showEditIcon: true,
+                    editIcon: Icons.qr_code,
+                  ),
+
+                  // 👉 First container: Address
+                  _buildInfoContainer(generalInfo),
+
+                  // 👉 Second container: Other details
+                  _buildInfoContainer(addressInfo),
+                ],
+              ),
             ),
           );
         },

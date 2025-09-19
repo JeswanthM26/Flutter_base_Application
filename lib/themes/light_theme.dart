@@ -190,10 +190,10 @@ final Color menuScrimColor = Colors.white.withOpacity(0.5);
 
 const Color menuSheetBackgroundColor = Color(0xFFF5F5F5);
 const Color menuSheetTitleColor = Color(0xFF181818);
-const Color menuSheetIndicatorActiveColor = Color(0xFFEDF2FA);
-final Color menuSheetIndicatorInactiveColor = Color(0x80EDF2FA);
+const Color menuSheetIndicatorActiveColor = Color(0xFF0073C0);
+final Color menuSheetIndicatorInactiveColor = Color(0xFF181818);
 
-final Color menuItemCardBackgroundColor = Color(0xFFEDF2FA);
+final Color menuItemCardBackgroundColor = Color(0x7FEDF2FA);
 const Color menuItemCardContentColor = Color(0xFF181818);
 
 //favourites
@@ -217,6 +217,7 @@ final Color profileHeaderIconGradient1 = Colors.white.withOpacity(0.3);
 final Color profileHeaderIconGradient2 = Colors.white.withOpacity(0.05);
 final Color profileHeaderIconGradient3 = Colors.white.withOpacity(0.05);
 final Color profileHeaderIconGradient4 = Colors.white.withOpacity(0.3);
+final Color profileInfoBorder = Color(0x7FD7E2ED);
 
 
 const Color slidebuttonBackground =Color.fromARGB(255, 33, 127, 204);

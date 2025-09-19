@@ -1,7 +1,10 @@
+import 'package:Retail_Application/models/dashboard/account_model.dart';
 import 'package:Retail_Application/ui/screens/login/login_screen.dart';
 import 'package:Retail_Application/ui/screens/post_login/Dashboard_screen.dart';
+import 'package:Retail_Application/ui/screens/post_login/account_details_screen.dart';
 import 'package:Retail_Application/ui/screens/post_login/accounts_dashboard_screen.dart';
 import 'package:Retail_Application/ui/screens/post_login/profile_screen.dart';
+import 'package:Retail_Application/ui/screens/post_login/transactions_screen.dart';
 import 'package:Retail_Application/ui/screens/pre_login/onboarding_screen.dart';
 import 'package:Retail_Application/ui/widgets/account_screen.dart';
 import 'package:Retail_Application/ui/widgets/menu_placeholder.dart';
@@ -70,6 +73,20 @@ class AppRouter {
         path: '/AccountsScreen', // New route for profile
         builder: (context, state) => const AccountDashboardScreen(),
       ),
+      GoRoute(
+        path: '/accountdetails',
+        builder: (context, state) {
+          final account = state.extra as AccountModel?;
+          return AccountDetailsScreen(account: account);
+        },
+      ),
+      GoRoute(
+        path: '/transactions',
+        builder: (context, state) {
+          final account = state.extra as AccountModel?;
+          return TransactionsScreen(account: account);
+        },
+      )
     ],
   );
 }

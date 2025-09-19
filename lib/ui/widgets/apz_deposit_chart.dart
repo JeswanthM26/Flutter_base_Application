@@ -50,16 +50,17 @@ class _DepositsChartExampleState extends State<DepositsChartExample> {
     final principal = _safeParse(_currentDeposit.depositAmount);
     final interest = _safeParse(_currentDeposit.interestAmount);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
+    // return SingleChildScrollView(
+    //   padding: const EdgeInsets.all(16.0),
+    return IgnorePointer(
       child: HalfDonutChart(
-        title: 'Deposits',
+        title: 'Maturity Progress',
         centerText: 'Interest Rate',
         percentage: '${_currentDeposit.interestRate}%',
         sections: [
           DonutChartSectionDetails(
             value: principal,
-            label: 'Principal',
+            label: 'Deposit Amount',
             amount:
                 '${_currentDeposit.currency} ${principal.toStringAsFixed(2)}',
             date: _currentDeposit.accOpenDate,

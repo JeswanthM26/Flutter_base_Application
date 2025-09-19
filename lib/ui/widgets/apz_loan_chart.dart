@@ -96,23 +96,24 @@ class _LoansChartExampleState extends State<LoansChartExample> {
         (availableBalance - currentBalance).clamp(0.0, availableBalance);
     final outstandingAmount = currentBalance.clamp(0.0, availableBalance);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
+    // return SingleChildScrollView(
+    //   padding: const EdgeInsets.all(16.0),
+    return IgnorePointer(
       child: HalfDonutChart(
-        title: 'Loan',
+        title: 'Repayment Progress',
         centerText: 'Interest Rate',
         percentage: '${loan.interestRate ?? 0}%',
         sections: [
           DonutChartSectionDetails(
             value: repaidAmount,
-            label: 'Repaid',
+            label: 'Repaid Amount',
             amount: '${loan.currency} ${repaidAmount.toStringAsFixed(2)}',
             date: "",
             colors: [const Color(0xFFB3E0FF), const Color(0xFFF4F8FF)],
           ),
           DonutChartSectionDetails(
             value: outstandingAmount,
-            label: 'Outstanding',
+            label: 'Outstanding Amount',
             amount: '${loan.currency} ${outstandingAmount.toStringAsFixed(2)}',
             date: "",
             colors: [const Color(0xFFF4F8FF), const Color(0xFF5AB8F0)],

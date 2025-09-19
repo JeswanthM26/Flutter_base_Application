@@ -1,4 +1,5 @@
 // lib/ui/components/menu_item.dart
+import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemCard extends StatelessWidget {
@@ -11,6 +12,8 @@ class MenuItemCard extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.onTap,
+    required backgroundColor,
+    required contentColor,
   }) : super(key: key);
 
   @override
@@ -22,7 +25,8 @@ class MenuItemCard extends StatelessWidget {
         height: 98,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         decoration: ShapeDecoration(
-          color: Colors.grey.withOpacity(0.6), // inner grey background
+          color: AppColors.menuItemCardBackgroundColor(
+              context), // inner grey background
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -30,13 +34,16 @@ class MenuItemCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 28, color: Colors.white),
+            Icon(icon,
+                size: 28,
+                color:
+                    AppColors.menuItemCardContentColor(context)), // white icon
             const SizedBox(height: 12),
             Text(
               label,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: AppColors.menuItemCardContentColor(context),
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),

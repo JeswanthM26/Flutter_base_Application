@@ -155,6 +155,8 @@ class MenuSheet extends StatelessWidget {
             label: option.label,
             icon: option.icon,
             onTap: option.onTap,
+            backgroundColor: null,
+            contentColor: null,
           );
         },
       ),

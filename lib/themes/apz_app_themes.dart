@@ -619,12 +619,12 @@ class AppColors {
           ? dark.menuSheetIndicatorInactiveColor
           : light.menuSheetIndicatorInactiveColor;
 
-  static Color menuItemCardBackground(BuildContext context) =>
+  static Color menuItemCardBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuItemCardBackgroundColor
           : light.menuItemCardBackgroundColor;
 
-  static Color menuItemCardContent(BuildContext context) =>
+  static Color menuItemCardContentColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? dark.menuItemCardContentColor
           : light.menuItemCardContentColor;
@@ -697,6 +697,10 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.profileHeaderIconGradient4
           : light.profileHeaderIconGradient4;
+  static Color profileInfoBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileInfoBorder
+          : light.profileInfoBorder;
 
   static Color slidebuttonBackground(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark

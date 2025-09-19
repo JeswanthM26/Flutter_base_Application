@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:Retail_Application/models/menu_model/apz_menu_model.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:Retail_Application/themes/common_properties.dart';
+import 'package:Retail_Application/themes/dark_theme.dart';
+import 'package:Retail_Application/themes/light_theme.dart';
 import 'package:Retail_Application/ui/components/apz_menu_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MenuSheet extends StatefulWidget {
@@ -87,6 +91,11 @@ class _MenuSheetState extends State<MenuSheet> {
                         return MenuItemCard(
                           label: option.label,
                           icon: option.iconData,
+                          backgroundColor:
+                              AppColors.menuItemCardBackgroundColor(
+                                  context), // ✅ card bg
+                          contentColor:
+                              AppColors.menuItemCardContentColor(context),
                           onTap: () {
                             widget.onClose();
                             GoRouter.of(context).push('/${option.route}');

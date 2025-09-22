@@ -33,10 +33,23 @@ class _InputWithDropdownState extends State<ApzInputWithDropdown> {
       TextEditingController(); // ✅ keeps only digits
 
   @override
+  @override
   void initState() {
     super.initState();
     // Default to India
     selectedCountry = Country.values.firstWhere((c) => c.code == 'IN');
+
+    // ✅ Initialize raw number from phoneController
+    final phone = widget.phoneController.text;
+    if (phone.isNotEmpty) {
+      // Remove leading '+' and country code if it matches selectedCountry
+      final codeDigits = selectedCountry.dialCode.replaceAll('+', '');
+      if (phone.startsWith('+$codeDigits')) {
+        _rawNumberController.text = phone.substring(codeDigits.length + 1);
+      } else {
+        _rawNumberController.text = phone;
+      }
+    }
   }
 
   void _showCountryPicker() async {

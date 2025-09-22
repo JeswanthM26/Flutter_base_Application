@@ -1,0 +1,22 @@
+[
+    {
+        "notifId": 857,
+        "appId": "APZRMB",
+        "notifMsg": "UPDATE: A/c 100015133962 debited for INR 30 and A/c 100015134536 credited.",
+        "title": "Transaction Alert",
+        "category": "411513",
+        "createTs": "01 Jun 25  04:47",
+        "formatDate": "01 Jun 25  04:47"
+    },
+    {
+        "notifId": 856,
+        "appId": "APZRMB",
+        "notifMsg": "UPDATE: A/c 100015134536 debited for INR 20 and A/c 100015133962 credited.",
+        "title": "Transaction Alert",
+        "category": "411513",
+        "createTs": "01 Jun 25  04:46",
+        "formatDate": "01 Jun 25  04:46"
+    }
+]
+ 
+ 

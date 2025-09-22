@@ -706,6 +706,14 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.slidebuttonBackground
           : light.slidebuttonBackground;
+  static Color profileDialogContainer(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileDialogContainer
+          : light.profileDialogContainer;
+  static Color profileDialogBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileDialogBorder
+          : light.profileDialogBorder;
 }
 
 class AppImages {

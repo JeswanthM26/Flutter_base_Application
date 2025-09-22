@@ -155,6 +155,11 @@ class HalfDonutChart extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
+          // Wrap(
+          //   alignment: WrapAlignment.center,
+          //   spacing: 8.0,
+          //   runSpacing: 2.0,
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: sections

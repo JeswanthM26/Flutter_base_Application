@@ -68,6 +68,11 @@
     "label": "Logout",
     "icon": "exit_to_app",
     "route": "logout"
+  },
+  {
+    "label":"Themes",
+    "icon":"settings",
+    "route":"theme"
   }
 ]
  

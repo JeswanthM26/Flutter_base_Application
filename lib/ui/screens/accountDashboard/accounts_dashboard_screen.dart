@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:Retail_Application/models/dashboard/account_dashboard_promotions_model.dart';
 import 'package:Retail_Application/ui/components/apz_payment.dart';
-import 'package:Retail_Application/ui/screens/post_login/profile_screen.dart';
+import 'package:Retail_Application/ui/screens/Profile/profile_screen.dart';
+import 'package:Retail_Application/ui/screens/accountDashboard/account_details_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:Retail_Application/models/dashboard/account_model.dart';
@@ -12,6 +14,10 @@ import 'package:Retail_Application/ui/components/apz_payment.dart'
 import 'package:Retail_Application/themes/apz_app_themes.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
+import 'package:Retail_Application/ui/components/apz_toogle_switch.dart';
+import 'package:Retail_Application/ui/components/apz_alert.dart';
+
+import 'transactions_screen.dart';
 
 // ---------------------- ACCOUNT ITEM CARD ----------------------
 class AccountItemCard extends StatelessWidget {
@@ -57,7 +63,13 @@ class AccountItemCard extends StatelessWidget {
                   if (onViewDetails != null) {
                     onViewDetails!();
                   } else {
-                    context.push('/accountdetails', extra: account);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AccountDetailsScreen(account: account),
+                      ),
+                    );
                   }
                 },
                 backgroundColor: AppColors.slidebuttonBackground(context),
@@ -102,7 +114,13 @@ class AccountItemCard extends StatelessWidget {
                     account.accountType == 'CA') {
                   context.push('/transactions', extra: account);
                 } else {
-                  context.push('/accountdetails', extra: account);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AccountDetailsScreen(account: account),
+                    ),
+                  );
                 }
               },
               child: PaymentCard(
@@ -146,7 +164,6 @@ class DashboardCardData {
   });
 }
 
-// ---------------------- DASHBOARD CARD ----------------------
 class DashboardCard extends StatelessWidget {
   final DashboardCardData data;
   final VoidCallback? onEyeTap;
@@ -308,7 +325,6 @@ class AccountDashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar removed, using ProfileHeaderWidget instead
       body: Column(
         children: [
           SafeArea(
@@ -320,7 +336,7 @@ class AccountDashboardScreen extends StatelessWidget {
             ),
           ),
           const Expanded(
-            child: AccountDashboard(), // your main content
+            child: AccountDashboard(),
           ),
         ],
       ),
@@ -423,7 +439,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
     const gradientSavings = LinearGradient(
       begin: Alignment(-0.56, 0.51),
       end: Alignment(1.57, 0.51),
-      colors: const [
+      colors: [
         Color(0xFFFFD982),
         Color(0xFFFFE5AB),
         Color(0xFFFEFEFE),
@@ -505,7 +521,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // const SizedBox(height: 16),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CardCarousel(
@@ -532,6 +548,8 @@ class _AccountDashboardState extends State<AccountDashboard> {
             ),
           ),
           const SizedBox(height: 16),
+
+          // --- Savings & Current ---
           if (selectedIndex == 0)
             _buildPaymentCardContainer(
               children: accountsSavingsCurrent
@@ -541,12 +559,25 @@ class _AccountDashboardState extends State<AccountDashboard> {
                             : 'Savings Account',
                         account: acc,
                         isCredit: false,
-                        onViewDetails: () =>
-                            context.push('/accountdetails', extra: acc),
-                        onTap: () => context.push('/transactions', extra: acc),
+                        onViewDetails: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AccountDetailsScreen(account: acc),
+                          ),
+                        ),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                TransactionsScreen(account: acc),
+                          ),
+                        ),
                       ))
                   .toList(),
             ),
+
+          // --- Deposits ---
           if (selectedIndex == 1) ...[
             _buildDepositToggle(),
             const SizedBox(height: 12),
@@ -558,14 +589,26 @@ class _AccountDashboardState extends State<AccountDashboard> {
                             : "Recurring Deposit",
                         account: acc,
                         isCredit: false,
-                        onViewDetails: () =>
-                            context.push('/accountdetails', extra: acc),
-                        onTap: () =>
-                            context.push('/accountdetails', extra: acc),
+                        onViewDetails: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AccountDetailsScreen(account: acc),
+                          ),
+                        ),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AccountDetailsScreen(account: acc),
+                          ),
+                        ),
                       ))
                   .toList(),
             ),
           ],
+
+          // --- Loans ---
           if (selectedIndex == 2)
             _buildPaymentCardContainer(
               children: accountsLoans
@@ -574,13 +617,25 @@ class _AccountDashboardState extends State<AccountDashboard> {
                             'Loan${acc.loanType.isNotEmpty ? ' - ${acc.loanType}' : ''}',
                         account: acc,
                         isCredit: false,
-                        onViewDetails: () =>
-                            context.push('/accountdetails', extra: acc),
-                        onTap: () =>
-                            context.push('/accountdetails', extra: acc),
+                        onViewDetails: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AccountDetailsScreen(account: acc),
+                          ),
+                        ),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AccountDetailsScreen(account: acc),
+                          ),
+                        ),
                       ))
                   .toList(),
             ),
+
+          // --- Promotions ---
           if (selectedIndex < accountDashboardPromotions.length) ...[
             const SizedBox(height: 24),
             Padding(

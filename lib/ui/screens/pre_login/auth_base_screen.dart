@@ -186,7 +186,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
           SafeArea(
             child: Padding(
               padding: EdgeInsets.only(
-                top: size.height * 0.03,
+                top: size.height * 0.02,
                 left: size.width * 0.04,
                 right: size.width * 0.04,
               ),

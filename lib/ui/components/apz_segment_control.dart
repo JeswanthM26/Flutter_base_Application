@@ -34,7 +34,7 @@ class ApzSegmentedControl extends StatelessWidget {
                 duration: const Duration(milliseconds: 180),
                 decoration: BoxDecoration(
                   color: selected
-                      ? AppColors.container_box(context)
+                      ? Colors.white
                       : AppColors.input_field_filled(
                           context), // <-- blend unselected
                   borderRadius: selected

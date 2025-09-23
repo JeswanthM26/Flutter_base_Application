@@ -77,24 +77,28 @@ class _NotificationWidgetState extends State<NotificationWidget> {
             itemBuilder: (context, index) {
               final notification = _notifications[index];
 
-              return Slidable(
-                key: ValueKey(notification.notifId),
-                endActionPane: ActionPane(
-                  motion: const ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (context) => _deleteNotification(index),
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Delete',
+              //  return Slidable(
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Slidable(
+                  key: ValueKey(notification.notifId),
+                  endActionPane: ActionPane(
+                    motion: const ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: (context) => _deleteNotification(index),
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                    ],
+                  ),
+                  child: Material(
+                    child: ListTile(
+                      title: Text(notification.title),
+                      subtitle: Text(notification.notifMsg),
                     ),
-                  ],
-                ),
-                child: Material(
-                  child: ListTile(
-                    title: Text(notification.title),
-                    subtitle: Text(notification.notifMsg),
                   ),
                 ),
               );

@@ -5,7 +5,6 @@ import 'package:Retail_Application/example/apz_searchbar_example.dart';
 import 'package:Retail_Application/themes/apz_theme_provider.dart';
 import 'package:Retail_Application/ui/components/apz_footer_scaffold.dart';
 import 'package:Retail_Application/ui/screens/accountDashboard/accounts_dashboard_screen.dart';
-import 'package:Retail_Application/ui/widgets/account_dashoard.dart';
 import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
 import 'package:Retail_Application/ui/widgets/menu_screen.dart';
 import 'package:Retail_Application/ui/components/apz_scaffold.dart';

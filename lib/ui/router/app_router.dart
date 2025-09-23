@@ -7,6 +7,7 @@ import 'package:Retail_Application/ui/screens/accountDashboard/account_details_s
 import 'package:Retail_Application/ui/screens/accountDashboard/accounts_dashboard_screen.dart';
 import 'package:Retail_Application/ui/screens/Profile/profile_screen.dart';
 import 'package:Retail_Application/ui/screens/accountDashboard/transactions_screen.dart';
+import 'package:Retail_Application/ui/screens/post_login/Notification_screen.dart';
 import 'package:Retail_Application/ui/screens/pre_login/onboarding_screen.dart';
 import 'package:Retail_Application/ui/widgets/menu_placeholder.dart';
 import 'package:Retail_Application/ui/widgets/notification.dart';
@@ -98,7 +99,7 @@ class AppRouter {
       ),
       GoRoute(
         path: '/Notifications',
-        builder: (context, state) => const NotificationWidget(),
+        builder: (context, state) => const ApzNotificationExample(),
       )
     ],
   );

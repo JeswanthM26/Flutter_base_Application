@@ -1,9 +1,9 @@
 import 'package:Retail_Application/models/dashboard/customer_model.dart';
 import 'package:Retail_Application/ui/components/apz_input_with_dropdown.dart';
+import 'package:Retail_Application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
 import 'package:Retail_Application/ui/components/apz_input_field.dart';
 
 import 'profile_screen.dart'; // 👈 Import your header + avatar widgets
@@ -199,12 +199,13 @@ class _EditScreenState extends State<EditScreen> {
   }
 
   // ========================= Bottom Sheet =========================
+
   Widget _buildEditProfileBottomSheet(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 8, left: 1),
-      decoration: const ShapeDecoration(
-        color: Color(0xFFFFFDFD),
+      decoration: ShapeDecoration(
+        color: AppColors.profileDialogContainer(context),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24),
@@ -212,72 +213,125 @@ class _EditScreenState extends State<EditScreen> {
           ),
         ),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Grab bar
-          Container(
-            width: 36,
-            height: 5,
-            margin: const EdgeInsets.only(top: 6, bottom: 16),
-            decoration: ShapeDecoration(
-              color: const Color(0x7FC2C2C2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(2.5),
+      child: SafeArea(
+        top: false, // ✅ avoids extra padding at the top, keeps bottom safe
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Grab bar
+            Container(
+              width: 36,
+              height: 5,
+              margin: const EdgeInsets.only(top: 6, bottom: 16),
+              decoration: ShapeDecoration(
+                color: const Color(0x7FC2C2C2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2.5),
+                ),
               ),
             ),
-          ),
 
-          // Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Edit Profile',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF181818),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.03,
+            // Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Center(
+                child: ApzText(
+                  label: 'Edit Profile',
+                  color: AppColors.primary_text(context),
+                  fontSize: 16,
+                  fontWeight: ApzFontWeight.headingsBold,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
+            const SizedBox(height: 16),
 
-          // Camera Option
-          _buildBottomSheetOption(
-            context,
-            label: "Camera",
-            onTap: () {
-              // TODO: Add camera functionality
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(height: 12),
+            // === Camera & Image grouped ===
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: ShapeDecoration(
+                color: AppColors.container_box(context),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.profileDialogBorder(context),
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                shadows: const [
+                  BoxShadow(
+                    color: Color(0x1E636363),
+                    blurRadius: 8,
+                    offset: Offset(0, 2.5),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  _buildBottomSheetOption(
+                    context,
+                    label: "Camera",
+                    icon: Icons.camera_alt_outlined,
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Opacity(
+                    opacity: 0.8,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Divider(
+                        color: AppColors.upcomingPaymentsDivider(context),
+                        height: 0,
+                        thickness: 1,
+                      ),
+                    ),
+                  ),
+                  _buildBottomSheetOption(
+                    context,
+                    label: "Image",
+                    icon: Icons.image_outlined,
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
 
-          // Image Option
-          _buildBottomSheetOption(
-            context,
-            label: "Image",
-            onTap: () {
-              // TODO: Add image picker functionality
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(height: 12),
-
-          // Remove Option
-          _buildBottomSheetOption(
-            context,
-            label: "Remove",
-            labelColor: const Color(0xFFF04248),
-            onTap: () {
-              // TODO: Add remove functionality
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(height: 24),
-        ],
+            // === Remove inside its own container ===
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: ShapeDecoration(
+                color: AppColors.container_box(context),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 1,
+                    color: AppColors.profileDialogBorder(context),
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                shadows: const [
+                  BoxShadow(
+                    color: Color(0x1E636363),
+                    blurRadius: 8,
+                    offset: Offset(0, 2.5),
+                  ),
+                ],
+              ),
+              child: _buildBottomSheetOption(
+                context,
+                label: "Remove",
+                labelColor: AppColors.profileFooterButton(context),
+                icon: Icons.delete_outline,
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
@@ -285,45 +339,25 @@ class _EditScreenState extends State<EditScreen> {
   Widget _buildBottomSheetOption(
     BuildContext context, {
     required String label,
-    Color labelColor = const Color(0xFF1C1C1C),
+    required IconData icon,
+    Color? labelColor,
     VoidCallback? onTap,
   }) {
-    return Container(
-      width: 343,
-      padding: const EdgeInsets.all(16),
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: Color(0x7FD7E2ED),
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        shadows: const [
-          BoxShadow(
-            color: Color(0x1E636363),
-            blurRadius: 8,
-            offset: Offset(0, 2.5),
-          ),
-        ],
-      ),
-      child: GestureDetector(
-        onTap: onTap,
+    final effectiveColor = labelColor ?? AppColors.primary_text(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              label,
-              style: TextStyle(
-                color: labelColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                height: 1.5,
-              ),
+            ApzText(
+              label: label,
+              color: effectiveColor,
+              fontSize: 12,
+              fontWeight: ApzFontWeight.titlesSemibold,
             ),
-            const SizedBox(
-                width: 24), // Placeholder for trailing icon if needed
+            Icon(icon, size: 20, color: labelColor),
           ],
         ),
       ),

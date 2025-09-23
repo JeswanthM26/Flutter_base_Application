@@ -1,5 +1,5 @@
-import 'package:Retail_Application/core/utils/apz_api_service.dart';
-import 'package:Retail_Application/data/enums/apz_api_enums.dart';
+import 'package:retail_application/core/utils/apz_api_service.dart';
+import 'package:retail_application/data/enums/apz_api_enums.dart';
 import 'package:flutter/material.dart';
 
 class StocksScreen extends StatefulWidget {

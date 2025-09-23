@@ -1,5 +1,5 @@
 // phone_input_example.dart
-import 'package:Retail_Application/ui/components/apz_input_with_dropdown.dart';
+import 'package:retail_application/ui/components/apz_input_with_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class PhoneInputExample extends StatefulWidget {

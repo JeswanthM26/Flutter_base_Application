@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:Retail_Application/models/dashboard/customer_model.dart';
-import 'package:Retail_Application/ui/components/apz_alert.dart';
+import 'package:retail_application/models/dashboard/customer_model.dart';
+import 'package:retail_application/ui/components/apz_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
@@ -765,11 +765,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-
-                  // 👉 First container: Address
                   _buildInfoContainer(generalInfo),
-
-                  // 👉 Second container: Other details
                   _buildInfoContainer(addressInfo),
                 ],
               ),

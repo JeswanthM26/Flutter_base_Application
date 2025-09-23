@@ -1,21 +1,21 @@
 import 'dart:convert';
-import 'package:Retail_Application/models/dashboard/account_dashboard_promotions_model.dart';
-import 'package:Retail_Application/ui/components/apz_payment.dart';
-import 'package:Retail_Application/ui/screens/Profile/profile_screen.dart';
-import 'package:Retail_Application/ui/screens/accountDashboard/account_details_screen.dart';
+import 'package:retail_application/models/dashboard/account_dashboard_promotions_model.dart';
+import 'package:retail_application/ui/components/apz_payment.dart';
+import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
+import 'package:retail_application/ui/screens/accountDashboard/account_details_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:Retail_Application/models/dashboard/account_model.dart';
-import 'package:Retail_Application/ui/components/apz_searchbar.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/components/apz_payment.dart'
+import 'package:retail_application/models/dashboard/account_model.dart';
+import 'package:retail_application/ui/components/apz_searchbar.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_payment.dart'
     as apz_payment;
-import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-import 'package:Retail_Application/ui/components/apz_toogle_switch.dart';
-import 'package:Retail_Application/ui/components/apz_alert.dart';
+import 'package:retail_application/ui/components/apz_toogle_switch.dart';
+import 'package:retail_application/ui/components/apz_alert.dart';
 
 import 'transactions_screen.dart';
 

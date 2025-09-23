@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
-import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
+import 'package:retail_application/models/dashboard/creditcard_model.dart';
+import 'package:retail_application/ui/components/apz_donut_chart.dart';
 
 class CreditCardChartExample extends StatefulWidget {
   final CreditCardModel creditData;

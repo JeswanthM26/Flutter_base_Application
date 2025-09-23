@@ -1,14 +1,14 @@
-import 'package:Retail_Application/ui/components/apz_input_field.dart';
+import 'package:retail_application/ui/components/apz_input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/l10n/app_localizations.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/l10n/app_localizations.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import '../pre_login/auth_base_screen.dart';
 import '../pre_login/auth_overlay_container.dart';
-import 'package:Retail_Application/ui/components/apz_segment_control.dart';
+import 'package:retail_application/ui/components/apz_segment_control.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LoginScreen extends StatefulWidget {

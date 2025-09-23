@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/models/menu_model/apz_menu_options.dart';
-import 'package:Retail_Application/ui/components/apz_menu_item.dart';
+import 'package:retail_application/models/menu_model/apz_menu_options.dart';
+import 'package:retail_application/ui/components/apz_menu_item.dart';
 
 class MenuSheet extends StatefulWidget {
   const MenuSheet({Key? key, required this.options}) : super(key: key);

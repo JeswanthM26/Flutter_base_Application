@@ -1,6 +1,6 @@
-import 'package:Retail_Application/ui/components/apz_payment.dart';
+import 'package:retail_application/ui/components/apz_payment.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
 
 class PaymentCardExample extends StatelessWidget {
   const PaymentCardExample({super.key});

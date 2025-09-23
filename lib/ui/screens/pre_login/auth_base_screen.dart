@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/l10n/l10n.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/l10n/l10n.dart';
 
 class AuthBaseScreen extends StatefulWidget {
   final Widget bottomOverlay;

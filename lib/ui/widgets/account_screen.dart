@@ -1,27 +1,27 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:Retail_Application/models/dashboard/actionbuttons_model.dart';
-import 'package:Retail_Application/models/dashboard/creditcard_model.dart';
-import 'package:Retail_Application/models/financials/deposit_model.dart';
-import 'package:Retail_Application/models/financials/loan_model.dart';
-import 'package:Retail_Application/ui/widgets/apz_creditcard_chart.dart';
-import 'package:Retail_Application/ui/widgets/apz_deposit_chart.dart';
-import 'package:Retail_Application/ui/widgets/apz_loan_chart.dart';
-import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
-import 'package:Retail_Application/ui/widgets/promotions.dart';
-import 'package:Retail_Application/ui/widgets/recent_transactions.dart';
-import 'package:Retail_Application/ui/widgets/show_transfer.dart';
+import 'package:retail_application/models/dashboard/actionbuttons_model.dart';
+import 'package:retail_application/models/dashboard/creditcard_model.dart';
+import 'package:retail_application/models/financials/deposit_model.dart';
+import 'package:retail_application/models/financials/loan_model.dart';
+import 'package:retail_application/ui/widgets/apz_creditcard_chart.dart';
+import 'package:retail_application/ui/widgets/apz_deposit_chart.dart';
+import 'package:retail_application/ui/widgets/apz_loan_chart.dart';
+import 'package:retail_application/ui/widgets/favourite_transactions.dart';
+import 'package:retail_application/ui/widgets/promotions.dart';
+import 'package:retail_application/ui/widgets/recent_transactions.dart';
+import 'package:retail_application/ui/widgets/show_transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carousel_slider/carousel_controller.dart' as carousel_cs;
 
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/widgets/balance_chart.dart';
-import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
-import 'package:Retail_Application/models/dashboard/account_model.dart';
-import 'package:Retail_Application/models/dashboard/customer_model.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/widgets/balance_chart.dart';
+import 'package:retail_application/ui/widgets/upcoming_payments.dart';
+import 'package:retail_application/models/dashboard/account_model.dart';
+import 'package:retail_application/models/dashboard/customer_model.dart';
 import 'package:intl/intl.dart';
 
 class AccountScreen extends StatefulWidget {

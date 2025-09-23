@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:go_router/go_router.dart';
-import 'package:Retail_Application/models/login_stories/apz_story_model.dart';
+import 'package:retail_application/models/login_stories/apz_story_model.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);

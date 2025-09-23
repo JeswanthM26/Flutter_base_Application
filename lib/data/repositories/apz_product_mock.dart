@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:Retail_Application/core/utils/apz_mock_service.dart';
-import 'package:Retail_Application/models/api_test/apz_product.dart';
-import 'package:Retail_Application/data/repositories/apz_product.dart';
+import 'package:retail_application/core/utils/apz_mock_service.dart';
+import 'package:retail_application/models/api_test/apz_product.dart';
+import 'package:retail_application/data/repositories/apz_product.dart';
 
 class ProductMockRepository implements ProductRepository {
   // --- Singleton Pattern ---

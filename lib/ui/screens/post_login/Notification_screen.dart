@@ -1,6 +1,6 @@
-import 'package:Retail_Application/ui/screens/Profile/profile_screen.dart';
+import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
 
-import 'package:Retail_Application/ui/widgets/notification.dart';
+import 'package:retail_application/ui/widgets/notification.dart';
 
 import 'package:flutter/material.dart';
 

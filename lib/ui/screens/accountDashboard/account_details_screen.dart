@@ -1,11 +1,11 @@
-import 'package:Retail_Application/ui/components/apz_alert.dart';
-import 'package:Retail_Application/ui/screens/Profile/profile_screen.dart';
+import 'package:retail_application/ui/components/apz_alert.dart';
+import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // for Clipboard
-import 'package:Retail_Application/models/dashboard/account_model.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/components/apz_toogle_switch.dart';
+import 'package:retail_application/models/dashboard/account_model.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_toogle_switch.dart';
 
 class AccountDetailsScreen extends StatefulWidget {
   final AccountModel account;

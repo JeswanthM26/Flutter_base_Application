@@ -1,8 +1,8 @@
-import 'package:Retail_Application/models/checkbox/apz_checkboxItem.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/models/checkbox/apz_checkboxItem.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
 
 class ApzCheckboxController extends ChangeNotifier {
   String _value = "no";

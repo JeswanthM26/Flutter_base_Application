@@ -1,9 +1,9 @@
-import 'package:Retail_Application/example/appz_button_example.dart';
-import 'package:Retail_Application/example/appz_radio_example.dart';
-import 'package:Retail_Application/example/apz_dropdown_example.dart';
-import 'package:Retail_Application/example/apz_searchbar_example.dart';
+import 'package:retail_application/example/appz_button_example.dart';
+import 'package:retail_application/example/appz_radio_example.dart';
+import 'package:retail_application/example/apz_dropdown_example.dart';
+import 'package:retail_application/example/apz_searchbar_example.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_footer.dart';
+import 'package:retail_application/ui/components/apz_footer.dart';
  
 class FooterExampleScreen extends StatefulWidget {
   const FooterExampleScreen({super.key});

@@ -2,10 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/components/apz_datepicker.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_datepicker.dart';
 
 enum AmountFormatType {
   lakhs,
@@ -249,7 +249,10 @@ class _CustomInputFieldState extends State<ApzInputField> {
           enabled: widget.enabled,
           inputFormatters: _buildInputFormatters(),
           style: inputFieldHintStyle.copyWith(
-              color: AppColors.input_field_placeholder_filled(context),
+              // color: AppColors.input_field_placeholder_filled(context),
+              color: widget.enabled
+                  ? AppColors.input_field_placeholder_filled(context)
+                  : AppColors.input_field_placeholder_default(context),
               fontWeight: FontWeight.w500),
           decoration: InputDecoration(
             hintText: widget.hintText ?? '',
@@ -356,7 +359,10 @@ class _CustomInputFieldState extends State<ApzInputField> {
           enabled: widget.enabled,
           inputFormatters: _buildInputFormatters(),
           style: inputFieldHintStyle.copyWith(
-              color: AppColors.primary_text(context),
+              //   color: AppColors.primary_text(context),
+              color: widget.enabled
+                  ? AppColors.primary_text(context)
+                  : AppColors.secondary_text(context),
               fontWeight: FontWeight.w500),
           decoration: InputDecoration(
             hintText: widget.hintText ?? '',
@@ -433,7 +439,10 @@ class _CustomInputFieldState extends State<ApzInputField> {
           validator: _validate,
           enabled: widget.enabled,
           style: inputFieldHintStyle.copyWith(
-              color: AppColors.primary_text(context),
+              //color: AppColors.primary_text(context),
+              color: widget.enabled
+                  ? AppColors.primary_text(context)
+                  : AppColors.secondary_text(context),
               fontWeight: FontWeight.w500),
           decoration: InputDecoration(
             hintText: widget.hintText ?? '',

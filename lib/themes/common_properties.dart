@@ -1,5 +1,5 @@
-import 'package:Retail_Application/ui/components/apz_button.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 
 // Typography

@@ -1,6 +1,6 @@
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
-import 'package:Retail_Application/ui/components/apz_searchbar.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
+import 'package:retail_application/ui/components/apz_searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +15,7 @@ class ApzHeader extends StatelessWidget {
   const ApzHeader({
     super.key,
     this.hasNotification = false,
-    this.avatarUrl = "https://placehold.co/40x40",
+    this.avatarUrl = "assets/images/Person.png",
     this.onProfileTap,
     this.onNotificationTap,
     this.onSearchTap,
@@ -106,20 +106,18 @@ class ApzHeader extends StatelessWidget {
           const SizedBox(width: header_spacing),
 
           // 4. Profile Icon (Circular, Clickable)
+          // 4. Profile Icon (Circular, Clickable)
           GestureDetector(
             onTap: onProfileTap,
-            child: Container(
-              width: header_profileIconContainerSize,
-              height: header_profileIconContainerSize,
-              decoration: BoxDecoration(
-                color: AppColors.input_field_filled(
-                    context), // Placeholder background
-                borderRadius:
-                    BorderRadius.circular(header_profileIconBorderRadius),
+            child: ClipRRect(
+              borderRadius:
+                  BorderRadius.circular(header_profileIconBorderRadius),
+              child: Image.asset(
+                avatarUrl, // pass asset path like 'assets/images/profile.png'
+                width: header_profileIconContainerSize,
+                height: header_profileIconContainerSize,
+                fit: BoxFit.cover,
               ),
-              child: Icon(Icons.person,
-                  size: header_profileIconSize,
-                  color: AppColors.secondary_text(context)),
             ),
           ),
         ],

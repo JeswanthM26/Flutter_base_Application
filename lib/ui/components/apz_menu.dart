@@ -1,10 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/models/menu_model/apz_menu_options.dart';
-import 'package:Retail_Application/ui/components/apz_menu_item.dart';
+import 'package:retail_application/models/menu_model/apz_menu_options.dart';
+import 'package:retail_application/ui/components/apz_menu_item.dart';
 
-class MenuSheet extends StatelessWidget {
-  const MenuSheet({Key? key, required List<MenuOption> options})
-      : super(key: key);
+class MenuSheet extends StatefulWidget {
+  const MenuSheet({Key? key, required this.options}) : super(key: key);
+  final List<MenuOption> options;
+
+  @override
+  _MenuSheetState createState() => _MenuSheetState();
+}
+
+class _MenuSheetState extends State<MenuSheet>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _offsetAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    )..forward();
+    _offsetAnimation = Tween<Offset>(
+      begin: const Offset(0.0, -1.0),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   List<MenuOption> _getMenuOptions(BuildContext context) {
     return [
@@ -126,6 +157,7 @@ class MenuSheet extends StatelessWidget {
         icon: Icons.card_giftcard,
         onTap: () {},
       ),
+      MenuOption(label: 'Theme', icon: Icons.settings, onTap: () {})
       // 👉 add as many as you want
     ];
   }

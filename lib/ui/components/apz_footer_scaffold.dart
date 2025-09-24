@@ -1,6 +1,6 @@
-import 'package:Retail_Application/ui/components/apz_footer.dart';
+import 'package:retail_application/ui/components/apz_footer.dart';
 
-import 'package:Retail_Application/ui/widgets/menu_screen.dart';
+import 'package:retail_application/ui/widgets/menu_screen.dart';
 
 import 'package:flutter/material.dart';
 

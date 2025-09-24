@@ -1,5 +1,5 @@
 // lib/ui/components/menu_item.dart
-import 'package:Retail_Application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemCard extends StatelessWidget {

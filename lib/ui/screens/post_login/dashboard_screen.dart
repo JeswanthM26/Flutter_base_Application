@@ -1,19 +1,18 @@
-import 'package:Retail_Application/example/appz_button_example.dart';
-import 'package:Retail_Application/example/appz_radio_example.dart';
-import 'package:Retail_Application/example/apz_dropdown_example.dart';
-import 'package:Retail_Application/example/apz_searchbar_example.dart';
-import 'package:Retail_Application/themes/apz_theme_provider.dart';
-import 'package:Retail_Application/ui/components/apz_footer_scaffold.dart';
-import 'package:Retail_Application/ui/screens/post_login/accounts_dashboard_screen.dart';
-import 'package:Retail_Application/ui/widgets/account_dashoard.dart';
-import 'package:Retail_Application/ui/widgets/favourite_transactions.dart';
-import 'package:Retail_Application/ui/widgets/menu_screen.dart';
-import 'package:Retail_Application/ui/components/apz_scaffold.dart';
-import 'package:Retail_Application/ui/widgets/account_screen.dart';
-import 'package:Retail_Application/ui/widgets/upcoming_payments.dart';
-import 'package:Retail_Application/ui/components/apz_footer.dart';
-import 'package:Retail_Application/ui/components/apz_header.dart';
-import 'package:Retail_Application/ui/components/apz_alert.dart';
+import 'package:retail_application/example/appz_button_example.dart';
+import 'package:retail_application/example/appz_radio_example.dart';
+import 'package:retail_application/example/apz_dropdown_example.dart';
+import 'package:retail_application/example/apz_searchbar_example.dart';
+import 'package:retail_application/themes/apz_theme_provider.dart';
+import 'package:retail_application/ui/components/apz_footer_scaffold.dart';
+import 'package:retail_application/ui/screens/accountDashboard/accounts_dashboard_screen.dart';
+import 'package:retail_application/ui/widgets/favourite_transactions.dart';
+import 'package:retail_application/ui/widgets/menu_screen.dart';
+import 'package:retail_application/ui/components/apz_scaffold.dart';
+import 'package:retail_application/ui/widgets/account_screen.dart';
+import 'package:retail_application/ui/widgets/upcoming_payments.dart';
+import 'package:retail_application/ui/components/apz_footer.dart';
+import 'package:retail_application/ui/components/apz_header.dart';
+import 'package:retail_application/ui/components/apz_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -176,6 +175,9 @@ class _FooterHeaderScreenState extends State<FooterHeaderScreen> {
               },
               onProfileTap: () {
                 context.push('/profile'); // Navigate to profile screen
+              },
+              onNotificationTap: () {
+                context.push('/Notifications');
               },
             ),
           ),

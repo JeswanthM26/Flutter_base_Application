@@ -1,5 +1,5 @@
-import 'package:Retail_Application/models/checkbox/apz_checkboxItem.dart';
-import 'package:Retail_Application/ui/components/apz_checkbox.dart';
+import 'package:retail_application/models/checkbox/apz_checkboxItem.dart';
+import 'package:retail_application/ui/components/apz_checkbox.dart';
 import 'package:flutter/material.dart';
 
 class AppzCheckboxExample extends StatefulWidget {

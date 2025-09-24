@@ -1,4 +1,4 @@
-import 'package:Retail_Application/ui/components/apz_searchbar.dart';
+import 'package:retail_application/ui/components/apz_searchbar.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarDemoPage extends StatefulWidget {

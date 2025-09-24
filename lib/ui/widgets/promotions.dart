@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/models/dashboard/promotions_model.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/models/dashboard/promotions_model.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 import '../../themes/apz_app_themes.dart';

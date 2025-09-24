@@ -1,5 +1,5 @@
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -85,60 +85,61 @@ class FooterBar extends StatelessWidget {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: footer_height,
-      padding: footer_padding,
-      decoration: BoxDecoration(
-        color: AppColors.footer_background(context),
-        borderRadius: BorderRadius.vertical(
-          top: isMenuOpen
-              ? Radius.zero
-              : const Radius.circular(footer_borderRadius),
-        ),
-
-        // borderRadius: const BorderRadius.vertical(
-        //  top: Radius.circular(footer_borderRadius)),
-        border: Border(
-          top: BorderSide(
-            color: AppColors.footer_default(context),
-            width: footer_borderWidth,
+    return SafeArea(
+      top: false, // Keep only bottom safe area
+      child: Container(
+        height: footer_height,
+        padding: footer_padding,
+        decoration: BoxDecoration(
+          color: AppColors.footer_background(context),
+          borderRadius: BorderRadius.vertical(
+            top: isMenuOpen
+                ? Radius.zero
+                : const Radius.circular(footer_borderRadius),
+          ),
+          border: Border(
+            top: BorderSide(
+              color: AppColors.footer_default(context),
+              width: footer_borderWidth,
+            ),
           ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildTabItem(
-            context: context,
-            iconData: Icons.home_outlined,
-            label: 'Home',
-            isSelected: selectedIndex == 0,
-            index: 0,
-          ),
-          _buildTabItem(
-            context: context,
-            iconData: Icons.person_outline,
-            label: 'Accounts',
-            isSelected: selectedIndex == 1,
-            index: 1,
-          ),
-          _buildCenterButton(context),
-          _buildTabItem(
-            context: context,
-            iconData: Icons.credit_card_outlined,
-            label: 'Cards',
-            isSelected: selectedIndex == 3,
-            index: 3,
-          ),
-          _buildTabItem(
-            context: context,
-            iconData: Icons.pie_chart_outline,
-            label: 'Spends',
-            isSelected: selectedIndex == 4,
-            index: 4,
-          ),
-        ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildTabItem(
+              context: context,
+              iconData: Icons.home_outlined,
+              label: 'Home',
+              isSelected: selectedIndex == 0,
+              index: 0,
+            ),
+            _buildTabItem(
+              context: context,
+              iconData: Icons.person_outline,
+              label: 'Accounts',
+              isSelected: selectedIndex == 1,
+              index: 1,
+            ),
+            _buildCenterButton(context),
+            _buildTabItem(
+              context: context,
+              iconData: Icons.credit_card_outlined,
+              label: 'Cards',
+              isSelected: selectedIndex == 3,
+              index: 3,
+            ),
+            _buildTabItem(
+              context: context,
+              iconData: Icons.pie_chart_outline,
+              label: 'Spends',
+              isSelected: selectedIndex == 4,
+              index: 4,
+            ),
+          ],
+        ),
       ),
     );
   }

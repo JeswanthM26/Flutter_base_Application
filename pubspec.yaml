@@ -1,4 +1,4 @@
-name: "Retail_Application"
+name: "retail_application"
 description: "A new Flutter project."
 publish_to: 'none'
 
@@ -53,6 +53,7 @@ flutter:
     - mock/products/
     - mock/Dashboard/
     - mock/mock_datas/
+    - mock/Notifications/
     - mock/menu_options/
     - assets/loader/
     - assets/login/

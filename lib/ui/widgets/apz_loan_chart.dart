@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/models/financials/loan_model.dart';
-import 'package:Retail_Application/ui/components/apz_donut_chart.dart';
+import 'package:retail_application/models/financials/loan_model.dart';
+import 'package:retail_application/ui/components/apz_donut_chart.dart';
 
 class LoansChartExample extends StatefulWidget {
   final Loan loan;

@@ -1,7 +1,7 @@
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
 
 class ApzSegmentedControl extends StatelessWidget {
   final List<String> values;
@@ -34,7 +34,7 @@ class ApzSegmentedControl extends StatelessWidget {
                 duration: const Duration(milliseconds: 180),
                 decoration: BoxDecoration(
                   color: selected
-                      ? AppColors.container_box(context)
+                      ? Colors.white
                       : AppColors.input_field_filled(
                           context), // <-- blend unselected
                   borderRadius: selected

@@ -217,5 +217,7 @@ final Color profileHeaderIconGradient2 = Colors.white.withOpacity(0.05);
 final Color profileHeaderIconGradient3 = Colors.white.withOpacity(0.05);
 final Color profileHeaderIconGradient4 = Colors.white.withOpacity(0.3);
 final Color profileInfoBorder = Color(0x66696A6A);
+const Color profileDialogContainer = Color(0xFF232323);
+const Color profileDialogBorder = Color(0x66696A6A);
 
 const Color slidebuttonBackground = Color.fromARGB(255, 0, 0, 0);

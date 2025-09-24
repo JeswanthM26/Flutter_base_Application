@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/themes/light_theme.dart' as light;
-import 'package:Retail_Application/themes/dark_theme.dart' as dark;
+import 'package:retail_application/themes/light_theme.dart' as light;
+import 'package:retail_application/themes/dark_theme.dart' as dark;
 
 class AppColors {
   static Color primary(BuildContext context) =>
@@ -706,6 +706,14 @@ class AppColors {
       Theme.of(context).brightness == Brightness.dark
           ? dark.slidebuttonBackground
           : light.slidebuttonBackground;
+  static Color profileDialogContainer(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileDialogContainer
+          : light.profileDialogContainer;
+  static Color profileDialogBorder(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? dark.profileDialogBorder
+          : light.profileDialogBorder;
 }
 
 class AppImages {

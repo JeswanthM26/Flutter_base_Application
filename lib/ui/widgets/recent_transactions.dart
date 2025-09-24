@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:Retail_Application/models/dashboard/transaction_model.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
+import 'package:retail_application/models/dashboard/transaction_model.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle, HapticFeedback;
-import 'package:Retail_Application/ui/components/apz_payment.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_payment.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
 import 'package:intl/intl.dart';
 import '../components/apz_alert.dart';
 

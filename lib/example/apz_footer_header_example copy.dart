@@ -1,14 +1,14 @@
-import 'package:Retail_Application/example/appz_button_example.dart';
-import 'package:Retail_Application/example/appz_radio_example.dart';
-import 'package:Retail_Application/example/apz_dropdown_example.dart';
-import 'package:Retail_Application/example/apz_searchbar_example.dart';
-import 'package:Retail_Application/themes/apz_theme_provider.dart';
-import 'package:Retail_Application/ui/components/apz_menu.dart';
-import 'package:Retail_Application/ui/components/apz_scaffold.dart';
-import 'package:Retail_Application/ui/widgets/account_screen.dart';
+import 'package:retail_application/example/appz_button_example.dart';
+import 'package:retail_application/example/appz_radio_example.dart';
+import 'package:retail_application/example/apz_dropdown_example.dart';
+import 'package:retail_application/example/apz_searchbar_example.dart';
+import 'package:retail_application/themes/apz_theme_provider.dart';
+import 'package:retail_application/ui/components/apz_menu.dart';
+import 'package:retail_application/ui/components/apz_scaffold.dart';
+import 'package:retail_application/ui/widgets/account_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_footer.dart';
-import 'package:Retail_Application/ui/components/apz_header.dart';
+import 'package:retail_application/ui/components/apz_footer.dart';
+import 'package:retail_application/ui/components/apz_header.dart';
 import 'package:provider/provider.dart';
 
 class FooterHeaderScreen extends StatefulWidget {

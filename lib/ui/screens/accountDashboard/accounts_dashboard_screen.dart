@@ -1,52 +1,143 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:Retail_Application/models/dashboard/account_model.dart';
-import 'package:Retail_Application/ui/components/apz_searchbar.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/components/apz_payment.dart'
-    as apz_payment;
-import '../../models/dashboard/account_dashboard_promotions_model.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
 
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
+import 'package:retail_application/models/dashboard/account_dashboard_promotions_model.dart';
+import 'package:retail_application/models/dashboard/account_model.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_payment.dart';
+import 'package:retail_application/ui/components/apz_payment.dart' as apz_payment;
+import 'package:retail_application/ui/components/apz_searchbar.dart';
+
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
+import 'package:retail_application/ui/screens/accountDashboard/account_details_screen.dart';
+
+import 'transactions_screen.dart';
+ 
+// ---------------------- ACCOUNT ITEM CARD ----------------------
 class AccountItemCard extends StatelessWidget {
   final String title;
   final AccountModel account;
   final bool isCredit;
-
+  final VoidCallback? onViewDetails;
+  final VoidCallback? onTap;
+ 
   const AccountItemCard({
     super.key,
     required this.title,
     required this.account,
     required this.isCredit,
+    this.onViewDetails,
+    this.onTap,
   });
-
+ 
   String _maskedAccountNumber(String accNo) {
     if (accNo.isEmpty) return '----';
     if (accNo.length <= 4) return '**$accNo';
     return '**${accNo.substring(accNo.length - 4)}';
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     final maskedAccNo = _maskedAccountNumber(account.accountNo);
     final balance =
         (double.tryParse(account.availableBalance) ?? 0.0).toStringAsFixed(2);
-
+ 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: apz_payment.PaymentCard(
-        title: title,
-        subtitle: maskedAccNo,
-        imageUrl: "assets/mock/person.png",
-        actionType: apz_payment.PaymentCardActionType.text,
-        amount: '${account.currency} $balance',
-        isCredit: isCredit,
+      padding: const EdgeInsets.only(bottom: 0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5),
+        child: Slidable(
+          key: ValueKey(account.accountNo),
+          endActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: 0.35,
+            children: [
+              CustomSlidableAction(
+                onPressed: (context) {
+                  if (onViewDetails != null) {
+                    onViewDetails!();
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AccountDetailsScreen(account: account),
+                      ),
+                    );
+                  }
+                },
+                backgroundColor: AppColors.slidebuttonBackground(context),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text(
+                        'View',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        'Details',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: InkWell(
+              onTap: () {
+                if (onTap != null) {
+                  onTap!();
+                  return;
+                }
+                if (account.accountType == 'SB' || account.accountType == 'CA') {
+                  context.push('/transactions', extra: account);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AccountDetailsScreen(account: account),
+                    ),
+                  );
+                }
+              },
+              child: PaymentCard(
+                title: title,
+                subtitle: maskedAccNo,
+                imageUrl: "assets/mock/person.png",
+                actionType: apz_payment.PaymentCardActionType.text,
+                amount: '${account.currency} $balance',
+                isCredit: isCredit,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
-
+ 
+// ---------------------- DASHBOARD CARD DATA ----------------------
 class DashboardCardData {
   final String title;
   final String subtitle;
@@ -57,7 +148,7 @@ class DashboardCardData {
   final bool isDark;
   final int badgeCount;
   final double? cardWidth;
-
+ 
   DashboardCardData({
     required this.title,
     required this.subtitle,
@@ -70,23 +161,21 @@ class DashboardCardData {
     this.cardWidth,
   });
 }
-
+ 
 class DashboardCard extends StatelessWidget {
   final DashboardCardData data;
   final VoidCallback? onEyeTap;
-
+  final bool forceBlackText;
+ 
   const DashboardCard({
     Key? key,
     required this.data,
     this.onEyeTap,
+    this.forceBlackText = false,
   }) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context) {
-    final titleColor = AppColors.primary_text(context);
-    final subtitleColor = AppColors.primary_text(context);
-    final amountColor = AppColors.primary_text(context);
-
     return Container(
       width: data.cardWidth ?? 311,
       margin: const EdgeInsets.only(right: 16),
@@ -101,6 +190,7 @@ class DashboardCard extends StatelessWidget {
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ApzText(
                 label: data.title.toUpperCase(),
@@ -134,7 +224,7 @@ class DashboardCard extends StatelessWidget {
             label: data.subtitle,
             fontSize: 12,
             fontWeight: ApzFontWeight.bodyMedium,
-            color: subtitleColor,
+            color: Colors.black,
           ),
           const SizedBox(height: 6),
           Row(
@@ -145,7 +235,7 @@ class DashboardCard extends StatelessWidget {
                 label: data.amount,
                 fontSize: 14,
                 fontWeight: ApzFontWeight.titlesSemibold,
-                color: amountColor,
+                color: Colors.black,
               ),
               if (data.showEye)
                 GestureDetector(
@@ -165,42 +255,40 @@ class DashboardCard extends StatelessWidget {
     );
   }
 }
-
+ 
+// ---------------------- CARD CAROUSEL ----------------------
 class CardCarousel extends StatefulWidget {
   final List<DashboardCardData> cards;
   final ValueChanged<int>? onPageChanged;
   final Function(int)? onEyeTapForIndex;
-
+ 
   const CardCarousel({
     Key? key,
     required this.cards,
     this.onPageChanged,
     this.onEyeTapForIndex,
   }) : super(key: key);
-
+ 
   @override
   State<CardCarousel> createState() => _CardCarouselState();
 }
-
+ 
 class _CardCarouselState extends State<CardCarousel> {
   late final PageController _pageController;
   int currentIndex = 0;
-
+ 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(
-      initialPage: 0,
-      viewportFraction: 0.85,
-    );
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.93);
   }
-
+ 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -227,59 +315,90 @@ class _CardCarouselState extends State<CardCarousel> {
     );
   }
 }
-
+ 
+// ---------------------- ACCOUNT DASHBOARD SCREEN ----------------------
+class AccountDashboardScreen extends StatelessWidget {
+  const AccountDashboardScreen({super.key});
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          SafeArea(
+            child: ProfileHeaderWidget(
+              onBackPressed: () {
+                Navigator.pop(context);
+              },
+              title: "All Accounts",
+            ),
+          ),
+          const Expanded(
+            child: AccountDashboard(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+ 
+// ---------------------- ACCOUNT DASHBOARD WIDGET ----------------------
 class AccountDashboard extends StatefulWidget {
   const AccountDashboard({super.key});
-
+ 
   @override
   State<AccountDashboard> createState() => _AccountDashboardState();
 }
-
+ 
 class _AccountDashboardState extends State<AccountDashboard> {
   int selectedIndex = 0;
   String depositType = "Fixed";
-
   bool hideSavings = false;
   bool hideDeposit = false;
   bool hideLoan = false;
-
   List<AccountModel> accounts = [];
   double savingsCurrentTotal = 0.0;
   List<AccountModel> accountsSavingsCurrent = [];
   List<AccountModel> accountsDeposits = [];
   List<AccountModel> accountsLoans = [];
-
   List<AccountDashboardPromotion> accountDashboardPromotions = [];
-
+ 
+  // --- SEARCH RELATED ---
+  TextEditingController searchController = TextEditingController();
+  List<AccountModel> filteredSavings = [];
+  List<AccountModel> filteredDeposits = [];
+  List<AccountModel> filteredLoans = [];
+ 
   bool _isFixedDeposit(AccountModel account) {
     return account.accountType == "FD" || account.loanType == "FD";
   }
-
+ 
   bool _isRecurringDeposit(AccountModel account) {
     return account.accountType == "RD" || account.loanType == "RD";
   }
-
-  List<AccountModel> _depositsForSelectedType() {
-    if (depositType == "Fixed") {
-      return accountsDeposits.where(_isFixedDeposit).toList();
-    }
-    return accountsDeposits.where(_isRecurringDeposit).toList();
+ 
+List<AccountModel> _depositsForSelectedType() {
+  if (depositType == "Fixed") {
+    return filteredDeposits.where(_isFixedDeposit).toList();
+  } else {
+    return filteredDeposits.where(_isRecurringDeposit).toList();
   }
-
+}
+ 
   String _currencyFor(List<AccountModel> list) {
     if (list.isNotEmpty && list.first.currency.isNotEmpty) {
       return list.first.currency;
     }
-    return 'INR';
+    return '';
   }
-
+ 
   @override
   void initState() {
     super.initState();
     loadAccounts();
     loadAccountDashboardPromotions();
   }
-
+ 
   Future<void> loadAccounts() async {
     final jsonStr =
         await rootBundle.loadString("mock/Dashboard/account_mock.json");
@@ -287,7 +406,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
     final List<dynamic> accJson =
         data["apiResponse"]["ResponseBody"]["responseObj"]["accountDetails"];
     accounts = accJson.map((e) => AccountModel.fromJson(e)).toList();
-
+ 
     if (accounts.isNotEmpty) {
       final customerId = accounts.first.customerId;
       accountsSavingsCurrent = accounts
@@ -303,15 +422,19 @@ class _AccountDashboardState extends State<AccountDashboard> {
       accountsLoans = accounts
           .where((a) => a.customerId == customerId && a.accountType == "LN")
           .toList();
-
+ 
       savingsCurrentTotal = accountsSavingsCurrent.fold(
         0.0,
         (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
       );
+ 
+      filteredSavings = List.from(accountsSavingsCurrent);
+      filteredDeposits = List.from(accountsDeposits);
+      filteredLoans = List.from(accountsLoans);
     }
     setState(() {});
   }
-
+ 
   Future<void> loadAccountDashboardPromotions() async {
     final jsonStr = await rootBundle
         .loadString("mock/Dashboard/accountdashboard_promotions.json");
@@ -319,19 +442,38 @@ class _AccountDashboardState extends State<AccountDashboard> {
     accountDashboardPromotions = AccountDashboardPromotion.listFromApi(data);
     setState(() {});
   }
-
+ 
+  void _applySearch(String query) {
+    final q = query.toLowerCase();
+ 
+    filteredSavings = accountsSavingsCurrent.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " account").contains(q);
+    }).toList();
+ 
+    filteredDeposits = accountsDeposits.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " deposit").contains(q);
+    }).toList();
+ 
+    filteredLoans = accountsLoans.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " loan").contains(q);
+    }).toList();
+ 
+    setState(() {});
+  }
+ 
   @override
   Widget build(BuildContext context) {
     const gradientSavings = LinearGradient(
       begin: Alignment(-0.56, 0.51),
       end: Alignment(1.57, 0.51),
       colors: [
-        Color(0xFFFFCB55),
-        Color(0xFFFFCB55),
+        Color(0xFFFFD982),
         Color(0xFFFFE5AB),
-        Color(0xFFFDFDFD),
-        Color(0xFFFFE1A0),
-        Color(0x06FFCB55),
+        Color(0xFFFEFEFE),
+        Color(0xFFFFE2A1),
       ],
     );
     const gradientDeposit = LinearGradient(
@@ -351,18 +493,18 @@ class _AccountDashboardState extends State<AccountDashboard> {
         Color(0xFFFFE0E0),
       ],
     );
-
+ 
     final loanTotal = accountsLoans.fold<double>(
       0.0,
       (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
     );
-
+ 
     final depositsSelected = _depositsForSelectedType();
     final depositsGrandTotal = accountsDeposits.fold<double>(
       0.0,
       (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
     );
-
+ 
     final carouselCards = <DashboardCardData>[
       DashboardCardData(
         title: 'Savings & Current',
@@ -370,10 +512,8 @@ class _AccountDashboardState extends State<AccountDashboard> {
         amount: hideSavings
             ? '***'
             : '${_currencyFor(accountsSavingsCurrent)} ${savingsCurrentTotal.toStringAsFixed(2)}',
-        smallImage: Image.asset(
-          'assets/accountdashboard/Building Blocks.png',
-          fit: BoxFit.contain,
-        ),
+        smallImage: Image.asset('assets/accountdashboard/Building Blocks.png',
+            fit: BoxFit.contain),
         showEye: true,
         backgroundGradient: gradientSavings,
         badgeCount: accountsSavingsCurrent.length,
@@ -385,10 +525,8 @@ class _AccountDashboardState extends State<AccountDashboard> {
         amount: hideDeposit
             ? '***'
             : '${_currencyFor(accountsDeposits)} ${depositsGrandTotal.toStringAsFixed(2)}',
-        smallImage: Image.asset(
-          'assets/accountdashboard/Building Blocks.png',
-          fit: BoxFit.contain,
-        ),
+        smallImage: Image.asset('assets/accountdashboard/Building Blocks.png',
+            fit: BoxFit.contain),
         showEye: true,
         backgroundGradient: gradientDeposit,
         badgeCount: depositsSelected.length,
@@ -400,22 +538,20 @@ class _AccountDashboardState extends State<AccountDashboard> {
         amount: hideLoan
             ? '***'
             : '${_currencyFor(accountsLoans)} ${loanTotal.toStringAsFixed(2)}',
-        smallImage: Image.asset(
-          'assets/accountdashboard/Building Blocks.png',
-          fit: BoxFit.contain,
-        ),
+        smallImage: Image.asset('assets/accountdashboard/Building Blocks.png',
+            fit: BoxFit.contain),
         showEye: true,
         backgroundGradient: gradientLoan,
         badgeCount: accountsLoans.length,
         cardWidth: 380,
       ),
     ];
-
+ 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CardCarousel(
@@ -435,49 +571,96 @@ class _AccountDashboardState extends State<AccountDashboard> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ApzSearchBar(
               type: AppzSearchBarType.primary,
+              trailingIcon: const Icon(Icons.mic),
+              onTrailingPressed: () {},
               placeholder: "Search here...",
-              onChanged: (val) => debugPrint("Search input: $val"),
+              controller: searchController,
+              onChanged: (val) => _applySearch(val),
             ),
           ),
           const SizedBox(height: 16),
+ 
+          // --- Savings & Current ---
           if (selectedIndex == 0)
             _buildPaymentCardContainer(
-              children: accountsSavingsCurrent
+              children: filteredSavings
                   .map((acc) => AccountItemCard(
                         title: acc.accountType == 'CA'
                             ? 'Current Account'
                             : 'Savings Account',
                         account: acc,
                         isCredit: false,
+                        onViewDetails: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
+                        onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    TransactionsScreen(account: acc),
+                              ),
+                            ),
                       ))
                   .toList(),
             ),
-          if (selectedIndex == 1) ...[
-            _buildDepositToggle(),
-            const SizedBox(height: 12),
-            _buildPaymentCardContainer(
-              children: depositsSelected
-                  .map((acc) => AccountItemCard(
-                        title: acc.accountType == "FD"
-                            ? "Fixed Deposit"
-                            : "Recurring Deposit",
-                        account: acc,
-                        isCredit: false,
-                      ))
-                  .toList(),
-            ),
-          ],
+ 
+          // --- Deposits ---
+       // --- Deposits ---
+if (selectedIndex == 1) ...[
+  _buildDepositToggle(),
+  const SizedBox(height: 12),
+  _buildPaymentCardContainer(
+    children: _depositsForSelectedType().map((acc) => AccountItemCard(
+      title: acc.accountType == "FD" ? "Fixed Deposit" : "Recurring Deposit",
+      account: acc,
+      isCredit: false,
+      onViewDetails: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountDetailsScreen(account: acc),
+        ),
+      ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountDetailsScreen(account: acc),
+        ),
+      ),
+    )).toList(),
+  ),
+],
+ 
+          // --- Loans ---
           if (selectedIndex == 2)
             _buildPaymentCardContainer(
-              children: accountsLoans
+              children: filteredLoans
                   .map((acc) => AccountItemCard(
-                        title:
-                            'Loan${acc.loanType.isNotEmpty ? ' - ${acc.loanType}' : ''}',
+                        title: 'Loan${acc.loanType.isNotEmpty ? ' - ${acc.loanType}' : ''}',
                         account: acc,
                         isCredit: false,
+                        onViewDetails: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
+                        onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
                       ))
                   .toList(),
             ),
+ 
+          // --- Promotions ---
           if (selectedIndex < accountDashboardPromotions.length) ...[
             const SizedBox(height: 24),
             Padding(
@@ -493,8 +676,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
                     fit: BoxFit.cover,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                      borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Stack(
                   children: [
@@ -524,8 +706,8 @@ class _AccountDashboardState extends State<AccountDashboard> {
                             label: accountDashboardPromotions[selectedIndex]
                                 .description,
                             fontSize: 14,
-                            fontWeight: ApzFontWeight.bodyRegular,
-                            color: const Color(0xFF0E2255),
+                            fontWeight: ApzFontWeight.bodyMedium,
+                            color: const Color(0xFF171717),
                           ),
                         ],
                       ),
@@ -534,26 +716,43 @@ class _AccountDashboardState extends State<AccountDashboard> {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
           ],
+          const SizedBox(height: 24),
         ],
       ),
     );
   }
-
+ 
   Widget _buildPaymentCardContainer({required List<Widget> children}) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardBackground(context),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(children: children),
+      child: Column(
+        children: children
+            .asMap()
+            .entries
+            .map(
+              (entry) => Column(
+                children: [
+                  entry.value,
+                  if (entry.key != children.length - 1)
+                    Divider(
+                      height: 16,
+                      color: AppColors.dashboardSavingsDividerColor(context),
+                    ),
+                ],
+              ),
+            )
+            .toList(),
+      ),
     );
   }
-
+ 
   Widget _buildDepositToggle() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -624,3 +823,4 @@ class _AccountDashboardState extends State<AccountDashboard> {
     );
   }
 }
+ 

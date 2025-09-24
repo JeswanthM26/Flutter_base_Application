@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_header.dart'; // Adjust the path if needed
+import 'package:retail_application/ui/components/apz_header.dart'; // Adjust the path if needed
 
 class ExampleHeaderScreen extends StatelessWidget {
   const ExampleHeaderScreen({super.key});

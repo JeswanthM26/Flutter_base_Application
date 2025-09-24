@@ -1,6 +1,6 @@
-import 'package:Retail_Application/core/configs/apz_app_config.dart';
-import 'package:Retail_Application/data/repositories/apz_product.dart';
-import 'package:Retail_Application/models/api_test/apz_product.dart';
+import 'package:retail_application/core/configs/apz_app_config.dart';
+import 'package:retail_application/data/repositories/apz_product.dart';
+import 'package:retail_application/models/api_test/apz_product.dart';
 import 'package:flutter/material.dart';
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});

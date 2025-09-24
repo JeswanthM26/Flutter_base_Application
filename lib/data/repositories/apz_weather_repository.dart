@@ -1,6 +1,6 @@
-import 'package:Retail_Application/core/constants/apz_api_constants.dart';
-import 'package:Retail_Application/core/utils/apz_api_service.dart';
-import 'package:Retail_Application/data/enums/apz_api_enums.dart';
+import 'package:retail_application/core/constants/apz_api_constants.dart';
+import 'package:retail_application/core/utils/apz_api_service.dart';
+import 'package:retail_application/data/enums/apz_api_enums.dart';
 // import 'package:http/http.dart' as http;
 
 

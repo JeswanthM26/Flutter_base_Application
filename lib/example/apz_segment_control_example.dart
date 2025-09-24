@@ -1,4 +1,4 @@
-import 'package:Retail_Application/ui/components/apz_segment_control.dart';
+import 'package:retail_application/ui/components/apz_segment_control.dart';
 import 'package:flutter/material.dart';
 
 class MyScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
 
-import 'package:Retail_Application/core/configs/apz_app_config.dart';
-import 'package:Retail_Application/core/utils/apz_api_service.dart';
-import 'package:Retail_Application/data/enums/apz_api_enums.dart';
-import 'package:Retail_Application/models/api_test/apz_stock_model.dart';
+import 'package:retail_application/core/configs/apz_app_config.dart';
+import 'package:retail_application/core/utils/apz_api_service.dart';
+import 'package:retail_application/data/enums/apz_api_enums.dart';
+import 'package:retail_application/models/api_test/apz_stock_model.dart';
 
 class StockRepository {
   final ApiService apiService = ApiService();

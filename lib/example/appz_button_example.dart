@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
 
 class AppzButtonExample extends StatelessWidget {
   const AppzButtonExample({super.key});

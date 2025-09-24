@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Retail_Application/ui/components/apz_text.dart';
-import 'package:Retail_Application/ui/components/apz_button.dart';
-import 'package:Retail_Application/themes/apz_app_themes.dart';
-import 'package:Retail_Application/themes/common_properties.dart';
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/components/apz_button.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/common_properties.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 enum ApzAlertMessageType { success, error, info, warning }

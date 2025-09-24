@@ -17,6 +17,15 @@ class ApzNotificationExample extends StatelessWidget {
             onBackPressed: () {
               Navigator.of(context).pop();
             },
+            trailingIcon: Icons.more_vert,
+            onActionPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("More options pressed"),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
           ),
           const Expanded(
             child: NotificationWidget(),

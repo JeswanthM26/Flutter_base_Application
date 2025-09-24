@@ -1,21 +1,22 @@
 class AccountStatementModel {
   final String accountNo;
   final List<TransactionTrendModel> trend;
-
+ 
   AccountStatementModel({
     required this.accountNo,
     required this.trend,
   });
-
+ 
   factory AccountStatementModel.fromJson(Map<String, dynamic> json) {
     return AccountStatementModel(
-      accountNo: json['accountNo'] ?? '',
+      accountNo: json['accountNo']?.toString() ?? '',
       trend: (json['transactions'] as List<dynamic>? ?? [])
-          .map((e) => TransactionTrendModel.fromJson(e))
+          .where((e) => e != null)
+          .map((e) => TransactionTrendModel.fromJson(e!))
           .toList(),
     );
   }
-
+ 
   Map<String, dynamic> toJson() {
     return {
       'accountNo': accountNo,
@@ -23,7 +24,7 @@ class AccountStatementModel {
     };
   }
 }
-
+ 
 class TransactionTrendModel {
   final String date;
   final double balance;
@@ -44,7 +45,7 @@ class TransactionTrendModel {
   final String trnDesc;
   final String trnRefNo;
   final String customerId;
-
+ 
   TransactionTrendModel({
     required this.date,
     required this.balance,
@@ -66,31 +67,31 @@ class TransactionTrendModel {
     required this.trnRefNo,
     required this.customerId,
   });
-
+ 
   factory TransactionTrendModel.fromJson(Map<String, dynamic> json) {
     return TransactionTrendModel(
-      date: json['date'] ?? '',
-      balance: double.tryParse(json['balance']?.toString() ?? '0') ?? 0,
-      accountCcy: json['accountCcy'] ?? '',
-      accountNo: json['accountNo'] ?? '',
-      openingBalance: double.tryParse(json['openingBalance']?.toString() ?? '0') ?? 0,
-      closingBalance: double.tryParse(json['closingBalance']?.toString() ?? '0') ?? 0,
-      runningBalance: double.tryParse(json['runningBalance']?.toString() ?? '0') ?? 0,
-      creditAccount: json['creditAccount'] ?? '',
-      creditAccountCcy: json['creditAccountCcy'] ?? '',
-      debAccountCcy: json['debAccountCcy'] ?? '',
-      drcrIndicator: json['drcrIndicator'] ?? '',
-      trnAmount: double.tryParse(json['trnAmount']?.toString() ?? '0') ?? 0,
-      trnCcy: json['trnCcy'] ?? '',
-      currencyIcon: json['currencyIcon'] ?? '',
-      transactionCcyIcon: json['transactionCcyIcon'] ?? '',
-      trnDate: json['trnDate'] ?? '',
-      trnDesc: json['trnDesc'] ?? '',
-      trnRefNo: json['trnRefNo'] ?? '',
-      customerId: json['customerId'] ?? '',
+      date: json['date']?.toString() ?? '',
+      balance: _toDouble(json['balance']),
+      accountCcy: json['accountCcy']?.toString() ?? '',
+      accountNo: json['accountNo']?.toString() ?? '',
+      openingBalance: _toDouble(json['openingBalance']),
+      closingBalance: _toDouble(json['closingBalance']),
+      runningBalance: _toDouble(json['runningBalance']),
+      creditAccount: json['creditAccount']?.toString() ?? '',
+      creditAccountCcy: json['creditAccountCcy']?.toString() ?? '',
+      debAccountCcy: json['debAccountCcy']?.toString() ?? '',
+      drcrIndicator: json['drcrIndicator']?.toString() ?? '',
+      trnAmount: _toDouble(json['trnAmount']),
+      trnCcy: json['trnCcy']?.toString() ?? '',
+      currencyIcon: json['currencyIcon']?.toString() ?? '',
+      transactionCcyIcon: json['transactionCcyIcon']?.toString() ?? '',
+      trnDate: json['trnDate']?.toString() ?? '',
+      trnDesc: json['trnDesc']?.toString() ?? '',
+      trnRefNo: json['trnRefNo']?.toString() ?? '',
+      customerId: json['customerId']?.toString() ?? '',
     );
   }
-
+ 
   Map<String, dynamic> toJson() {
     return {
       'date': date,
@@ -114,4 +115,14 @@ class TransactionTrendModel {
       'customerId': customerId,
     };
   }
+ 
+  // Helper to safely parse numbers
+  static double _toDouble(dynamic value) {
+    if (value == null) return 0;
+    if (value is int) return value.toDouble();
+    if (value is double) return value;
+    return double.tryParse(value.toString()) ?? 0;
+  }
 }
+ 
+ 

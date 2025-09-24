@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:retail_application/models/dashboard/customer_model.dart';
-import 'package:retail_application/ui/components/apz_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:retail_application/themes/apz_app_themes.dart';

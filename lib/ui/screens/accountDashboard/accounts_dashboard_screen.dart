@@ -1,24 +1,23 @@
 import 'dart:convert';
-import 'package:retail_application/models/dashboard/account_dashboard_promotions_model.dart';
-import 'package:retail_application/ui/components/apz_payment.dart';
-import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
-import 'package:retail_application/ui/screens/accountDashboard/account_details_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:retail_application/models/dashboard/account_model.dart';
-import 'package:retail_application/ui/components/apz_searchbar.dart';
-import 'package:retail_application/ui/components/apz_text.dart';
-import 'package:retail_application/ui/components/apz_payment.dart'
-    as apz_payment;
-import 'package:retail_application/themes/apz_app_themes.dart';
+
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-import 'package:retail_application/ui/components/apz_toogle_switch.dart';
-import 'package:retail_application/ui/components/apz_alert.dart';
+import 'package:retail_application/models/dashboard/account_dashboard_promotions_model.dart';
+import 'package:retail_application/models/dashboard/account_model.dart';
+import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/ui/components/apz_payment.dart';
+import 'package:retail_application/ui/components/apz_payment.dart' as apz_payment;
+import 'package:retail_application/ui/components/apz_searchbar.dart';
+
+import 'package:retail_application/ui/components/apz_text.dart';
+import 'package:retail_application/ui/screens/Profile/profile_screen.dart';
+import 'package:retail_application/ui/screens/accountDashboard/account_details_screen.dart';
 
 import 'transactions_screen.dart';
-
+ 
 // ---------------------- ACCOUNT ITEM CARD ----------------------
 class AccountItemCard extends StatelessWidget {
   final String title;
@@ -26,7 +25,7 @@ class AccountItemCard extends StatelessWidget {
   final bool isCredit;
   final VoidCallback? onViewDetails;
   final VoidCallback? onTap;
-
+ 
   const AccountItemCard({
     super.key,
     required this.title,
@@ -35,19 +34,19 @@ class AccountItemCard extends StatelessWidget {
     this.onViewDetails,
     this.onTap,
   });
-
+ 
   String _maskedAccountNumber(String accNo) {
     if (accNo.isEmpty) return '----';
     if (accNo.length <= 4) return '**$accNo';
     return '**${accNo.substring(accNo.length - 4)}';
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     final maskedAccNo = _maskedAccountNumber(account.accountNo);
     final balance =
         (double.tryParse(account.availableBalance) ?? 0.0).toStringAsFixed(2);
-
+ 
     return Padding(
       padding: const EdgeInsets.only(bottom: 0),
       child: ClipRRect(
@@ -110,8 +109,7 @@ class AccountItemCard extends StatelessWidget {
                   onTap!();
                   return;
                 }
-                if (account.accountType == 'SB' ||
-                    account.accountType == 'CA') {
+                if (account.accountType == 'SB' || account.accountType == 'CA') {
                   context.push('/transactions', extra: account);
                 } else {
                   Navigator.push(
@@ -138,7 +136,7 @@ class AccountItemCard extends StatelessWidget {
     );
   }
 }
-
+ 
 // ---------------------- DASHBOARD CARD DATA ----------------------
 class DashboardCardData {
   final String title;
@@ -150,7 +148,7 @@ class DashboardCardData {
   final bool isDark;
   final int badgeCount;
   final double? cardWidth;
-
+ 
   DashboardCardData({
     required this.title,
     required this.subtitle,
@@ -163,19 +161,19 @@ class DashboardCardData {
     this.cardWidth,
   });
 }
-
+ 
 class DashboardCard extends StatelessWidget {
   final DashboardCardData data;
   final VoidCallback? onEyeTap;
   final bool forceBlackText;
-
+ 
   const DashboardCard({
     Key? key,
     required this.data,
     this.onEyeTap,
     this.forceBlackText = false,
   }) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -257,40 +255,40 @@ class DashboardCard extends StatelessWidget {
     );
   }
 }
-
+ 
 // ---------------------- CARD CAROUSEL ----------------------
 class CardCarousel extends StatefulWidget {
   final List<DashboardCardData> cards;
   final ValueChanged<int>? onPageChanged;
   final Function(int)? onEyeTapForIndex;
-
+ 
   const CardCarousel({
     Key? key,
     required this.cards,
     this.onPageChanged,
     this.onEyeTapForIndex,
   }) : super(key: key);
-
+ 
   @override
   State<CardCarousel> createState() => _CardCarouselState();
 }
-
+ 
 class _CardCarouselState extends State<CardCarousel> {
   late final PageController _pageController;
   int currentIndex = 0;
-
+ 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0, viewportFraction: 0.93);
   }
-
+ 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -317,11 +315,11 @@ class _CardCarouselState extends State<CardCarousel> {
     );
   }
 }
-
+ 
 // ---------------------- ACCOUNT DASHBOARD SCREEN ----------------------
 class AccountDashboardScreen extends StatelessWidget {
   const AccountDashboardScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -343,15 +341,15 @@ class AccountDashboardScreen extends StatelessWidget {
     );
   }
 }
-
+ 
 // ---------------------- ACCOUNT DASHBOARD WIDGET ----------------------
 class AccountDashboard extends StatefulWidget {
   const AccountDashboard({super.key});
-
+ 
   @override
   State<AccountDashboard> createState() => _AccountDashboardState();
 }
-
+ 
 class _AccountDashboardState extends State<AccountDashboard> {
   int selectedIndex = 0;
   String depositType = "Fixed";
@@ -364,36 +362,43 @@ class _AccountDashboardState extends State<AccountDashboard> {
   List<AccountModel> accountsDeposits = [];
   List<AccountModel> accountsLoans = [];
   List<AccountDashboardPromotion> accountDashboardPromotions = [];
-
+ 
+  // --- SEARCH RELATED ---
+  TextEditingController searchController = TextEditingController();
+  List<AccountModel> filteredSavings = [];
+  List<AccountModel> filteredDeposits = [];
+  List<AccountModel> filteredLoans = [];
+ 
   bool _isFixedDeposit(AccountModel account) {
     return account.accountType == "FD" || account.loanType == "FD";
   }
-
+ 
   bool _isRecurringDeposit(AccountModel account) {
     return account.accountType == "RD" || account.loanType == "RD";
   }
-
-  List<AccountModel> _depositsForSelectedType() {
-    if (depositType == "Fixed") {
-      return accountsDeposits.where(_isFixedDeposit).toList();
-    }
-    return accountsDeposits.where(_isRecurringDeposit).toList();
+ 
+List<AccountModel> _depositsForSelectedType() {
+  if (depositType == "Fixed") {
+    return filteredDeposits.where(_isFixedDeposit).toList();
+  } else {
+    return filteredDeposits.where(_isRecurringDeposit).toList();
   }
-
+}
+ 
   String _currencyFor(List<AccountModel> list) {
     if (list.isNotEmpty && list.first.currency.isNotEmpty) {
       return list.first.currency;
     }
     return '';
   }
-
+ 
   @override
   void initState() {
     super.initState();
     loadAccounts();
     loadAccountDashboardPromotions();
   }
-
+ 
   Future<void> loadAccounts() async {
     final jsonStr =
         await rootBundle.loadString("mock/Dashboard/account_mock.json");
@@ -401,7 +406,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
     final List<dynamic> accJson =
         data["apiResponse"]["ResponseBody"]["responseObj"]["accountDetails"];
     accounts = accJson.map((e) => AccountModel.fromJson(e)).toList();
-
+ 
     if (accounts.isNotEmpty) {
       final customerId = accounts.first.customerId;
       accountsSavingsCurrent = accounts
@@ -417,15 +422,19 @@ class _AccountDashboardState extends State<AccountDashboard> {
       accountsLoans = accounts
           .where((a) => a.customerId == customerId && a.accountType == "LN")
           .toList();
-
+ 
       savingsCurrentTotal = accountsSavingsCurrent.fold(
         0.0,
         (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
       );
+ 
+      filteredSavings = List.from(accountsSavingsCurrent);
+      filteredDeposits = List.from(accountsDeposits);
+      filteredLoans = List.from(accountsLoans);
     }
     setState(() {});
   }
-
+ 
   Future<void> loadAccountDashboardPromotions() async {
     final jsonStr = await rootBundle
         .loadString("mock/Dashboard/accountdashboard_promotions.json");
@@ -433,7 +442,28 @@ class _AccountDashboardState extends State<AccountDashboard> {
     accountDashboardPromotions = AccountDashboardPromotion.listFromApi(data);
     setState(() {});
   }
-
+ 
+  void _applySearch(String query) {
+    final q = query.toLowerCase();
+ 
+    filteredSavings = accountsSavingsCurrent.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " account").contains(q);
+    }).toList();
+ 
+    filteredDeposits = accountsDeposits.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " deposit").contains(q);
+    }).toList();
+ 
+    filteredLoans = accountsLoans.where((acc) {
+      return acc.accountNo.toLowerCase().contains(q) ||
+          (acc.accountType.toLowerCase() + " loan").contains(q);
+    }).toList();
+ 
+    setState(() {});
+  }
+ 
   @override
   Widget build(BuildContext context) {
     const gradientSavings = LinearGradient(
@@ -463,18 +493,18 @@ class _AccountDashboardState extends State<AccountDashboard> {
         Color(0xFFFFE0E0),
       ],
     );
-
+ 
     final loanTotal = accountsLoans.fold<double>(
       0.0,
       (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
     );
-
+ 
     final depositsSelected = _depositsForSelectedType();
     final depositsGrandTotal = accountsDeposits.fold<double>(
       0.0,
       (sum, acc) => sum + (double.tryParse(acc.availableBalance) ?? 0.0),
     );
-
+ 
     final carouselCards = <DashboardCardData>[
       DashboardCardData(
         title: 'Savings & Current',
@@ -516,12 +546,12 @@ class _AccountDashboardState extends State<AccountDashboard> {
         cardWidth: 380,
       ),
     ];
-
+ 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
+          
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CardCarousel(
@@ -544,15 +574,16 @@ class _AccountDashboardState extends State<AccountDashboard> {
               trailingIcon: const Icon(Icons.mic),
               onTrailingPressed: () {},
               placeholder: "Search here...",
-              onChanged: (val) => debugPrint("Search input: $val"),
+              controller: searchController,
+              onChanged: (val) => _applySearch(val),
             ),
           ),
           const SizedBox(height: 16),
-
+ 
           // --- Savings & Current ---
           if (selectedIndex == 0)
             _buildPaymentCardContainer(
-              children: accountsSavingsCurrent
+              children: filteredSavings
                   .map((acc) => AccountItemCard(
                         title: acc.accountType == 'CA'
                             ? 'Current Account'
@@ -560,81 +591,75 @@ class _AccountDashboardState extends State<AccountDashboard> {
                         account: acc,
                         isCredit: false,
                         onViewDetails: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccountDetailsScreen(account: acc),
-                          ),
-                        ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
                         onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                TransactionsScreen(account: acc),
-                          ),
-                        ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    TransactionsScreen(account: acc),
+                              ),
+                            ),
                       ))
                   .toList(),
             ),
-
+ 
           // --- Deposits ---
-          if (selectedIndex == 1) ...[
-            _buildDepositToggle(),
-            const SizedBox(height: 12),
-            _buildPaymentCardContainer(
-              children: depositsSelected
-                  .map((acc) => AccountItemCard(
-                        title: acc.accountType == "FD"
-                            ? "Fixed Deposit"
-                            : "Recurring Deposit",
-                        account: acc,
-                        isCredit: false,
-                        onViewDetails: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccountDetailsScreen(account: acc),
-                          ),
-                        ),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccountDetailsScreen(account: acc),
-                          ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-          ],
-
+       // --- Deposits ---
+if (selectedIndex == 1) ...[
+  _buildDepositToggle(),
+  const SizedBox(height: 12),
+  _buildPaymentCardContainer(
+    children: _depositsForSelectedType().map((acc) => AccountItemCard(
+      title: acc.accountType == "FD" ? "Fixed Deposit" : "Recurring Deposit",
+      account: acc,
+      isCredit: false,
+      onViewDetails: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountDetailsScreen(account: acc),
+        ),
+      ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountDetailsScreen(account: acc),
+        ),
+      ),
+    )).toList(),
+  ),
+],
+ 
           // --- Loans ---
           if (selectedIndex == 2)
             _buildPaymentCardContainer(
-              children: accountsLoans
+              children: filteredLoans
                   .map((acc) => AccountItemCard(
-                        title:
-                            'Loan${acc.loanType.isNotEmpty ? ' - ${acc.loanType}' : ''}',
+                        title: 'Loan${acc.loanType.isNotEmpty ? ' - ${acc.loanType}' : ''}',
                         account: acc,
                         isCredit: false,
                         onViewDetails: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccountDetailsScreen(account: acc),
-                          ),
-                        ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
                         onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccountDetailsScreen(account: acc),
-                          ),
-                        ),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountDetailsScreen(account: acc),
+                              ),
+                            ),
                       ))
                   .toList(),
             ),
-
+ 
           // --- Promotions ---
           if (selectedIndex < accountDashboardPromotions.length) ...[
             const SizedBox(height: 24),
@@ -697,7 +722,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
       ),
     );
   }
-
+ 
   Widget _buildPaymentCardContainer({required List<Widget> children}) {
     return Container(
       width: double.infinity,
@@ -727,7 +752,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
       ),
     );
   }
-
+ 
   Widget _buildDepositToggle() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -798,3 +823,4 @@ class _AccountDashboardState extends State<AccountDashboard> {
     );
   }
 }
+ 

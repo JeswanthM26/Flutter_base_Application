@@ -73,7 +73,7 @@ class _ApzFooterScaffoldState extends State<ApzFooterScaffold> {
             bottom: _isMenuOpen ? 0 : -menuHeight,
             left: 0,
             right: 0,
-            child: MenuSheet(onClose: _toggleMenu),
+            child: MenuSheet(onClose: _toggleMenu, options: [],),
           ),
         ],
       ),

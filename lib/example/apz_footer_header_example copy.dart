@@ -3,13 +3,13 @@ import 'package:retail_application/example/appz_radio_example.dart';
 import 'package:retail_application/example/apz_dropdown_example.dart';
 import 'package:retail_application/example/apz_searchbar_example.dart';
 import 'package:retail_application/themes/apz_theme_provider.dart';
-import 'package:retail_application/ui/components/apz_menu.dart';
 import 'package:retail_application/ui/components/apz_scaffold.dart';
 import 'package:retail_application/ui/widgets/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:retail_application/ui/components/apz_footer.dart';
 import 'package:retail_application/ui/components/apz_header.dart';
 import 'package:provider/provider.dart';
+import 'package:retail_application/ui/widgets/menu_screen.dart';
 
 class FooterHeaderScreen extends StatefulWidget {
   const FooterHeaderScreen({super.key});
@@ -23,9 +23,9 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
   final _pages = [
     const AccountScreen(),
     const AppzRadioExample(),
-    MenuSheet(
-      options: const [],
-    ),
+    // MenuSheet(
+    //   options: const [], onClose: () {  },
+    // ),
     const AppzButtonExample(),
     const ApzDropdownExample(),
   ];

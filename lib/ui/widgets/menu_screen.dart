@@ -15,7 +15,7 @@ import 'package:retail_application/themes/apz_app_themes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MenuSheet extends StatefulWidget {
-  const MenuSheet({Key? key, required this.onClose}) : super(key: key);
+  const MenuSheet({Key? key, required this.onClose, required List options}) : super(key: key);
   final VoidCallback onClose;
   @override
   _MenuSheetState createState() => _MenuSheetState();

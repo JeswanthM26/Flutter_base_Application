@@ -10,7 +10,6 @@ import 'package:retail_application/ui/screens/accountDashboard/transactions_scre
 import 'package:retail_application/ui/screens/post_login/Notification_screen.dart';
 import 'package:retail_application/ui/screens/pre_login/onboarding_screen.dart';
 import 'package:retail_application/ui/widgets/menu_placeholder.dart';
-import 'package:retail_application/ui/widgets/notification.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart';
 
@@ -99,7 +98,7 @@ class AppRouter {
       ),
       GoRoute(
         path: '/Notifications',
-        builder: (context, state) => const ApzNotificationExample(),
+        builder: (context, state) => const ApzNotification(),
       )
     ],
   );

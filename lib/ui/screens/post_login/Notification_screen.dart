@@ -4,8 +4,8 @@ import 'package:retail_application/ui/widgets/notification.dart';
 
 import 'package:flutter/material.dart';
 
-class ApzNotificationExample extends StatelessWidget {
-  const ApzNotificationExample({super.key});
+class ApzNotification extends StatelessWidget {
+  const ApzNotification({super.key});
 
   @override
   Widget build(BuildContext context) {

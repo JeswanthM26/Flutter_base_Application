@@ -55,6 +55,7 @@ flutter:
     - mock/mock_datas/
     - mock/Notifications/
     - mock/menu_options/
+    - mock/login/
     - assets/loader/
     - assets/login/
     - assets/promotions/

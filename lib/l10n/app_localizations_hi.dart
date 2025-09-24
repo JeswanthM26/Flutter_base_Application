@@ -36,6 +36,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get replay => 'फिर से चलाएँ';
 
   @override
+  String get contactUs => 'संपर्क करें';
+
+  @override
+  String get exchangeRates => 'विनिमय दरें';
+
+  @override
+  String get theme => 'थीम';
+
+  @override
   String get login => 'लॉगिन';
 
   @override

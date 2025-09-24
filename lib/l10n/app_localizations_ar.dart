@@ -36,6 +36,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get replay => 'إعادة';
 
   @override
+  String get contactUs => 'اتصل بنا';
+
+  @override
+  String get exchangeRates => 'أسعار الصرف';
+
+  @override
+  String get theme => 'السمة';
+
+  @override
   String get login => 'تسجيل الدخول';
 
   @override

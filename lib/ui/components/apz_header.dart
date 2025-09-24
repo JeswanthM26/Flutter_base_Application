@@ -3,7 +3,6 @@ import 'package:retail_application/themes/common_properties.dart';
 import 'package:retail_application/ui/components/apz_searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 class ApzHeader extends StatelessWidget {
   final bool hasNotification;

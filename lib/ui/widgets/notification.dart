@@ -46,13 +46,14 @@ class _NotificationWidgetState extends State<NotificationWidget> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const ApzText(
+        content: ApzText(
           label: 'Notification deleted',
+          color: AppColors.primary_text(context),
         ),
-        backgroundColor: AppColors.primary_text(context),
+        backgroundColor: AppColors.inverse_text(context),
         action: SnackBarAction(
           label: 'Undo',
-          textColor: AppColors.inverse_text(context),
+          textColor: AppColors.primary_text(context),
           onPressed: () {
             _undoDelete(index, deletedNotification);
           },
@@ -150,17 +151,24 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                     ),
                   )
                 : null,
-            title: ApzText(
-              label: notification.title,
-              fontWeight: ApzFontWeight.titlesSemibold,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ApzText(
+                    label: notification.title,
+                    fontWeight: ApzFontWeight.titlesSemibold,
+                  ),
+                ),
+                ApzText(
+                  label: _formatNotificationDate(notificationDate, isToday),
+                  color: AppColors.secondary_text(context),
+                ),
+              ],
             ),
             subtitle: ApzText(
               label: notification.notifMsg,
               fontWeight: ApzFontWeight.bodyRegular,
-            ),
-            trailing: ApzText(
-              label: _formatNotificationDate(notificationDate, isToday),
-              color: AppColors.secondary_text(context),
             ),
           ),
         ),
@@ -198,12 +206,8 @@ class _NotificationWidgetState extends State<NotificationWidget> {
             try {
               final rawDate =
                   notification.createTs.replaceAll(RegExp(r'\s+'), ' ').trim();
-              //final dateFormat = DateFormat("dd MMM yy HH:mm"); // single space
               final notificationDate =
                   DateFormat("dd MMM yy HH:mm").parse(rawDate);
-              // final dateFormat = DateFormat("dd MMM yy HH:mm");
-
-              // final notificationDate = dateFormat.parse(notification.createTs);
 
               if (notificationDate.isAfter(today)) {
                 todayNotifications.add(notification);

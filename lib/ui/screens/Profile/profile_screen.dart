@@ -12,7 +12,6 @@ import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// ✅ Load Customer Mock Data
 Future<CustomerModel> loadCustomerData() async {

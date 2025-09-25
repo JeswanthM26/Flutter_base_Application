@@ -327,16 +327,15 @@ class AccountDashboardScreen extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SafeArea(
-            top: true,
-            bottom: false,
-            child: ProfileHeaderWidget(
+          
+            
+             ProfileHeaderWidget(
               onBackPressed: () {
                 Navigator.pop(context);
               },
               title: "All Accounts",
             ),
-          ),
+        
           Expanded(
             child: SingleChildScrollView(
               child: AccountDashboard(), // now content won't stretch
@@ -389,8 +388,7 @@ class _AccountDashboardState extends State<AccountDashboard> {
         return code.isNotEmpty ? code : 'Loan';
     }
   }
-
-  String _accountTypeLabel(AccountModel acc) {
+    String _accountTypeLabel(AccountModel acc) {
     switch (acc.accountType) {
       case 'SB':
         return 'Savings Account';
@@ -484,20 +482,22 @@ class _AccountDashboardState extends State<AccountDashboard> {
   void _applySearch(String query) {
     final q = query.toLowerCase();
 
-    filteredSavings = accountsSavingsCurrent.where((acc) {
-      final label = _accountTypeLabel(acc).toLowerCase();
-      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
-    }).toList();
+   filteredSavings = accountsSavingsCurrent.where((acc) {
+  final label = _accountTypeLabel(acc).toLowerCase();
+  return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
+}).toList();
 
-    filteredDeposits = accountsDeposits.where((acc) {
-      final label = _accountTypeLabel(acc).toLowerCase();
-      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
-    }).toList();
 
-    filteredLoans = accountsLoans.where((acc) {
-      final label = _accountTypeLabel(acc).toLowerCase();
-      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
-    }).toList();
+filteredDeposits = accountsDeposits.where((acc) {
+  final label = _accountTypeLabel(acc).toLowerCase();
+  return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
+}).toList();
+
+filteredLoans = accountsLoans.where((acc) {
+  final label = _accountTypeLabel(acc).toLowerCase();
+  return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
+}).toList();
+
 
     setState(() {});
   }

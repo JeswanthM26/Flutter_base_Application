@@ -91,6 +91,7 @@
 //   }
 // }
 import 'package:retail_application/l10n/l10n.dart';
+import 'package:retail_application/pluginIntegration/profile_provider.dart';
 import 'package:retail_application/themes/apz_theme_provider.dart';
 import 'package:retail_application/ui/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -108,9 +109,11 @@ class AppWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
+         ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(
             create: (_) => ThemeProvider()), // add ThemeProvider
       ],

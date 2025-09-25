@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:provider/provider.dart';
 import 'package:retail_application/models/dashboard/customer_model.dart';
 import 'package:retail_application/pluginIntegration/apz_media_picker.dart';
+import 'package:retail_application/pluginIntegration/profile_provider.dart';
 import 'package:retail_application/ui/components/apz_input_with_dropdown.dart';
 import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _EditScreenState extends State<EditScreen> {
   late final TextEditingController _pAddressController;
   late final TextEditingController _cAddressController;
   final ApzMediaPicker _mediaPicker = ApzMediaPicker();
-  String? _profileImagePath;
+  // String? _profileImagePath;
 
   @override
   void initState() {
@@ -64,6 +66,8 @@ class _EditScreenState extends State<EditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
+    final profileImagePath = profileProvider.profileImagePath;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -79,7 +83,8 @@ class _EditScreenState extends State<EditScreen> {
               ProfileAvatarWidget(
                 name: _nameController.text,
                 imageAsset: "assets/images/Person.png",
-                imageFile: _profileImagePath !=null ? File(_profileImagePath!):null,
+                imageFile:
+                    profileImagePath != null ? File(profileImagePath!) : null,
                 showEditIcon: true,
                 editIcon: Icons.camera_alt,
                 onAvatarTap: () {},
@@ -198,7 +203,7 @@ class _EditScreenState extends State<EditScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Profile Updated")),
           );
-          context.pop(_profileImagePath);
+          context.pop();
         },
       ),
     );
@@ -284,9 +289,9 @@ class _EditScreenState extends State<EditScreen> {
                       final pickedPath =
                           await _mediaPicker.pickImageFromCamera(context);
                       if (pickedPath != null) {
-                        setState(() {
-                          _profileImagePath = pickedPath;
-                        });
+                        context
+                            .read<ProfileProvider>()
+                            .updateProfileImagePath(pickedPath);
                       }
                     },
                   ),
@@ -311,10 +316,10 @@ class _EditScreenState extends State<EditScreen> {
                       Navigator.pop(context); // Close the bottom sheet
                       final pickedPath =
                           await _mediaPicker.pickImageFromGallery(context);
-                      if (pickedPath!= null) {
-                        setState(() {
-                          _profileImagePath= pickedPath;
-                        });
+                      if (pickedPath != null) {
+                        context
+                            .read<ProfileProvider>()
+                            .updateProfileImagePath(pickedPath);
                       }
                     },
                   ),
@@ -350,9 +355,7 @@ class _EditScreenState extends State<EditScreen> {
                 icon: Icons.delete_outline,
                 onTap: () {
                   Navigator.pop(context);
-                  setState(() {
-                    _profileImagePath = null;
-                  });
+                  context.read<ProfileProvider>().updateProfileImagePath(null);
                 },
               ),
             ),

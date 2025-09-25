@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:retail_application/models/dashboard/customer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:retail_application/pluginIntegration/profile_provider.dart';
 import 'package:retail_application/themes/apz_app_themes.dart';
 import 'package:retail_application/themes/apz_theme_provider.dart';
 import 'package:retail_application/ui/components/apz_button.dart';
@@ -175,7 +176,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                   // backgroundImage: AssetImage(widget.imageAsset),
                   backgroundImage: widget.imageFile != null
                       ? FileImage(widget.imageFile!)
-                      : AssetImage(widget.imageAsset) as ImageProvider,
+                      : AssetImage(widget.imageAsset) as ImageProvider<Object>?,
                 ),
               ),
               if (widget.showEditIcon)
@@ -349,25 +350,11 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late Future<CustomerModel> _customerFuture;
-  String? _profileImagePath;
 
   @override
   void initState() {
     super.initState();
     _customerFuture = loadCustomerData();
-    _loadProfileImagePath();
-  }
-
-  Future<void> _loadProfileImagePath() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _profileImagePath = prefs.getString('profile_image_path');
-    });
-  }
-
-  Future<void> _saveProfileImagePath(String path) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('profile_image_path', path);
   }
 
   bool _isCustomerIdVisible = false;
@@ -419,11 +406,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   int _currentPage = 0;
 
-  void _showImageCarousel({
-    int initialPage = 0,
-    required String profileImageAsset,
-    required String qrImageAsset,
-  }) {
+  void _showImageCarousel(
+      {int initialPage = 0,
+      // required String profileImageAsset,
+      required String qrImageAsset,
+      required ImageProvider profileImageProvider}) {
     setState(() {
       _currentPage = initialPage;
     });
@@ -454,7 +441,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: AssetImage(profileImageAsset),
+                  image: profileImageProvider,
                   fit: BoxFit.fill,
                 ),
                 shape: RoundedRectangleBorder(
@@ -671,6 +658,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final profileProvider = Provider.of<ProfileProvider>(context);
+    // final profileImagePath = profileProvider.profileImagePath;
+
     return Scaffold(
       bottomNavigationBar: ProfileFooterWidget(
         label: "LOG OUT",
@@ -729,17 +719,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onBackPressed: () {
                     Navigator.pop(context);
                   },
-                  onActionPressed: () async {
-                    final newPath = await context.push<String?>(
+                  onActionPressed: () {
+                    context.push<String?>(
                       '/edit',
                       extra: customer,
                     );
-                    if (newPath != null) {
-                      setState(() {
-                        _profileImagePath = newPath;
-                      });
-                      await _saveProfileImagePath(newPath);
-                    }
                   },
                   trailingIcon: Icons.edit,
                   title: "Profile",
@@ -750,23 +734,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        ProfileAvatarWidget(
-                          name: customer.customerName,
-                          imageAsset: "assets/images/Person.png",
-                          imageFile: _profileImagePath != null
-                              ? File(_profileImagePath!)
-                              : null,
-                          showEditIcon: true,
-                          editIcon: Icons.qr_code,
-                          onAvatarTap: () => _showImageCarousel(
-                              initialPage: 0,
-                              profileImageAsset: "assets/images/Person.png",
-                              qrImageAsset: "assets/images/qr.jpg"),
-                          onEdit: () => _showImageCarousel(
-                              initialPage: 1,
-                              profileImageAsset: "assets/images/Person.png",
-                              qrImageAsset: "assets/images/qr.jpg"),
-                        ),   
+                        Consumer<ProfileProvider>(
+                          builder: (context, profileProvider, child) {
+                            final profileImagePath =
+                                profileProvider.profileImagePath;
+                            return ProfileAvatarWidget(
+                              name: customer.customerName,
+                              imageAsset: "assets/images/Person.png",
+                              imageFile: profileImagePath != null
+                                  ? File(profileImagePath)
+                                  : null,
+                              // ProfileAvatarWidget(
+                              //   name: customer.customerName,
+                              //   imageAsset: "assets/images/Person.png",
+                              //   imageFile: profileImagePath != null
+                              //       ? File(profileImagePath!)
+                              //       : null,
+                              showEditIcon: true,
+                              editIcon: Icons.qr_code,
+                              onAvatarTap: () {
+                                final imageProvider = profileImagePath != null
+                                    ? FileImage(File(profileImagePath))
+                                    : const AssetImage(
+                                        "assets/images/Person.png");
+                                _showImageCarousel(
+                                  initialPage: 0,
+                                  profileImageProvider:
+                                      imageProvider as ImageProvider,
+                                  qrImageAsset: "assets/images/qr.jpg",
+                                );
+                              },
+                              onEdit: () {
+                                final imageProvider = profileImagePath != null
+                                    ? FileImage(File(profileImagePath))
+                                    : const AssetImage(
+                                        "assets/images/Person.png");
+                                _showImageCarousel(
+                                  initialPage: 1,
+                                  profileImageProvider:
+                                      imageProvider as ImageProvider,
+                                  qrImageAsset: "assets/images/qr.jpg",
+                                );
+                              },
+                            );
+                          },
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
                           child: Row(

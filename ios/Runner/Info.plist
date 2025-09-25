@@ -50,5 +50,11 @@
     <string>We need Face ID to securely log you in</string>
     <key>NSBiometricsUsageDescription</key>
     <string>Biometric authentication is required to access your account</string>
+	<key>NSCameraUsageDescription</key>
+    <string>This app needs access to the camera to take photos.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to the photo library to select images.</string>
+ 
+ 
 </dict>
 </plist>

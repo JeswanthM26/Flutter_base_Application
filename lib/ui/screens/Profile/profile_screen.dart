@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:provider/provider.dart';
 import 'package:retail_application/models/dashboard/customer_model.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// ✅ Load Customer Mock Data
 Future<CustomerModel> loadCustomerData() async {
@@ -131,6 +133,7 @@ class ProfileAvatarWidget extends StatefulWidget {
   final double avatarRadius;
   final bool showEditIcon;
   final IconData? editIcon; // 👈 new parameter
+  final File? imageFile;
 
   final VoidCallback? onAvatarTap; // optional avatar tap
   final VoidCallback? onEdit; // QR tap
@@ -144,6 +147,7 @@ class ProfileAvatarWidget extends StatefulWidget {
     this.editIcon,
     this.onAvatarTap,
     this.onEdit,
+    this.imageFile,
   });
 
   @override
@@ -168,7 +172,10 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                 child: CircleAvatar(
                   radius: widget.avatarRadius,
                   backgroundColor: AppColors.input_field_filled(context),
-                  backgroundImage: AssetImage(widget.imageAsset),
+                  // backgroundImage: AssetImage(widget.imageAsset),
+                  backgroundImage: widget.imageFile != null
+                      ? FileImage(widget.imageFile!)
+                      : AssetImage(widget.imageAsset) as ImageProvider,
                 ),
               ),
               if (widget.showEditIcon)
@@ -342,11 +349,25 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late Future<CustomerModel> _customerFuture;
+  String? _profileImagePath;
 
   @override
   void initState() {
     super.initState();
     _customerFuture = loadCustomerData();
+    _loadProfileImagePath();
+  }
+
+  Future<void> _loadProfileImagePath() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _profileImagePath = prefs.getString('profile_image_path');
+    });
+  }
+
+  Future<void> _saveProfileImagePath(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profile_image_path', path);
   }
 
   bool _isCustomerIdVisible = false;
@@ -406,9 +427,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _currentPage = initialPage;
     });
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     final pageController = PageController(
       initialPage: _currentPage,
       viewportFraction: 0.88, // spacing between dialogs
@@ -439,7 +460,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: RoundedRectangleBorder(
                     // borderRadius: BorderRadius.circular(16),
                     // side: BorderSide(
-                    //     width: 1, color: AppColors.profileDialogBorder(context)),
+                    //   width: 1, color: AppColors.profileDialogBorder(context)),
                     ),
                 shadows: const [
                   BoxShadow(
@@ -453,7 +474,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       ),
-
       // QR Code Dialog
       Container(
         padding: const EdgeInsets.all(16),
@@ -478,7 +498,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                   side: BorderSide(
-                      width: 1, color: AppColors.profileDialogBorder(context)),
+                    width: 1,
+                    color: AppColors.profileDialogBorder(context),
+                  ),
                 ),
                 shadows: const [
                   BoxShadow(
@@ -500,8 +522,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Container(
                       height: screenWidth * 0.20,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 6),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.01,
+                      ),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -532,8 +556,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Container(
                       height: screenWidth * 0.20,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 6),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.01,
+                      ),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -703,8 +729,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onBackPressed: () {
                     Navigator.pop(context);
                   },
-                  onActionPressed: () {
-                    context.push('/edit', extra: customer);
+                  onActionPressed: () async {
+                    final newPath = await context.push<String?>(
+                      '/edit',
+                      extra: customer,
+                    );
+                    if (newPath != null) {
+                      setState(() {
+                        _profileImagePath = newPath;
+                      });
+                      await _saveProfileImagePath(newPath);
+                    }
                   },
                   trailingIcon: Icons.edit,
                   title: "Profile",
@@ -718,6 +753,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileAvatarWidget(
                           name: customer.customerName,
                           imageAsset: "assets/images/Person.png",
+                          imageFile: _profileImagePath != null
+                              ? File(_profileImagePath!)
+                              : null,
                           showEditIcon: true,
                           editIcon: Icons.qr_code,
                           onAvatarTap: () => _showImageCarousel(
@@ -728,7 +766,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               initialPage: 1,
                               profileImageAsset: "assets/images/Person.png",
                               qrImageAsset: "assets/images/qr.jpg"),
-                        ),
+                        ),   
                         Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
                           child: Row(

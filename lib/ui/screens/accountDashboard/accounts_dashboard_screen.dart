@@ -390,6 +390,23 @@ class _AccountDashboardState extends State<AccountDashboard> {
     }
   }
 
+  String _accountTypeLabel(AccountModel acc) {
+    switch (acc.accountType) {
+      case 'SB':
+        return 'Savings Account';
+      case 'CA':
+        return 'Current Account';
+      case 'FD':
+        return 'Fixed Deposit';
+      case 'RD':
+        return 'Recurring Deposit';
+      case 'LN':
+        return 'Loan';
+      default:
+        return acc.accountType;
+    }
+  }
+
   bool _isFixedDeposit(AccountModel account) {
     return account.accountType == "FD" || account.loanType == "FD";
   }
@@ -468,18 +485,18 @@ class _AccountDashboardState extends State<AccountDashboard> {
     final q = query.toLowerCase();
 
     filteredSavings = accountsSavingsCurrent.where((acc) {
-      return acc.accountNo.toLowerCase().contains(q) ||
-          (acc.accountType.toLowerCase() + " account").contains(q);
+      final label = _accountTypeLabel(acc).toLowerCase();
+      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
     }).toList();
 
     filteredDeposits = accountsDeposits.where((acc) {
-      return acc.accountNo.toLowerCase().contains(q) ||
-          (acc.accountType.toLowerCase() + " deposit").contains(q);
+      final label = _accountTypeLabel(acc).toLowerCase();
+      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
     }).toList();
 
     filteredLoans = accountsLoans.where((acc) {
-      return acc.accountNo.toLowerCase().contains(q) ||
-          (acc.accountType.toLowerCase() + " loan").contains(q);
+      final label = _accountTypeLabel(acc).toLowerCase();
+      return acc.accountNo.toLowerCase().contains(q) || label.contains(q);
     }).toList();
 
     setState(() {});

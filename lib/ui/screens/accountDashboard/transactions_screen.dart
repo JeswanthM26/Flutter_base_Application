@@ -42,7 +42,11 @@ class TransactionCardWidget extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
-          builder: (context) => TransactionDetailsSheet(trn: trn),
+          builder: (_) => Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: TransactionDetailsSheet(trn: trn),
+          ),
         );
       },
       child: Container(
@@ -317,10 +321,19 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     if (searchController.text.isNotEmpty) {
       final searchText = searchController.text.toLowerCase();
       filtered = filtered.where((trn) {
+        String formattedDate = '-';
+        if (trn.trnDate != null && trn.trnDate!.isNotEmpty) {
+          try {
+            formattedDate =
+                DateFormat('dd MMM yyyy').format(DateTime.parse(trn.trnDate!));
+          } catch (_) {}
+        }
+
         return (trn.trnDesc ?? '').toLowerCase().contains(searchText) ||
             (trn.trnRefNo ?? '').toLowerCase().contains(searchText) ||
             (trn.accountNo ?? '').toLowerCase().contains(searchText) ||
-            (trn.creditAccount ?? '').toLowerCase().contains(searchText);
+            (trn.creditAccount ?? '').toLowerCase().contains(searchText) ||
+            formattedDate.toLowerCase().contains(searchText);
       }).toList();
     }
 

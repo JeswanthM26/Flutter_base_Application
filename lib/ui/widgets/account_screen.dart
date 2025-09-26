@@ -430,8 +430,16 @@ class _DashboardScreenState extends State<AccountScreen> {
           label: act.value ?? '',
           screenID: act.screenID,
           onTap: () {
-            debugPrint(
-                'Action tapped: screen=${act.screenID} value=${act.value}');
+           if (act.screenID == 'scanQR') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const QrScannerScreen()),
+              );
+            } else {
+              debugPrint(
+                  'Action tapped: screen=${act.screenID} value=${act.value}');
+            }
           },
           onLongPress: act.screenID == "TransactionApp"
               ? () {

@@ -29,7 +29,7 @@ class AuthOverlayContainer extends StatelessWidget {
                 top: h * 0.04,
                 left: w * 0.04,
                 right: w * 0.04,
-                bottom: h * 0.045,
+                bottom: MediaQuery.of(context).viewInsets.bottom + h * 0.045,
               ),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(

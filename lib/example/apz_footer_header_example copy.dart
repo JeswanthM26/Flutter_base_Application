@@ -24,7 +24,7 @@ class _FooterExampleScreenState extends State<FooterHeaderScreen> {
     const AccountScreen(),
     const AppzRadioExample(),
     // MenuSheet(
-    //   options: const [], onClose: () {  },
+    //   options: const [],
     // ),
     const AppzButtonExample(),
     const ApzDropdownExample(),

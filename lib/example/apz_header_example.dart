@@ -35,7 +35,7 @@ class ExampleHeaderScreen extends StatelessWidget {
         children: [
           ApzHeader(
             hasNotification: true,
-            avatarUrl: "https://placehold.co/40x40",
+            //avatarUrl: "https://placehold.co/40x40",
             onProfileTap: () => _openProfile(context),
             onNotificationTap: () => _openNotifications(context),
             onSearchTap: () => _onSearchTap(context),

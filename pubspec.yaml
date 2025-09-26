@@ -30,6 +30,19 @@ dependencies:
   intl: ^0.20.2
   gradient_borders: ^1.0.2
   flutter_slidable: ^3.1.0
+  path_provider: ^2.0.11
+  path: ^1.8.3
+  apz_camera:
+    git:
+      url: https://github.com/JeswanthM26/flutter_plugin_test.git
+      ref: main
+      path: apz_core/plugins/camera/v1.0.0
+  apz_photopicker:
+    git:
+      url: https://github.com/JeswanthM26/flutter_plugin_test.git
+      ref: main
+      path: apz_core/plugins/photopicker/v1.0.0
+ 
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +68,7 @@ flutter:
     - mock/mock_datas/
     - mock/Notifications/
     - mock/menu_options/
+    - mock/login/
     - assets/loader/
     - assets/login/
     - assets/promotions/

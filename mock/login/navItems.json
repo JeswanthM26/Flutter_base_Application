@@ -1,0 +1,59 @@
+{
+  "MenuScreen_Res": {
+    "apiResponse": {
+      "ResponseHeader": {
+        "ResponseCode": "0",
+        "ResponseMessage": "Success"
+      },
+      "ResponseBody": {
+        "responseObj": {
+          "menuItems": [
+            {
+              "screenID": "FAQ",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_FAQ"
+            },
+            {
+              "screenID": "Calculator",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_CALCULATOR"
+            },
+            {
+              "screenID": "Replay",
+              "YN": "Y",
+              "appID": "/onboarding",
+              "menu": "LIT_REPLAY"
+            },
+            {
+              "screenID": "LocateUs",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_LOCATE_US"
+            },
+            {
+              "screenID": "ContactUs",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_CONTACT_US"
+            },
+            {
+              "screenID": "ExchangeRates",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_EXCHANGE_RATE"
+            },
+            {
+              "screenID": "Theme",
+              "YN": "Y",
+              "appID": "",
+              "menu": "LIT_THEME"
+            }
+
+          ]
+        }
+      }
+    }
+  }
+}

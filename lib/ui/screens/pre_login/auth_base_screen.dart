@@ -166,6 +166,7 @@ class _AuthBaseScreenState extends State<AuthBaseScreen> {
         : 'assets/login/logo_light.png';
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
           // Background video

@@ -36,6 +36,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get replay => 'Replay';
 
   @override
+  String get contactUs => 'ContactUs';
+
+  @override
+  String get exchangeRates => 'ExchangeRates';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
   String get login => 'Login';
 
   @override

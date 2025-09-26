@@ -8,8 +8,9 @@
   "calculate": "Calculate",
   "locateUs": "Locate Us",
   "replay": "Replay",
-
-
+  "contactUs":"ContactUs",
+  "exchangeRates":"ExchangeRates",
+  "theme":"Theme",
 
    "login": "Login",
   "newToBank": "New To Bank?",

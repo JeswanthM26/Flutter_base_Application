@@ -1,0 +1,79 @@
+{
+  "apiResponse": {
+    "ResponseHeader": {
+      "responseCode": "200",
+      "responseMessage": "Success",
+      "responseTime": "2025-09-25T10:00:00Z"
+    },
+    "ResponseBody": {
+      "responseObj": {
+        "transactionDetails": [
+          {
+            "accountNo": "1234567890",
+            "trend": [
+              {
+                "trnDate": "2025-09-01",
+                "trnDesc": "Salary September",
+                "trnAmount": 50000.00,
+                "trnCcy": "INR",
+                "drcrIndicator": "CR",
+                "runningBalance": 75000.00,
+                "trnRefNo": "SALSEP2025",
+                "creditAccount": "Company Account"
+              },
+              {
+                "trnDate": "2025-09-05",
+                "trnDesc": "Groceries",
+                "trnAmount": 5000.00,
+                "trnCcy": "INR",
+                "drcrIndicator": "DR",
+                "runningBalance": 70000.00,
+                "trnRefNo": "GROC2025",
+                "creditAccount": "Supermarket"
+              }
+            ]
+          }
+        ],
+        "filters": {
+          "categories": [
+            { "label": "Cash", "icon": "attach_money" },
+            { "label": "Eating out", "icon": "restaurant" },
+            { "label": "Entertainment", "icon": "movie" },
+            { "label": "Expenses", "icon": "receipt_long" },
+            { "label": "Family", "icon": "family_restroom" },
+            { "label": "General", "icon": "category" },
+            { "label": "Groceries", "icon": "shopping_bag" },
+            { "label": "Housing", "icon": "home" },
+            { "label": "Investments", "icon": "show_chart" },
+            { "label": "Personal care", "icon": "spa" },
+            { "label": "Salary", "icon": "monetization_on" },
+            { "label": "Savings", "icon": "savings" }
+          ],
+          "creditDebitOptions": [
+            { "label": "Credit", "icon": "arrow_downward" },
+            { "label": "Debit", "icon": "arrow_upward" }
+          ],
+          "transactionTypes": [
+            { "label": "ATM", "icon": "atm" },
+            { "label": "UPI", "icon": "payments" },
+            { "label": "IMPS", "icon": "sync_alt" },
+            { "label": "RTGS", "icon": "account_balance" },
+            { "label": "NEFT", "icon": "send" },
+            { "label": "POS", "icon": "point_of_sale" },
+            { "label": "Cheque payment", "icon": "description" },
+            { "label": "Cash deposit", "icon": "attach_money" },
+            { "label": "Cash withdrawal", "icon": "money_off" },
+            { "label": "Mobile Banking", "icon": "smartphone" },
+            { "label": "Online Banking", "icon": "language" }
+          ],
+          "periodPresets": [
+            { "label": "Last 15 days", "days": 15, "icon": "date_range" },
+            { "label": "Last 30 days", "days": 30, "icon": "date_range" },
+            { "label": "Last 60 days", "days": 60, "icon": "date_range" },
+            { "label": "Last 90 days", "days": 90, "icon": "date_range" }
+          ]
+        }
+      }
+    }
+  }
+}

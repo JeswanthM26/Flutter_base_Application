@@ -208,7 +208,6 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                   notification.createTs.replaceAll(RegExp(r'\s+'), ' ').trim();
               final notificationDate =
                   DateFormat("dd MMM yy HH:mm").parse(rawDate);
-              
 
               if (notificationDate.isAfter(today)) {
                 todayNotifications.add(notification);

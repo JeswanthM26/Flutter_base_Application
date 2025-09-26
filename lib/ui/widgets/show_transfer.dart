@@ -30,8 +30,8 @@ Future<void> showTransferModelAtButton(BuildContext context,
             Positioned.fill(
               child: BackdropFilter(
                 filter: ImageFilter.blur(
-                  sigmaX: 0, // Blur strength
-                  sigmaY: 0,
+                  sigmaX: 1, // Blur strength
+                  sigmaY: 1,
                 ),
                 child: Container(
                   color: Colors.black.withOpacity(0.2),

@@ -44,14 +44,14 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     return Scaffold(
       body: Column(
         children: [
-          SafeArea(
-            child: ProfileHeaderWidget(
+          
+             ProfileHeaderWidget(
               title: 'Account Details',
               onBackPressed: () => Navigator.pop(context),
               trailingIcon: Icons.home,
               onActionPressed: () => Navigator.pop(context),
             ),
-          ),
+          
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),

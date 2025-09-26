@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:retail_application/models/login/navItems_model.dart';
+import 'package:retail_application/themes/apz_theme_provider.dart';
 import 'package:retail_application/ui/components/apz_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:retail_application/l10n/app_localizations.dart';
@@ -11,6 +17,20 @@ import '../pre_login/auth_overlay_container.dart';
 import 'package:retail_application/ui/components/apz_segment_control.dart';
 import 'package:local_auth/local_auth.dart';
 
+Future<Map<String, dynamic>> _loadMenuData() async {
+  final String data = await rootBundle.loadString('mock/login/navItems.json');
+  final jsonResult = json.decode(data);
+  return jsonResult['MenuScreen_Res']['apiResponse']['ResponseBody']
+      ['responseObj'];
+}
+
+// Convert JSON to List<MenuItemModel>
+Future<List<MenuItemModel>> loadMenuItems() async {
+  final obj = await _loadMenuData();
+  final items = obj['menuItems'] as List<dynamic>? ?? [];
+  return items.map((item) => MenuItemModel.fromJson(item)).toList();
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -20,6 +40,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final double baseWidth = 375;
+  List<MenuItemModel> menuItems = [];
+  bool isMenuLoading = true;
 
   bool showLoginForm = false;
   bool showMpinForm = false;
@@ -41,6 +63,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _checkAvailableBiometrics();
+    _fetchMenuItems();
+  }
+
+  Future<void> _fetchMenuItems() async {
+    menuItems = await loadMenuItems();
+    setState(() {
+      isMenuLoading = false;
+    });
   }
 
   Future<void> _checkAvailableBiometrics() async {
@@ -171,13 +201,16 @@ class _LoginScreenState extends State<LoginScreen> {
             color: AppColors.primary_text(context),
           ),
           SizedBox(height: 12),
-          Row(
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              ApzText(
-                label: local.notUser(_enteredUsername),
-                fontWeight: ApzFontWeight.bodyRegular,
-                fontSize: 16 * (w / baseWidth),
-                color: AppColors.secondary_text(context),
+              Expanded(
+                child: ApzText(
+                  label: local.notUser(_enteredUsername),
+                  fontWeight: ApzFontWeight.bodyRegular,
+                  fontSize: 16 * (w / baseWidth),
+                  color: AppColors.secondary_text(context),
+                ),
               ),
               SizedBox(width: 4),
               ApzButton(
@@ -264,7 +297,8 @@ class _LoginScreenState extends State<LoginScreen> {
             color: AppColors.primary_text(context),
           ),
           SizedBox(height: 12),
-          Row(
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               ApzText(
                 label: local.notUser(_enteredUsername),
@@ -350,7 +384,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
           SizedBox(height: 4),
-          Row(
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               ApzText(
                 label: local.notUser(_enteredUsername),
@@ -537,7 +572,29 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       );
     } else {
+      // Add this mapping for icons and labels
+      final Map<String, IconData> iconMap = {
+        "FAQ": Icons.help_outline,
+        "Calculator": Icons.calculate,
+        "Replay": Icons.replay,
+        "LocateUs": Icons.location_on_outlined,
+        "ContactUs": Icons.contact_page,
+        "ExchangeRates": Icons.currency_exchange,
+        "Theme": Icons.brightness_6,
+      };
+
+      Map<String, String> labelMap(AppLocalizations local) => {
+            "LIT_FAQ": local.faqs,
+            "LIT_CALCULATOR": local.calculate,
+            "LIT_REPLAY": local.replay,
+            "LIT_LOCATE_US": local.locateUs,
+            "LIT_CONTACT_US": local.contactUs,
+            "LIT_EXCHANGE_RATE": local.exchangeRates,
+            "LIT_THEME": local.theme,
+          };
+
       // Initial welcome screen
+      // Initial welcome screen bottomContent
       bottomContent = Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -592,19 +649,59 @@ class _LoginScreenState extends State<LoginScreen> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
-                buildNavItem(context, Icons.link, local.links, w, () {}),
-                SizedBox(width: 32 * (w / baseWidth)),
-                buildNavItem(context, Icons.help_outline, local.faqs, w, () {}),
-                SizedBox(width: 32 * (w / baseWidth)),
-                buildNavItem(
-                    context, Icons.calculate, local.calculate, w, () {}),
-                SizedBox(width: 32 * (w / baseWidth)),
-                buildNavItem(context, Icons.location_on_outlined,
-                    local.locateUs, w, () {}),
-                SizedBox(width: 32 * (w / baseWidth)),
-                buildNavItem(context, Icons.replay, local.replay, w, () {}),
-              ],
+              children: menuItems.map((item) {
+                final iconData = iconMap[item.screenID] ?? Icons.link;
+                final label = labelMap(local)[item.menu] ?? item.menu;
+
+                if (item.screenID == "Theme") {
+                  // 🎨 special case for theme toggle
+                  return Consumer<ThemeProvider>(
+                    builder: (context, themeProvider, child) {
+                      return Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => themeProvider.toggleTheme(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  themeProvider.themeMode == ThemeMode.dark
+                                      ? Icons.dark_mode
+                                      : Icons.light_mode,
+                                  size: 24 * (w / baseWidth),
+                                  color: AppColors.primary_text(context),
+                                ),
+                                const SizedBox(height: 10),
+                                ApzText(
+                                  label: label,
+                                  fontWeight: ApzFontWeight.titlesSemibold,
+                                  fontSize: 10 * (w / baseWidth),
+                                  color: AppColors.primary_text(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 32 * (w / baseWidth)),
+                        ],
+                      );
+                    },
+                  );
+                }
+
+                // ✅ default nav item
+                return Row(
+                  children: [
+                    buildNavItem(
+                      context,
+                      iconData,
+                      label,
+                      w,
+                      () => context.go(item.appID),
+                    ),
+                    SizedBox(width: 32 * (w / baseWidth)),
+                  ],
+                );
+              }).toList(),
             ),
           ),
           SizedBox(height: h * 0.045),
@@ -613,7 +710,12 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     return AuthBaseScreen(
-      bottomOverlay: AuthOverlayContainer(child: bottomContent),
+      bottomOverlay: AuthOverlayContainer(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: bottomContent,
+        ),
+      ),
     );
   }
 }

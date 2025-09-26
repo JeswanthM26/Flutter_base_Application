@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:provider/provider.dart';
 import 'package:retail_application/models/dashboard/customer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:retail_application/pluginIntegration/profile_provider.dart';
 import 'package:retail_application/themes/apz_app_themes.dart';
+import 'package:retail_application/themes/apz_theme_provider.dart';
 import 'package:retail_application/ui/components/apz_button.dart';
 import 'package:retail_application/ui/components/apz_text.dart';
 import 'package:go_router/go_router.dart';
@@ -129,6 +133,7 @@ class ProfileAvatarWidget extends StatefulWidget {
   final double avatarRadius;
   final bool showEditIcon;
   final IconData? editIcon; // 👈 new parameter
+  final File? imageFile;
 
   final VoidCallback? onAvatarTap; // optional avatar tap
   final VoidCallback? onEdit; // QR tap
@@ -142,6 +147,7 @@ class ProfileAvatarWidget extends StatefulWidget {
     this.editIcon,
     this.onAvatarTap,
     this.onEdit,
+    this.imageFile,
   });
 
   @override
@@ -166,7 +172,10 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                 child: CircleAvatar(
                   radius: widget.avatarRadius,
                   backgroundColor: AppColors.input_field_filled(context),
-                  backgroundImage: AssetImage(widget.imageAsset),
+                  // backgroundImage: AssetImage(widget.imageAsset),
+                  backgroundImage: widget.imageFile != null
+                      ? FileImage(widget.imageFile!)
+                      : AssetImage(widget.imageAsset) as ImageProvider<Object>?,
                 ),
               ),
               if (widget.showEditIcon)
@@ -396,17 +405,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   int _currentPage = 0;
 
-  void _showImageCarousel({
-    int initialPage = 0,
-    required String profileImageAsset,
-    required String qrImageAsset,
-  }) {
+  void _showImageCarousel(
+      {int initialPage = 0,
+      // required String profileImageAsset,
+      required String qrImageAsset,
+      required ImageProvider profileImageProvider}) {
     setState(() {
       _currentPage = initialPage;
     });
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     final pageController = PageController(
       initialPage: _currentPage,
       viewportFraction: 0.88, // spacing between dialogs
@@ -431,13 +440,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: AssetImage(profileImageAsset),
+                  image: profileImageProvider,
                   fit: BoxFit.fill,
                 ),
                 shape: RoundedRectangleBorder(
                     // borderRadius: BorderRadius.circular(16),
                     // side: BorderSide(
-                    //     width: 1, color: AppColors.profileDialogBorder(context)),
+                    //   width: 1, color: AppColors.profileDialogBorder(context)),
                     ),
                 shadows: const [
                   BoxShadow(
@@ -451,7 +460,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       ),
-
       // QR Code Dialog
       Container(
         padding: const EdgeInsets.all(16),
@@ -476,7 +484,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                   side: BorderSide(
-                      width: 1, color: AppColors.profileDialogBorder(context)),
+                    width: 1,
+                    color: AppColors.profileDialogBorder(context),
+                  ),
                 ),
                 shadows: const [
                   BoxShadow(
@@ -487,7 +497,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -498,8 +508,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Container(
                       height: screenWidth * 0.20,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.01,
+                      ),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -530,8 +542,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Container(
                       height: screenWidth * 0.20,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.01,
+                      ),
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -643,15 +657,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final profileProvider = Provider.of<ProfileProvider>(context);
+    // final profileImagePath = profileProvider.profileImagePath;
+
     return Scaffold(
       bottomNavigationBar: ProfileFooterWidget(
         label: "LOG OUT",
         trailingIcon: Icons.logout,
         textColor: AppColors.profileFooterButton(context),
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Logged out")),
-          );
+          context.go('/login');
         },
       ),
       body: FutureBuilder<CustomerModel>(
@@ -696,78 +711,150 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ];
 
           return SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ProfileHeaderWidget(
-                    onBackPressed: () {
-                      Navigator.pop(context);
-                    },
-                    onActionPressed: () {
-                      // ApzAlert.show(
-                      //   context,
-                      //   title: "Coming Soon",
-                      //   message: "This feature is under development.",
-                      //   messageType: ApzAlertMessageType.info,
-                      //   buttons: ["OK"],
-                      // );
-                      context.push(
-                        '/edit',
-                        extra:
-                            customer, // pass the CustomerModel object directly
-                      );
-                    },
-                    trailingIcon: Icons.edit,
-                    title: "Profile",
-                  ),
-                  ProfileAvatarWidget(
-                    name: customer.customerName,
-                    imageAsset: "assets/images/Person.png",
-                    showEditIcon: true,
-                    editIcon: Icons.qr_code,
-                    onAvatarTap: () => _showImageCarousel(
-                        initialPage: 0,
-                        profileImageAsset: "assets/images/Person.png",
-                        qrImageAsset: "assets/images/qr.jpg"),
-                    onEdit: () => _showImageCarousel(
-                        initialPage: 1,
-                        profileImageAsset: "assets/images/Person.png",
-                        qrImageAsset: "assets/images/qr.jpg"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              children: [
+                // ✅ Sticky Header
+                ProfileHeaderWidget(
+                  onBackPressed: () {
+                    Navigator.pop(context);
+                  },
+                  onActionPressed: () {
+                    context.push<String?>(
+                      '/edit',
+                      extra: customer,
+                    );
+                  },
+                  trailingIcon: Icons.edit,
+                  title: "Profile",
+                ),
+
+                // ✅ Scrollable content
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
-                        ApzText(
-                          label:
-                              "Customer ID: ${maskCustomerId(customer.customerId, _isCustomerIdVisible)}",
-                          color: AppColors.tertiary_text(context),
-                          fontSize: 14,
-                          fontWeight: ApzFontWeight.buttonTextMedium,
-                        ),
-                        const SizedBox(width: 8),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isCustomerIdVisible = !_isCustomerIdVisible;
-                            });
+                        Consumer<ProfileProvider>(
+                          builder: (context, profileProvider, child) {
+                            final profileImagePath =
+                                profileProvider.profileImagePath;
+                            return ProfileAvatarWidget(
+                              name: customer.customerName,
+                              imageAsset: "assets/images/Person.png",
+                              imageFile: profileImagePath != null
+                                  ? File(profileImagePath)
+                                  : null,
+                              // ProfileAvatarWidget(
+                              //   name: customer.customerName,
+                              //   imageAsset: "assets/images/Person.png",
+                              //   imageFile: profileImagePath != null
+                              //       ? File(profileImagePath!)
+                              //       : null,
+                              showEditIcon: true,
+                              editIcon: Icons.qr_code,
+                              onAvatarTap: () {
+                                final imageProvider = profileImagePath != null
+                                    ? FileImage(File(profileImagePath))
+                                    : const AssetImage(
+                                        "assets/images/Person.png");
+                                _showImageCarousel(
+                                  initialPage: 0,
+                                  profileImageProvider:
+                                      imageProvider as ImageProvider,
+                                  qrImageAsset: "assets/images/qr.jpg",
+                                );
+                              },
+                              onEdit: () {
+                                final imageProvider = profileImagePath != null
+                                    ? FileImage(File(profileImagePath))
+                                    : const AssetImage(
+                                        "assets/images/Person.png");
+                                _showImageCarousel(
+                                  initialPage: 1,
+                                  profileImageProvider:
+                                      imageProvider as ImageProvider,
+                                  qrImageAsset: "assets/images/qr.jpg",
+                                );
+                              },
+                            );
                           },
-                          child: Icon(
-                            _isCustomerIdVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            size: 18,
-                            color: AppColors.tertiary_text(context),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ApzText(
+                                label:
+                                    "Customer ID: ${maskCustomerId(customer.customerId, _isCustomerIdVisible)}",
+                                color: AppColors.tertiary_text(context),
+                                fontSize: 14,
+                                fontWeight: ApzFontWeight.buttonTextMedium,
+                              ),
+                              const SizedBox(width: 8),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _isCustomerIdVisible =
+                                        !_isCustomerIdVisible;
+                                  });
+                                },
+                                child: Icon(
+                                  _isCustomerIdVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 18,
+                                  color: AppColors.tertiary_text(context),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        _buildInfoContainer(generalInfo),
+                        _buildInfoContainer(addressInfo),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16.0, horizontal: 16.0),
+                          child: Consumer<ThemeProvider>(
+                            builder: (context, themeProvider, child) {
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ApzText(
+                                    label: "Theme",
+                                    fontSize: 16,
+                                    fontWeight: ApzFontWeight.titlesMedium,
+                                    color: AppColors.primary_text(context),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        themeProvider.themeMode ==
+                                                ThemeMode.dark
+                                            ? Icons.dark_mode
+                                            : Icons.light_mode,
+                                        color: AppColors.primary_text(context),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Switch(
+                                        value: themeProvider.themeMode ==
+                                            ThemeMode.dark,
+                                        onChanged: (value) {
+                                          themeProvider.toggleTheme();
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                         ),
                       ],
                     ),
                   ),
-                  _buildInfoContainer(generalInfo),
-                  _buildInfoContainer(addressInfo),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

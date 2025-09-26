@@ -154,6 +154,24 @@ abstract class AppLocalizations {
   /// **'Replay'**
   String get replay;
 
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'ContactUs'**
+  String get contactUs;
+
+  /// No description provided for @exchangeRates.
+  ///
+  /// In en, this message translates to:
+  /// **'ExchangeRates'**
+  String get exchangeRates;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:

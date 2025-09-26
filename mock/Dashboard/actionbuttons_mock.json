@@ -19,7 +19,7 @@
             {
               "appID": "DynBil",
               "icon": "scan-pay-new",
-              "screenID": "DynamicBillPayment",
+              "screenID": "ScanQR",
               "value": "Scan QR",
               "action": "Account"
             },

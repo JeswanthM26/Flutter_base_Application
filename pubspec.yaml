@@ -42,6 +42,11 @@ dependencies:
       url: https://github.com/JeswanthM26/flutter_plugin_test.git
       ref: main
       path: apz_core/plugins/photopicker/v1.0.0
+  apz_qr:
+    git:
+      url: https://github.com/JeswanthM26/flutter_plugin_test.git
+      ref: main
+      path: apz_core/plugins/qr/v1.0.0
  
 
 dev_dependencies:
